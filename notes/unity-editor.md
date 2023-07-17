@@ -4,6 +4,8 @@
 
 To easily move around the scene view, hold down `RMB` and use `WASD` to move around, `Q` and `E` to move up and down, and hold down `SHIFT` to move faster.
 
+Holding `CTRL` while moving an object will snap it to the grid.
+
 ### Shortcuts
 
 `F` - Focus camera on selected game object
