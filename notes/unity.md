@@ -71,3 +71,42 @@ Unity is a cross-platform game engine that allows you to create games 2D, 3D, VR
 ## Transform Component
 
 - The _Transform Component_ is a component that is automatically added to every game object, it contains information about the object's position, rotation and scale.
+
+# Input System
+
+- The new input system is a package that can be installed from the package manager.
+- It's more scalable than the old input system.
+- It utilizes an Event Based System.
+- Provides easy support for switching between input devices.
+
+## Actions and Action Maps
+
+- An action describes the behavior performed by the player.
+  - e.g. Jump, Move, Shoot, Navigating a menu, etc.
+- An action map is a group of actions.
+
+## Action Types
+
+- An action type refers to how Unity tracks the input.
+- Unity utilizes _Disambiguation_ to determine which action to perform.
+  - e.g. If the player presses the space bar, Unity will check which action is mapped to the space bar. If there is only one action mapped to the space bar, it will perform that action. If there are multiple actions mapped to the space bar, it will perform the action that is mapped to the action map that is currently active.
+- There are 3 types of actions:
+  - Button: Listens for a _single press_ of a button.
+  - Value: Listens for a _continuous_ press of a button.
+  - Pass-through: Listens for a _continuous_ press of a button. It won't pass through the process of _Disambiguation_.
+
+## Bindings
+
+- A binding is a specific button that is mapped to an action.
+- A binding can be a _Key_, _Mouse Button_, _Mouse Movement_, _Gamepad Button_, _Gamepad Axis_, or _Touch_.
+
+### Composite Bindings
+
+- A composite binding is a binding that is made up of multiple bindings.
+- It's useful to map movements, where pressing two buttons at the same time should move in a diagonal direction, for example.
+
+# Empty Parent Objects
+
+- To avoid visual elements having logic in them, empty parent objects are used to hold the logic for complex game objects.
+- This also enforces that these empty parent objects should not contains scaling or rotation values.
+- This pattern makes it so the child objects are used for visuals, making the code more maintainable and components more reusable.

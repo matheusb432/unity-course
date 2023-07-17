@@ -7,15 +7,7 @@
 
 - `private` properties and classes are not visible in the _Unity Editor_, while `public` properties and classes are.
 
-# Input System
+# Event Handlers
 
-- The new input system is a package that can be installed from the package manager.
-- It's more scalable than the old input system.
-- It utilizes an Event Based System.
-- Provides easy support for switching between input devices.
-
-## Actions and Action Maps
-
-- An action describes the behavior performed by the player.
-  - e.g. Jump, Move, Shoot, Navigating a menu, etc.
-- An action map is a group of actions.
+- Event handlers are methods that are called when an event occurs.
+  - e.g. Handling mouse clicks, player death, etc.
