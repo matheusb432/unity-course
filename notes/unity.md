@@ -64,6 +64,7 @@ Unity is a cross-platform game engine that allows you to create games 2D, 3D, VR
 # Components
 
 - A _Component_ is a piece of functionality that can be added to a _Game Object_, it can be thought of as a building block.
+- As with _MonoBehaviors_, all components are C# classes that derive from the `Component` class.
 - e.g. a `Rigidbody` component to give the object physics.
 - _Component Composition_ is the process of adding multiple components to a game object to give it the functionality that you want, composing game objects from multiple, reusable components.
 

@@ -329,6 +329,7 @@ GameObject:
   - component: {fileID: 3931304624605618982}
   - component: {fileID: 109172536654246284}
   - component: {fileID: 4039011124112821689}
+  - component: {fileID: 5565412816267222595}
   m_Layer: 0
   m_Name: Robot
   m_TagString: Untagged
@@ -352,7 +353,7 @@ Transform:
   - {fileID: 6051311622477375815}
   - {fileID: 4337845924128554304}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 304.044, z: 0}
 --- !u!33 &3931304624605618982
 MeshFilter:
@@ -425,3 +426,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5565412816267222595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7530321118339047744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 086f3dec929d540478b014ff42b6f960, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  age: 5
+  price: 99.99
+  isTurnedOn: 1
