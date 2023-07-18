@@ -6,6 +6,8 @@ To easily move around the scene view, hold down `RMB` and use `WASD` to move aro
 
 Holding `CTRL` while moving an object will snap it to the grid.
 
+Clicking with the RMB on `Scene` > `Overlay Menu` will enable customizing what panels are on the scene view.
+
 ### Shortcuts
 
 `F` - Focus camera on selected game object
