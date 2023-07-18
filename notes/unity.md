@@ -110,3 +110,7 @@ Unity is a cross-platform game engine that allows you to create games 2D, 3D, VR
 - To avoid visual elements having logic in them, empty parent objects are used to hold the logic for complex game objects.
 - This also enforces that these empty parent objects should not contains scaling or rotation values.
 - This pattern makes it so the child objects are used for visuals, making the code more maintainable and components more reusable.
+
+# Baking
+
+- _Baking_ is the process of transferring data from one 3D model to another.

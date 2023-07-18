@@ -17,7 +17,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &7311025017279956445
 Transform:
@@ -113,7 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PolyMesh:
-    name: PolybrushMesh27008
+    name: PolybrushMesh88130
     vertices:
     - {x: -0.49999997, y: 0.99999994, z: -0.49999997}
     - {x: -0.49999997, y: 0.99999994, z: 0.49999997}

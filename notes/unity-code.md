@@ -11,3 +11,9 @@
 
 - Event handlers are methods that are called when an event occurs.
   - e.g. Handling mouse clicks, player death, etc.
+
+# Managers
+
+- _Managers_ are scripts/objects that manage other game objects.
+  - e.g. `GameManager` manages the game state, `AudioManager` manages the audio, etc.
+- _GameManagers_ are the brains of the game. They manage the game state, and are responsible for starting and ending the game.

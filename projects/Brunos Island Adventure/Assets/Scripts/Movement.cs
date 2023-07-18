@@ -1,10 +1,12 @@
 using UnityEngine;
 
-public class Movement : MonoBehaviour
+namespace RPG.Character
 {
-    // Start is called before the first frame update
-    private void Start() { }
-
-    // Update is called once per frame
-    private void Update() { }
+    public class Movement : MonoBehaviour
+    {
+        public void HandleMove()
+        {
+            print("WASD keys pressed!");
+        }
+    }
 }
