@@ -1,53 +1,71 @@
 using UnityEngine;
-using System;
 
 namespace RPG.Example
 {
-    public class Robot : MonoBehaviour
+    public sealed class Robot : MonoBehaviour
     {
-        /*
-        public int age = 5;
-        public float price = 99.99f;
-
-        public bool isTurnedOn = false;
+        private IBatteryRegulations IncludedBattery { get; set; }
 
         public Robot()
         {
-            isTurnedOn = true;
-            Debug.Log("calculating price...");
-            var newPrice = ApplyDiscount(0.1f);
-
-            if (newPrice > 75f)
-            {
-                price = newPrice;
-            }
-            else
-            {
-                // NOTE `print()` is a MonoBehavior method to easily log messages
-                //print("price is too low >:L");
-                Log("Price is too low");
-                Log(price);
-            }
+            IncludedBattery = new Battery(newHealth: 80);
+            IncludedBattery.CheckHealth();
+            IncludedBattery.CheckHealth();
+            Charger.ChargeBattery(IncludedBattery);
+            IncludedBattery.CheckHealth();
+            print(Charger.chargerInUse);
         }
+    }
 
-        [Obsolete("CalculatePrice() is deprecated. Use ApplyDiscount() instead")]
-        public float CalculatePrice(float discount, int quantity)
+    public class Battery : IBatteryRegulations
+    {
+        public float Health { get; set; }
+
+        public Battery(float newHealth)
         {
-            return (price - (price * discount)) * quantity;
+            Health = newHealth;
+            Debug.Log("New battery created!");
         }
 
-        public float ApplyDiscount(float discount)
+        public void CheckHealth()
         {
-            return (price - (price * discount));
+            Debug.Log(Health);
         }
 
-        public void Log<T>(T message)
+        public void SetHealth(float newHealth)
         {
-            Debug.Log(message);
-            // NOTE Debug.Log enables logging messages to the unity editor console
-            //Debug.LogWarning("hi from c#!");
-            //Debug.LogError("Price is too low");
+            Health = newHealth;
         }
-        */
+    }
+
+    internal static class Charger
+    {
+        public static bool chargerInUse = false;
+
+        public static void ChargeBattery(IBatteryRegulations battery)
+        {
+            chargerInUse = true;
+            battery.SetHealth(100);
+        }
+    }
+
+    public abstract class BatteryRegulations
+    {
+        public float Health { get; set; }
+
+        public BatteryRegulations(float newHealth)
+        {
+            Health = newHealth;
+        }
+
+        public abstract void CheckHealth();
+    }
+
+    // ? Implementing BatteryRegulations with composition
+    public interface IBatteryRegulations
+    {
+        void CheckHealth();
+
+        void SetHealth(float newHealth);
     }
 }

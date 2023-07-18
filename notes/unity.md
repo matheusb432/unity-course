@@ -50,6 +50,12 @@ Unity is a cross-platform game engine that allows you to create games 2D, 3D, VR
 
 - A _Prefab_ (Prefabrication) is a template for a _Game Object_, it can be used to create multiple instances of the same object.
 
+### Prefab Variants
+
+- A _Prefab Variant_ is a prefab that inherits from another prefab.
+  - Enemy -> StationaryEnemy, PatrollingEnemy, Boss, etc.
+- It can be used to create multiple variations of the same object.
+
 ## Models & Meshes
 
 - A _Model_ is a 3D object, it can be imported into Unity from a 3D modelling program.

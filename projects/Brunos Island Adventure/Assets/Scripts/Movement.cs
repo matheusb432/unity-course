@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 
 namespace RPG.Character
 {
+    // TODO refactor - seal class?
     public class Movement : MonoBehaviour
     {
         private NavMeshAgent agent;
