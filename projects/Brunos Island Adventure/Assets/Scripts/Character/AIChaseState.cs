@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace RPG.Character
 {
@@ -12,6 +13,11 @@ namespace RPG.Character
 
         public override void UpdateState(EnemyController enemy)
         {
+            if (enemy.IsPlayerInAttackRange)
+            {
+                enemy.SwitchState(enemy.attackState);
+                return;
+            }
             if (!enemy.IsPlayerInChaseRange)
             {
                 enemy.SwitchState(enemy.returnState);

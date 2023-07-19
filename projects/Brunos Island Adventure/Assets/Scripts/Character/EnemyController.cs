@@ -1,3 +1,4 @@
+using Assets.Scripts.Character;
 using RPG.Util;
 using System;
 using UnityEngine;
@@ -24,9 +25,13 @@ namespace RPG.Character
         public float chaseRange = 2.5f;
         public float attackRange = 0.75f;
 
+        public bool IsPlayerInChaseRange => distanceFromPlayer <= chaseRange;
+        public bool IsPlayerInAttackRange => distanceFromPlayer <= attackRange;
+
         private AIBaseState currentState;
         public AIReturnState returnState = new();
         public AIChaseState chaseState = new();
+        public AIAttackState attackState = new();
 
         private void Awake()
         {
@@ -62,8 +67,6 @@ namespace RPG.Character
             currentState.EnterState(this);
         }
 
-        public bool IsPlayerInChaseRange => distanceFromPlayer <= chaseRange;
-
         private void CalculateDistanceFromPlayer()
         {
             if (player == null)
@@ -80,6 +83,9 @@ namespace RPG.Character
             Gizmos.color = Color.blue;
             // NOTE Drawing the chase range gizmo to help visual debugging, doesn't change the game itself.
             Gizmos.DrawWireSphere(transform.position, chaseRange);
+
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, attackRange);
         }
     }
 }
