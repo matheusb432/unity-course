@@ -6,6 +6,7 @@
 # Class Visibility
 
 - `private` properties and classes are not visible in the _Unity Editor_, while `public` properties and classes are.
+- Only serializable properties are visible in the Unity Editor.
 
 # Event Handlers
 
@@ -17,3 +18,9 @@
 - _Managers_ are scripts/objects that manage other game objects.
   - e.g. `GameManager` manages the game state, `AudioManager` manages the audio, etc.
 - _GameManagers_ are the brains of the game. They manage the game state, and are responsible for starting and ending the game.
+
+# Controllers
+
+- _Controllers_ are scripts/objects that control other game objects.
+  - e.g. `PlayerController` controls the player, `EnemyController` controls the enemies, etc.
+- They should be used to control the behaviour of individual game objects, not shared game logic.
