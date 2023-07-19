@@ -58,5 +58,10 @@ namespace RPG.Character
                 Time.deltaTime * agent.angularSpeed
             );
         }
+
+        public void MoveAgentByDestination(Vector3 destination)
+        {
+            agent.SetDestination(destination);
+        }
     }
 }
