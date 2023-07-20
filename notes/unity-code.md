@@ -32,3 +32,10 @@
 - The _State Pattern_ is a design pattern that is used to manage the state of an object.
 - It is used to change the behaviour of an object based on its state.
 - The _Enter State_ method handles setting up the state, and the _Update State_ method is responsible for handling state on every update.
+
+## Scriptable Objects
+
+- _Scriptable Objects_ are assets that can be created in the Unity Editor to store data that can be shared between multiple game objects.
+- They are useful for storing data that is not specific to a single game object.
+  - e.g. Stats, items, etc.
+- They're more efficient than using `MonoBehaviour` scripts, as they don't need to be attached to a game object.

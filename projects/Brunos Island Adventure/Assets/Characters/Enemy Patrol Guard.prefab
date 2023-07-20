@@ -113,6 +113,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1353355534539082135, guid: 80fe10796094df544881a210c8a34c73, type: 3}
+      propertyPath: stats
+      value: 
+      objectReference: {fileID: 11400000, guid: 213ee7626aa23ba4caa1099a1995e901, type: 2}
     - target: {fileID: 2546819720911215604, guid: 80fe10796094df544881a210c8a34c73, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -197,6 +201,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2c4c7fc03f3293489756fdf4e1b6484, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  splineGameObject: {fileID: 0}
+  walkDuration: 3
+  pauseDuration: 2
 --- !u!4 &5883181163266623262 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2546819720911215604, guid: 80fe10796094df544881a210c8a34c73, type: 3}

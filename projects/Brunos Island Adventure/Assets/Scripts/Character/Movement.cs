@@ -87,5 +87,10 @@ namespace RPG.Character
         {
             agent.Move(offset);
         }
+
+        public void UpdateAgentSpeed(float newSpeed)
+        {
+            agent.speed = newSpeed;
+        }
     }
 }

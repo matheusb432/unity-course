@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 4868957976779173341}
   - component: {fileID: 4580974232346641180}
   - component: {fileID: 1353355534539082135}
+  - component: {fileID: 3964453014803182227}
+  - component: {fileID: 6472024643065046092}
   m_Layer: 0
   m_Name: Enemy Base
   m_TagString: Untagged
@@ -78,5 +80,34 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ea957ad749ee95044b824a76c1c33849, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthCmp: {fileID: 0}
+  combatCmp: {fileID: 0}
+  stats: {fileID: 0}
+  chaseRange: 2.5
+  attackRange: 0.75
+--- !u!114 &3964453014803182227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8131339998855385683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e3ddf3656cd85c44b0bf48b662f5710, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6472024643065046092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8131339998855385683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 520b2ce7cec53464b8f78efb371efabe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

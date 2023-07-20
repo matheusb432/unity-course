@@ -2,7 +2,10 @@
 {
     public class AIChaseState : AIBaseState
     {
-        public override void EnterState(EnemyController enemy) { }
+        public override void EnterState(EnemyController enemy)
+        {
+            enemy.movementCmp.UpdateAgentSpeed(enemy.stats.runSpeed);
+        }
 
         public override void UpdateState(EnemyController enemy)
         {
