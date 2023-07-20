@@ -70,5 +70,22 @@ namespace RPG.Character
         {
             agent.ResetPath();
         }
+
+        public bool ReachedDestination()
+        {
+            if (agent.pathPending)
+                return false;
+            if (agent.remainingDistance > agent.stoppingDistance)
+                return false;
+            if (agent.hasPath || agent.velocity.sqrMagnitude != 0)
+                return false;
+
+            return true;
+        }
+
+        public void MoveAgentByOffset(Vector3 offset)
+        {
+            agent.Move(offset);
+        }
     }
 }
