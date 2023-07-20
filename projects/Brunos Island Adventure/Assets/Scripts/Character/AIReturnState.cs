@@ -9,9 +9,16 @@ namespace RPG.Character
 {
     public class AIReturnState : AIBaseState
     {
+        Vector3 targetPosition;
+
         public override void EnterState(EnemyController enemy)
         {
-            enemy.movementCmp.MoveAgentByDestination(enemy.originalPosition);
+            targetPosition =
+                enemy.patrolCmp != null
+                    ? enemy.patrolCmp.GetNextPosition()
+                    : enemy.originalPosition;
+
+            enemy.movementCmp.MoveAgentByDestination(targetPosition);
         }
 
         public override void UpdateState(EnemyController enemy)
