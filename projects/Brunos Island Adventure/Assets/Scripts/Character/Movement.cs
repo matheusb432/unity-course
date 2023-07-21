@@ -1,3 +1,5 @@
+using RPG.Util;
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
@@ -9,6 +11,9 @@ namespace RPG.Character
     [RequireComponent(typeof(NavMeshAgent))]
     public class Movement : MonoBehaviour
     {
+        [NonSerialized]
+        public Vector3 originalForwardVector;
+
         private NavMeshAgent agent;
 
         private Vector3 movementVector;
@@ -17,13 +22,22 @@ namespace RPG.Character
         private void Awake()
         {
             agent = GetComponent<NavMeshAgent>();
+            // NOTE transform.forward gets the vector representing the blue axis of the game object, which is where it's facing
+            originalForwardVector = transform.forward;
+        }
+
+        private void Start()
+        {
+            // NOTE Disables default unity handling of rotation
+            agent.updateRotation = false;
         }
 
         // NOTE Update() is a method called every frame
         private void Update()
         {
             MovePlayer();
-            Rotate();
+            if (CompareTag(Constants.PLAYER_TAG))
+                Rotate(movementVector);
         }
 
         private void MovePlayer()
@@ -42,14 +56,14 @@ namespace RPG.Character
             movementVector = new Vector3(input.x, 0, input.y);
         }
 
-        private void Rotate()
+        public void Rotate(Vector3 newForwardVector)
         {
             // NOTE No rotation can be applied if movementVector is a vector zero (player is not moving)
-            if (movementVector == Vector3.zero)
+            if (newForwardVector == Vector3.zero)
                 return;
 
             Quaternion startRotation = transform.rotation;
-            Quaternion endRotation = Quaternion.LookRotation(movementVector);
+            Quaternion endRotation = Quaternion.LookRotation(newForwardVector);
 
             // ? Calculates the linear interpolation (Lerp) based on the time between frames (deltaTime) to smoothly rotate the player (agent)
             transform.rotation = Quaternion.Lerp(
@@ -91,6 +105,11 @@ namespace RPG.Character
         public void UpdateAgentSpeed(float newSpeed)
         {
             agent.speed = newSpeed;
+        }
+
+        public void ResetRotate()
+        {
+            Rotate(originalForwardVector);
         }
     }
 }

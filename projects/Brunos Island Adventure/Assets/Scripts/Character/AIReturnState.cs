@@ -35,6 +35,27 @@ namespace RPG.Character
                     enemy.SwitchState(enemy.patrolState);
                     return;
                 }
+                else
+                {
+                    enemy.movementCmp.ResetRotate();
+                }
+            }
+            else
+            {
+                if (enemy.patrolCmp != null)
+                {
+                    Vector3 newForwardVector = targetPosition - enemy.transform.position;
+                    newForwardVector.y = 0;
+
+                    enemy.movementCmp.Rotate(newForwardVector);
+                }
+                else
+                {
+                    Vector3 newForwardVector = enemy.originalPosition - enemy.transform.position;
+                    newForwardVector.y = 0;
+
+                    enemy.movementCmp.Rotate(newForwardVector);
+                }
             }
         }
     }

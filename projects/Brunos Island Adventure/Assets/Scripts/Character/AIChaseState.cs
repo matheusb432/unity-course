@@ -1,4 +1,6 @@
-﻿namespace RPG.Character
+﻿using UnityEngine;
+
+namespace RPG.Character
 {
     public class AIChaseState : AIBaseState
     {
@@ -21,6 +23,10 @@
             }
 
             ChasePlayer(enemy);
+
+            Vector3 playerDirection = enemy.player.transform.position - enemy.transform.position;
+
+            enemy.movementCmp.Rotate(playerDirection);
         }
 
         private void ChasePlayer(EnemyController enemy)
