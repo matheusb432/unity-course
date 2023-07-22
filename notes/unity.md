@@ -120,3 +120,22 @@ Unity is a cross-platform game engine that allows you to create games 2D, 3D, VR
 # Baking
 
 - _Baking_ is the process of transferring data from one 3D model to another.
+
+# Animations
+
+- Animations are used to animate game objects, they can be created via the _Animation Window_.
+- Animations are created by setting keyframes, which are points in time that define the state of the object.
+- The animation is then interpolated between the keyframes.
+- Animations can be used to animate the position, rotation and scale of an object, as well as the values of its components.
+
+## Avatars
+
+- An _Avatar_ is a collection of body parts that can be animated. It lays out the skeleton of an object which provides information on movable joints.
+- It's used to create base animations that can be applied to multiple objects
+  - e.g. Humanoid avatars, Animal avatars, etc.
+
+## Blend Trees
+
+- A _Blend Tree_ is a collection of animations that can be blended together.
+- It's used to create smooth transitions between animations.
+- e.g. Walking and running, running and leaning, etc.

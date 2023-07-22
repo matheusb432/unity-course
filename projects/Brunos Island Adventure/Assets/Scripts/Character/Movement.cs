@@ -15,6 +15,7 @@ namespace RPG.Character
         public Vector3 originalForwardVector;
 
         private NavMeshAgent agent;
+        private Animator animatorCmp;
 
         private Vector3 movementVector;
 
@@ -22,6 +23,8 @@ namespace RPG.Character
         private void Awake()
         {
             agent = GetComponent<NavMeshAgent>();
+            // NOTE GetComponentInChildren searches for a component from within child objects of the current game object
+            animatorCmp = GetComponentInChildren<Animator>();
             // NOTE transform.forward gets the vector representing the blue axis of the game object, which is where it's facing
             originalForwardVector = transform.forward;
         }
