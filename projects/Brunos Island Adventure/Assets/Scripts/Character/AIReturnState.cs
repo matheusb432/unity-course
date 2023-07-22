@@ -8,7 +8,7 @@ namespace RPG.Character
 
         public override void EnterState(EnemyController enemy)
         {
-            enemy.movementCmp.UpdateAgentSpeed(enemy.stats.walkSpeed);
+            enemy.movementCmp.UpdateAgentSpeed(enemy.stats.walkSpeed, true);
 
             targetPosition =
                 enemy.patrolCmp != null
@@ -37,6 +37,7 @@ namespace RPG.Character
                 }
                 else
                 {
+                    enemy.movementCmp.isMoving = false;
                     enemy.movementCmp.ResetRotate();
                 }
             }

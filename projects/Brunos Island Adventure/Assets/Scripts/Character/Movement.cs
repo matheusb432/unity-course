@@ -21,6 +21,7 @@ namespace RPG.Character
         private Animator animatorCmp;
 
         private Vector3 movementVector;
+        private bool clampAnimatorSpeedAgain = true;
 
         // NOTE Awake() is called when the script is being loaded
         private void Awake()
@@ -90,6 +91,7 @@ namespace RPG.Character
         public void MoveAgentByDestination(Vector3 destination)
         {
             agent.SetDestination(destination);
+            isMoving = true;
         }
 
         public void SetAgentStopped(bool val) => agent.isStopped = val;
@@ -114,11 +116,14 @@ namespace RPG.Character
         public void MoveAgentByOffset(Vector3 offset)
         {
             agent.Move(offset);
+            isMoving = true;
         }
 
-        public void UpdateAgentSpeed(float newSpeed)
+        public void UpdateAgentSpeed(float newSpeed, bool shouldClampSpeed)
         {
             agent.speed = newSpeed;
+
+            clampAnimatorSpeedAgain = shouldClampSpeed;
         }
 
         public void ResetRotate()
@@ -143,6 +148,13 @@ namespace RPG.Character
 
             // NOTE Mathf.Clamp01() simply clamps the value with min = 0 and max = 1
             speed = Mathf.Clamp01(speed);
+
+            // ? If CompareTag(Constants.ENEMY_TAG) is true, then the game object is an Enemy
+            if (CompareTag(Constants.ENEMY_TAG) && clampAnimatorSpeedAgain)
+            {
+                // ? Clamping the speed to 0.5, which is the walking speed
+                speed = Mathf.Clamp(speed, 0, 0.5f);
+            }
 
             animatorCmp.SetFloat(Constants.SPEED_ANIMATOR_PARAM, speed);
         }

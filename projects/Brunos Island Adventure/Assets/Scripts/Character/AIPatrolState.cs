@@ -15,6 +15,8 @@
                 return;
             }
 
+            var oldPosition = enemy.patrolCmp.GetNextPosition();
+
             enemy.patrolCmp.CalculateNextPosition();
             var currentPosition = enemy.transform.position;
             var newPosition = enemy.patrolCmp.GetNextPosition();
@@ -29,6 +31,11 @@
             newForwardVector.y = 0;
 
             enemy.movementCmp.Rotate(newForwardVector);
+
+            if (oldPosition == newPosition)
+            {
+                enemy.movementCmp.isMoving = false;
+            }
         }
     }
 }
