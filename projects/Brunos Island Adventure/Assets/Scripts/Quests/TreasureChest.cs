@@ -1,3 +1,4 @@
+using RPG.Util;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -31,7 +32,7 @@ namespace RPG.Quest
             if (!isInteractable || isOpened)
                 return;
 
-            animatorCmp.SetBool("IsShaking", false);
+            animatorCmp.SetBool(Constants.IS_SHAKING_ANIMATOR_PARAM, false);
             isOpened = true;
         }
     }

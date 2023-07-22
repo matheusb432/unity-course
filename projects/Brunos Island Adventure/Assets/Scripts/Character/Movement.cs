@@ -14,6 +14,9 @@ namespace RPG.Character
         [NonSerialized]
         public Vector3 originalForwardVector;
 
+        [NonSerialized]
+        public bool isMoving = false;
+
         private NavMeshAgent agent;
         private Animator animatorCmp;
 
@@ -39,6 +42,9 @@ namespace RPG.Character
         private void Update()
         {
             MovePlayer();
+
+            MovementAnimator();
+
             if (CompareTag(Constants.PLAYER_TAG))
                 Rotate(movementVector);
         }
@@ -54,6 +60,11 @@ namespace RPG.Character
 
         public void HandleMove(InputAction.CallbackContext context)
         {
+            if (context.performed)
+                isMoving = true;
+            if (context.canceled)
+                isMoving = false;
+
             Vector2 input = context.ReadValue<Vector2>();
 
             movementVector = new Vector3(input.x, 0, input.y);
@@ -113,6 +124,27 @@ namespace RPG.Character
         public void ResetRotate()
         {
             Rotate(originalForwardVector);
+        }
+
+        private void MovementAnimator()
+        {
+            // TODO refactor - is `animatorCmp.speed` equivalent?
+            float speed = animatorCmp.GetFloat(Constants.SPEED_ANIMATOR_PARAM);
+            float smoothening = Time.deltaTime * agent.acceleration;
+
+            if (isMoving)
+            {
+                speed += smoothening;
+            }
+            else
+            {
+                speed -= smoothening;
+            }
+
+            // NOTE Mathf.Clamp01() simply clamps the value with min = 0 and max = 1
+            speed = Mathf.Clamp01(speed);
+
+            animatorCmp.SetFloat(Constants.SPEED_ANIMATOR_PARAM, speed);
         }
     }
 }

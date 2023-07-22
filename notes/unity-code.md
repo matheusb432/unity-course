@@ -39,3 +39,11 @@
 - They are useful for storing data that is not specific to a single game object.
   - e.g. Stats, items, etc.
 - They're more efficient than using `MonoBehaviour` scripts, as they don't need to be attached to a game object.
+
+# Callback Context
+
+- The _Callback Context_ is a class that is used to pass data to the callback methods.
+- Unity adds a variable called _action_ to the context parameter of input event handlers, they describe states such as:
+  1. _Started_: The action has just started (When a button/binding is pressed).
+  2. _Performed_: The action is being performed (When a button/binding is confirmed to be pressed).
+  3. _Canceled_: The action has been canceled (When a button/binding has been released).
