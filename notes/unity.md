@@ -139,3 +139,7 @@ Unity is a cross-platform game engine that allows you to create games 2D, 3D, VR
 - A _Blend Tree_ is a collection of animations that can be blended together.
 - It's used to create smooth transitions between animations.
 - e.g. Walking and running, running and leaning, etc.
+
+## Triggers
+
+- A _Trigger_ is a boolean value that can be used to trigger an animation. It works by being automatically set back to false after being set to true.
