@@ -17,3 +17,4 @@ Clicking with the RMB on `Scene` > `Overlay Menu` will enable customizing what p
 `R` - Select Scale Tool
 `T` - Select Rect Tool
 `Y` - Select Pivot Tool
+`CTRL+P` - Play the game

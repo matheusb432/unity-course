@@ -13,13 +13,22 @@ namespace Assets.Scripts.Character
 
         public override void UpdateState(EnemyController enemy)
         {
-            if (!enemy.IsPlayerInAttackRange)
+            if (enemy.player == null)
             {
-                enemy.SwitchState(enemy.chaseState);
+                enemy.combatCmp.CancelAttack();
                 return;
             }
 
-            Debug.LogWarning("attacking player!");
+            if (!enemy.IsPlayerInAttackRange)
+            {
+                enemy.SwitchState(enemy.chaseState);
+                enemy.combatCmp.CancelAttack();
+                return;
+            }
+
+            enemy.combatCmp.StartAttack();
+            // ? Enemy will track the player while attacking
+            enemy.transform.LookAt(enemy.player.transform);
         }
     }
 }

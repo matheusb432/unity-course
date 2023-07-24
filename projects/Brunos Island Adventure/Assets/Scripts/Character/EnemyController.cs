@@ -25,7 +25,9 @@ namespace RPG.Character
         [NonSerialized]
         public Patrol patrolCmp;
 
-        public Health healthCmp;
+        private Health healthCmp;
+
+        [NonSerialized]
         public Combat combatCmp;
         public CharacterStatsSO stats;
 
@@ -40,6 +42,7 @@ namespace RPG.Character
         public AIChaseState chaseState = new();
         public AIAttackState attackState = new();
         public AIPatrolState patrolState = new();
+        public AIDefeatedState defeatedState = new();
 
         private void Awake()
         {
@@ -66,6 +69,16 @@ namespace RPG.Character
 
             healthCmp.healthPoints = stats.health;
             combatCmp.damage = stats.damage;
+        }
+
+        private void OnEnable()
+        {
+            healthCmp.OnStartDefeated += HandleStartDefeated;
+        }
+
+        private void OnDisable()
+        {
+            healthCmp.OnStartDefeated -= HandleStartDefeated;
         }
 
         private void Update()
@@ -105,6 +118,11 @@ namespace RPG.Character
 
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position, attackRange);
+        }
+
+        private void HandleStartDefeated()
+        {
+            SwitchState(defeatedState);
         }
     }
 }

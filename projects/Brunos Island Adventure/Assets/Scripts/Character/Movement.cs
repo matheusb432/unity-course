@@ -99,6 +99,7 @@ namespace RPG.Character
         public void StopMovingAgent()
         {
             agent.ResetPath();
+            isMoving = false;
         }
 
         public bool ReachedDestination()
