@@ -110,6 +110,7 @@ Unity is a cross-platform game engine that allows you to create games 2D, 3D, VR
 
 - A composite binding is a binding that is made up of multiple bindings.
 - It's useful to map movements, where pressing two buttons at the same time should move in a diagonal direction, for example.
+- It's good practice to name the bindings to the controller that they are mapped to. e.g. `Gamepad`, `Keyboard`, etc.
 
 # Empty Parent Objects
 

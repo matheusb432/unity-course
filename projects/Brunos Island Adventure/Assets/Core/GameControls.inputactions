@@ -159,12 +159,12 @@
             "actions": [
                 {
                     "name": "Navigate",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "4bed3389-428d-43f6-9989-63969aa01038",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Interact",
@@ -188,7 +188,7 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "e7c11f09-3ef8-4065-bbc5-9b95f969b995",
+                    "id": "5cc3112a-31af-4288-8966-806d8fd775ea",
                     "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
@@ -199,7 +199,7 @@
                 },
                 {
                     "name": "",
-                    "id": "fe128f3f-f2fe-4223-ad66-1e596e707468",
+                    "id": "65de4a7b-0585-4beb-9052-2efd46b59a55",
                     "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
@@ -207,6 +207,39 @@
                     "action": "Unpause",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "Keyboard",
+                    "id": "f82d2eaa-54ea-4052-9bfd-fd9b532c8b76",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Navigate",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "left",
+                    "id": "33bde37c-4147-4c15-923d-c418d4cfd50b",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Navigate",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "33df02f2-6438-4796-b639-395c8e58bf0f",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Navigate",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }
