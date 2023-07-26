@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Global.uss?fileID=7433441132597879392&amp;guid=8860ea9118f2f934290e9c51c04267c1&amp;type=3#Global" />
+    <ui:VisualElement name="main-menu" class="center" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+        <ui:VisualElement name="box" class="primary-container">
+            <ui:Label tabindex="-1" text="Bruno&apos;s Island Adventure" display-tooltip-when-elided="true" class="base-text" style="font-size: 80px; -unity-text-align: upper-center;" />
+            <ui:VisualElement name="buttons" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); position: absolute; left: 0; bottom: 0; width: 100%; flex-direction: row; justify-content: center;">
+                <ui:Button text="Start" display-tooltip-when-elided="true" name="start-btn" class="menu-button" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

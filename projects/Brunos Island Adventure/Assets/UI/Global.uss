@@ -1,0 +1,54 @@
+.primary-container {
+    flex-grow: 0;
+    border-left-color: rgba(60, 147, 180, 0);
+    border-right-color: rgba(60, 147, 180, 0);
+    border-top-color: rgba(60, 147, 180, 0);
+    border-bottom-color: rgba(60, 147, 180, 0);
+    border-left-width: 10px;
+    border-right-width: 10px;
+    border-top-width: 10px;
+    border-bottom-width: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-color: rgb(243, 229, 215);
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.base-text {
+    -unity-font-style: italic;
+    color: rgb(255, 255, 255);
+    white-space: normal;
+    -unity-text-outline-width: 2px;
+    -unity-text-outline-color: rgb(0, 0, 0);
+    -unity-font: url('project://database/Assets/Game%20Assets/Fonts/OdibeeSans-Regular.ttf?fileID=12800000&guid=94c91e133c0f88c438ef55128a1cd703&type=3#OdibeeSans-Regular');
+    -unity-font-definition: initial;
+}
+
+.center {
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.menu-button {
+    width: 320px;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    -unity-font: url('project://database/Assets/Game%20Assets/Fonts/OdibeeSans-Regular.ttf?fileID=12800000&guid=94c91e133c0f88c438ef55128a1cd703&type=3#OdibeeSans-Regular');
+    -unity-font-definition: initial;
+    font-size: 32px;
+    color: rgb(255, 255, 255);
+    -unity-text-align: upper-center;
+    background-color: rgb(41, 153, 201);
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}

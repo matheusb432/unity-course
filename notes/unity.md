@@ -143,3 +143,13 @@ Unity is a cross-platform game engine that allows you to create games 2D, 3D, VR
 ## Triggers
 
 - A _Trigger_ is a boolean value that can be used to trigger an animation. It works by being automatically set back to false after being set to true.
+
+# UI Toolkit
+
+- Unity provides _UI Toolkit_, a tool that can be used to create GUIs.
+- It's a more modern alternative to the old UI system.
+
+## Concepts
+
+- A _Document_ is a container for UI elements, similar to HTML files.
+- A _Style Sheet_ is a collection of styles that can be applied to UI elements, similar to CSS files.
