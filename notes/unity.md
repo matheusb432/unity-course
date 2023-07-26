@@ -112,6 +112,18 @@ Unity is a cross-platform game engine that allows you to create games 2D, 3D, VR
 - It's useful to map movements, where pressing two buttons at the same time should move in a diagonal direction, for example.
 - It's good practice to name the bindings to the controller that they are mapped to. e.g. `Gamepad`, `Keyboard`, etc.
 
+### Registering an input handler
+
+1. Create InputActions setup to handle specific keys.
+2. Add the GameControls component to a Game Manager game object.
+3. Change the `DefaultMap` action map to the target map.
+4. Create a game object with a script component that has a method which receives a `InputAction.CallbackContext` parameter.
+
+- e.g. `HandleInteract()`
+
+5. On the GameControls component inside the Game Manager, find the input event that you want to handle and add the game object that you want to handle it.
+6. Select the created method on the input event.
+
 # Empty Parent Objects
 
 - To avoid visual elements having logic in them, empty parent objects are used to hold the logic for complex game objects.
