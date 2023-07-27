@@ -276,6 +276,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93ff449d01725de43b6b2ab4f916cff9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentSelection: 0
 --- !u!1 &750401310
 GameObject:
   m_ObjectHideFlags: 0
@@ -427,28 +428,124 @@ PrefabInstance:
       value: UI
       objectReference: {fileID: 0}
     - target: {fileID: 2525582061694973182, guid: de6fcd658f2025946aa616ffc796a64e, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2525582061694973182, guid: de6fcd658f2025946aa616ffc796a64e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_ActionId
+      value: de4fc30c-8b30-4c84-882b-fd1a10745ea3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2525582061694973182, guid: de6fcd658f2025946aa616ffc796a64e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_ActionId
+      value: e0fed5af-5b5e-4c77-9fe4-61d86e9d8a54
+      objectReference: {fileID: 0}
+    - target: {fileID: 2525582061694973182, guid: de6fcd658f2025946aa616ffc796a64e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_ActionId
+      value: 5f94fedb-bd20-4ea0-9d98-1123c93fea25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2525582061694973182, guid: de6fcd658f2025946aa616ffc796a64e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_ActionId
+      value: b103333f-8e2c-4473-b612-81aa3f937c27
+      objectReference: {fileID: 0}
+    - target: {fileID: 2525582061694973182, guid: de6fcd658f2025946aa616ffc796a64e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_ActionId
+      value: ce1a7ff0-50ef-42f0-923b-e934da0be118
+      objectReference: {fileID: 0}
+    - target: {fileID: 2525582061694973182, guid: de6fcd658f2025946aa616ffc796a64e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_ActionId
+      value: 4bed3389-428d-43f6-9989-63969aa01038
+      objectReference: {fileID: 0}
+    - target: {fileID: 2525582061694973182, guid: de6fcd658f2025946aa616ffc796a64e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_ActionId
+      value: b23a8598-a81c-4999-ad56-f8e49a84a9ca
+      objectReference: {fileID: 0}
+    - target: {fileID: 2525582061694973182, guid: de6fcd658f2025946aa616ffc796a64e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[7].m_ActionId
+      value: 77062052-f9cf-44b5-a37d-27b1b624caee
+      objectReference: {fileID: 0}
+    - target: {fileID: 2525582061694973182, guid: de6fcd658f2025946aa616ffc796a64e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_ActionName
+      value: Gameplay/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+      objectReference: {fileID: 0}
+    - target: {fileID: 2525582061694973182, guid: de6fcd658f2025946aa616ffc796a64e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_ActionName
+      value: Gameplay/Interact[/Keyboard/e]
+      objectReference: {fileID: 0}
+    - target: {fileID: 2525582061694973182, guid: de6fcd658f2025946aa616ffc796a64e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_ActionName
+      value: Gameplay/Attack[/Keyboard/space]
+      objectReference: {fileID: 0}
+    - target: {fileID: 2525582061694973182, guid: de6fcd658f2025946aa616ffc796a64e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_ActionName
+      value: Gameplay/Heal[/Keyboard/q]
+      objectReference: {fileID: 0}
+    - target: {fileID: 2525582061694973182, guid: de6fcd658f2025946aa616ffc796a64e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_ActionName
+      value: Gameplay/Pause[/Keyboard/escape]
+      objectReference: {fileID: 0}
+    - target: {fileID: 2525582061694973182, guid: de6fcd658f2025946aa616ffc796a64e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_ActionName
+      value: UI/Navigate[/Keyboard/a,/Keyboard/d]
+      objectReference: {fileID: 0}
+    - target: {fileID: 2525582061694973182, guid: de6fcd658f2025946aa616ffc796a64e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_ActionName
+      value: UI/Interact[/Keyboard/e]
+      objectReference: {fileID: 0}
+    - target: {fileID: 2525582061694973182, guid: de6fcd658f2025946aa616ffc796a64e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[7].m_ActionName
+      value: UI/Unpause[/Keyboard/escape]
+      objectReference: {fileID: 0}
+    - target: {fileID: 2525582061694973182, guid: de6fcd658f2025946aa616ffc796a64e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2525582061694973182, guid: de6fcd658f2025946aa616ffc796a64e, type: 3}
       propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2525582061694973182, guid: de6fcd658f2025946aa616ffc796a64e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2525582061694973182, guid: de6fcd658f2025946aa616ffc796a64e, type: 3}
       propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2525582061694973182, guid: de6fcd658f2025946aa616ffc796a64e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 529719437}
+    - target: {fileID: 2525582061694973182, guid: de6fcd658f2025946aa616ffc796a64e, type: 3}
       propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 529719437}
     - target: {fileID: 2525582061694973182, guid: de6fcd658f2025946aa616ffc796a64e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2525582061694973182, guid: de6fcd658f2025946aa616ffc796a64e, type: 3}
       propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2525582061694973182, guid: de6fcd658f2025946aa616ffc796a64e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: HandleNavigate
       objectReference: {fileID: 0}
     - target: {fileID: 2525582061694973182, guid: de6fcd658f2025946aa616ffc796a64e, type: 3}
       propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: HandleInteract
       objectReference: {fileID: 0}
     - target: {fileID: 2525582061694973182, guid: de6fcd658f2025946aa616ffc796a64e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: RPG.UI.UIController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2525582061694973182, guid: de6fcd658f2025946aa616ffc796a64e, type: 3}
       propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: RPG.UI.UIController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2525582061694973182, guid: de6fcd658f2025946aa616ffc796a64e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2525582061694973182, guid: de6fcd658f2025946aa616ffc796a64e, type: 3}
       propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName

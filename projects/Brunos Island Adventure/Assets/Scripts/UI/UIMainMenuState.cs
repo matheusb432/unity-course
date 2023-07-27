@@ -1,5 +1,7 @@
 ﻿using UnityEngine.UIElements;
 using UnityEngine;
+using RPG.Core;
+using RPG.Util;
 
 namespace RPG.UI
 {
@@ -12,12 +14,15 @@ namespace RPG.UI
             // NOTE Querying UI elements with `.menu-button` class
             controller.buttons = controller.root.Query<Button>(null, "menu-button").ToList();
 
-            Debug.Log(controller.buttons.Count);
+            controller.buttons[0].AddToClassList("active");
         }
 
         public override void SelectButton()
         {
-            Debug.Log("button selected!");
+            var btn = controller.buttons[controller.currentSelection];
+
+            if (btn.name == "start-btn")
+                SceneTransition.Initiate(Constants.ISLAND_SCENE_IDX);
         }
     }
 }

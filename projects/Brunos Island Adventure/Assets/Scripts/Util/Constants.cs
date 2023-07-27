@@ -9,5 +9,7 @@
         public const string SPEED_ANIMATOR_PARAM = "speed";
         public const string ATTACK_ANIMATOR_PARAM = "attack";
         public const string DEFEATED_ANIMATOR_PARAM = "defeated";
+
+        public const int ISLAND_SCENE_IDX = 1;
     }
 }
