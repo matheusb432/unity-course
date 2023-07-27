@@ -740,6 +740,7 @@ GameObject:
   - component: {fileID: -8710584622428359048}
   - component: {fileID: 4852449128862655833}
   - component: {fileID: 6094389084205540836}
+  - component: {fileID: 7144885494144863702}
   - component: {fileID: 408723442731372999}
   - component: {fileID: 6685383431999032102}
   m_Layer: 0
@@ -838,6 +839,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 520b2ce7cec53464b8f78efb371efabe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7144885494144863702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9120125942861633482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: effca887518ed7c448dfcc2bfdb53938, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  potions: 0
 --- !u!65 &408723442731372999
 BoxCollider:
   m_ObjectHideFlags: 0

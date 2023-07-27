@@ -47,3 +47,13 @@
   1. _Started_: The action has just started (When a button/binding is pressed).
   2. _Performed_: The action is being performed (When a button/binding is confirmed to be pressed).
   3. _Canceled_: The action has been canceled (When a button/binding has been released).
+
+# Communicating Between Game Objects
+
+- _Game Objects_ can communicate with each other using _Events_.
+- _Events_ are used to notify other game objects when something happens.
+
+## Observer / PubSub Pattern
+
+- The _Observer Pattern_ is a design pattern that uses _Events_ to notify other game objects when something happens to promote loose coupling.
+- It can be used to communicate between game objects without having to reference them directly via an event bus.

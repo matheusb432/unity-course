@@ -8,8 +8,11 @@ namespace RPG.Util
         // NOTE The `event` keyword  prevents this delegate from being overwritten, events can only be added to it with the `+=` operator
         // ? Creating custom events to bubble the events
         public event UnityAction OnBubbleStartAttack = () => { };
+
         public event UnityAction OnBubbleCompleteAttack = () => { };
+
         public event UnityAction OnBubbleHit = () => { };
+
         public event UnityAction OnBubbleCompleteDefeat = () => { };
 
         // NOTE The method names `OnStartAttack` and `OnCompleteAttack` must match the attack animation's custom event name

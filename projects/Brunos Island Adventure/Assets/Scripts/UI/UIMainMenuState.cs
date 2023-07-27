@@ -1,7 +1,6 @@
-﻿using UnityEngine.UIElements;
-using UnityEngine;
-using RPG.Core;
+﻿using RPG.Core;
 using RPG.Util;
+using UnityEngine.UIElements;
 
 namespace RPG.UI
 {
@@ -11,8 +10,12 @@ namespace RPG.UI
 
         public override void EnterState()
         {
+            controller.mainMenuContainer.style.display = DisplayStyle.Flex;
+
             // NOTE Querying UI elements with `.menu-button` class
-            controller.buttons = controller.root.Query<Button>(null, "menu-button").ToList();
+            controller.buttons = controller.mainMenuContainer
+                .Query<Button>(null, "menu-button")
+                .ToList();
 
             controller.buttons[0].AddToClassList("active");
         }

@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Assets.Scripts.Character;
+using RPG.Core;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace RPG.Character
 {
@@ -11,6 +9,7 @@ namespace RPG.Character
     {
         public Health healthCmp;
         public Combat combatCmp;
+        public Inventory inventoryCmp;
         public CharacterStatsSO stats;
 
         private void Awake()
@@ -22,12 +21,32 @@ namespace RPG.Character
 
             healthCmp = GetComponent<Health>();
             combatCmp = GetComponent<Combat>();
+            inventoryCmp = GetComponent<Inventory>();
         }
 
         private void Start()
         {
-            healthCmp.healthPoints = stats.health;
+            healthCmp.healthPoints = healthCmp.maxHealth = stats.health;
+            Debug.LogWarning(healthCmp.healthPoints);
+            Debug.LogWarning(healthCmp.maxHealth);
             combatCmp.damage = stats.damage;
+            inventoryCmp.SetPotions(5);
+
+            EventManager.RaiseChangePlayerHealth(healthCmp.healthPoints);
+            EventManager.RaiseChangePlayerPotions(inventoryCmp.Potions);
+        }
+
+        public void HandleHeal(InputAction.CallbackContext context)
+        {
+            if (!context.performed)
+                return;
+
+            var didUse = inventoryCmp.UsePotion();
+            if (didUse)
+            {
+                healthCmp.Heal(50);
+                EventManager.RaiseChangePlayerPotions(inventoryCmp.Potions);
+            }
         }
     }
 }

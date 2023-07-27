@@ -29,6 +29,7 @@ namespace RPG.Character
 
         [NonSerialized]
         public Combat combatCmp;
+
         public CharacterStatsSO stats;
 
         public float chaseRange = 2.5f;
@@ -67,7 +68,8 @@ namespace RPG.Character
         {
             currentState.EnterState(this);
 
-            healthCmp.healthPoints = stats.health;
+            // TODO refactor to remove duplication in PlayerController too?
+            healthCmp.healthPoints = healthCmp.maxHealth = stats.health;
             combatCmp.damage = stats.damage;
         }
 

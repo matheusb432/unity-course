@@ -10,6 +10,12 @@
         public const string ATTACK_ANIMATOR_PARAM = "attack";
         public const string DEFEATED_ANIMATOR_PARAM = "defeated";
 
+        public const int MAIN_MENU_SCENE_IDX = 0;
         public const int ISLAND_SCENE_IDX = 1;
+
+        public const string MAIN_MENU_NAME = "main-menu";
+        public const string PLAYER_INFO_NAME = "player-info";
+        public const string HEALTH_LABEL_NAME = "health-label";
+        public const string POTIONS_LABEL_NAME = "potions-label";
     }
 }

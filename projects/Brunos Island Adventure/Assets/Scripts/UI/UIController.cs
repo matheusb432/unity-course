@@ -1,10 +1,10 @@
-using System.Collections;
-using UnityEngine.UIElements;
+using RPG.Core;
+using RPG.Util;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System.Linq;
-using RPG.Util;
+using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 namespace RPG.UI
 {
@@ -13,24 +13,56 @@ namespace RPG.UI
         private UIDocument uiDocumentCmp;
         public VisualElement root;
         public List<Button> buttons;
+        public Label healthLabel;
+        public Label potionsLabel;
 
         public UIBaseState currentState;
         public UIMainMenuState mainMenuState;
+
+        public VisualElement mainMenuContainer;
+        public VisualElement playerInfoContainer;
 
         public int currentSelection = 0;
 
         private void Awake()
         {
-            mainMenuState = new(this);
-
             uiDocumentCmp = GetComponent<UIDocument>();
             root = uiDocumentCmp.rootVisualElement;
+
+            // ? Q() queries the first element
+            mainMenuContainer = root.Q<VisualElement>(Constants.MAIN_MENU_NAME);
+            playerInfoContainer = root.Q<VisualElement>(Constants.PLAYER_INFO_NAME);
+            healthLabel = playerInfoContainer.Q<Label>(Constants.HEALTH_LABEL_NAME);
+            potionsLabel = playerInfoContainer.Q<Label>(Constants.POTIONS_LABEL_NAME);
+            mainMenuState = new(this);
         }
 
-        void Start()
+        private void OnEnable()
         {
-            currentState = mainMenuState;
-            currentState.EnterState();
+            // ? Registering an event listener
+            EventManager.OnChangePlayerHealth += HandleChangePlayerHealth;
+            EventManager.OnChangePlayerPotions += HandleChangePlayerPotions;
+        }
+
+        private void OnDisable()
+        {
+            EventManager.OnChangePlayerHealth -= HandleChangePlayerHealth;
+            EventManager.OnChangePlayerPotions -= HandleChangePlayerPotions;
+        }
+
+        private void Start()
+        {
+            int sceneIndex = SceneManager.GetActiveScene().buildIndex;
+
+            if (sceneIndex == Constants.MAIN_MENU_SCENE_IDX)
+            {
+                currentState = mainMenuState;
+                currentState.EnterState();
+            }
+            else
+            {
+                playerInfoContainer.style.display = DisplayStyle.Flex;
+            }
         }
 
         public void HandleInteract(InputAction.CallbackContext context)
@@ -53,6 +85,17 @@ namespace RPG.UI
             currentSelection = Utils.ToIndex(currentSelection + (int)input.x, buttons.Count);
 
             buttons[currentSelection].AddToClassList("active");
+        }
+
+        // NOTE the event handler must have the same method signature as the event itself
+        private void HandleChangePlayerHealth(float newHealth)
+        {
+            healthLabel.text = newHealth.ToString();
+        }
+
+        private void HandleChangePlayerPotions(int newPotions)
+        {
+            potionsLabel.text = newPotions.ToString();
         }
     }
 }

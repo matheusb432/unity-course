@@ -59,6 +59,7 @@ namespace RPG.Character
             agent.Move(offset);
         }
 
+        // TODO is this the right place for this method? Only applies to player but is on generic component
         public void HandleMove(InputAction.CallbackContext context)
         {
             if (context.performed)

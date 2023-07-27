@@ -1,7 +1,8 @@
-using System;
-using UnityEngine.Events;
+using RPG.Core;
 using RPG.Util;
+using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace RPG.Character
 {
@@ -11,6 +12,8 @@ namespace RPG.Character
 
         [NonSerialized]
         public float healthPoints = 0;
+
+        public float maxHealth = 0;
         private bool isDefeated = false;
 
         private Animator animatorCmp;
@@ -34,10 +37,23 @@ namespace RPG.Character
 
         public void TakeDamage(float damage)
         {
-            healthPoints = Mathf.Max(healthPoints - damage, 0);
+            SetHealth(Mathf.Max(healthPoints - damage, 0));
 
             if (healthPoints == 0)
                 Defeated();
+        }
+
+        public void Heal(float health)
+        {
+            SetHealth(Mathf.Min(healthPoints + health, maxHealth));
+        }
+
+        private void SetHealth(float health)
+        {
+            healthPoints = health;
+            // TODO research if CompareTag is slow (seems slow to pointlessly check tag for every point of damage that every enemy takes)
+            if (CompareTag(Constants.PLAYER_TAG))
+                EventManager.RaiseChangePlayerHealth(healthPoints);
         }
 
         private void Defeated()
