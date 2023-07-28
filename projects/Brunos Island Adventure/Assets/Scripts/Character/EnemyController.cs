@@ -76,7 +76,6 @@ namespace RPG.Character
             {
                 healthCmp.sliderCmp.maxValue = healthCmp.maxHealth;
                 healthCmp.sliderCmp.value = healthCmp.maxHealth;
-                Debug.LogWarning(healthCmp.sliderCmp.value);
             }
         }
 
