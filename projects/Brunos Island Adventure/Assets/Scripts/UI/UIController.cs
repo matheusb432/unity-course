@@ -18,6 +18,7 @@ namespace RPG.UI
 
         public UIBaseState currentState;
         public UIMainMenuState mainMenuState;
+        public UIDialogueState dialogueState;
 
         public VisualElement mainMenuContainer;
         public VisualElement playerInfoContainer;
@@ -35,6 +36,7 @@ namespace RPG.UI
             healthLabel = playerInfoContainer.Q<Label>(Constants.HEALTH_LABEL_NAME);
             potionsLabel = playerInfoContainer.Q<Label>(Constants.POTIONS_LABEL_NAME);
             mainMenuState = new(this);
+            dialogueState = new(this);
         }
 
         private void OnEnable()
@@ -42,12 +44,14 @@ namespace RPG.UI
             // ? Registering an event listener
             EventManager.OnChangePlayerHealth += HandleChangePlayerHealth;
             EventManager.OnChangePlayerPotions += HandleChangePlayerPotions;
+            EventManager.OnOpenDialogue += HandleOpenDialogue;
         }
 
         private void OnDisable()
         {
             EventManager.OnChangePlayerHealth -= HandleChangePlayerHealth;
             EventManager.OnChangePlayerPotions -= HandleChangePlayerPotions;
+            EventManager.OnOpenDialogue -= HandleOpenDialogue;
         }
 
         private void Start()
@@ -96,6 +100,12 @@ namespace RPG.UI
         private void HandleChangePlayerPotions(int newPotions)
         {
             potionsLabel.text = newPotions.ToString();
+        }
+
+        private void HandleOpenDialogue(TextAsset inkJson)
+        {
+            currentState = dialogueState;
+            currentState.EnterState();
         }
     }
 }

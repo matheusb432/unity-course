@@ -1,12 +1,13 @@
-﻿using UnityEngine.Events;
+﻿using UnityEngine;
+using UnityEngine.Events;
 
 namespace RPG.Core
 {
     public static class EventManager
     {
         public static event UnityAction<float> OnChangePlayerHealth;
-
         public static event UnityAction<int> OnChangePlayerPotions;
+        public static event UnityAction<TextAsset> OnOpenDialogue;
 
         // NOTE Raise event == Emit event
         public static void RaiseChangePlayerHealth(float newHealth) =>
@@ -14,5 +15,7 @@ namespace RPG.Core
 
         public static void RaiseChangePlayerPotions(int newPotions) =>
             OnChangePlayerPotions?.Invoke(newPotions);
+
+        public static void RaiseOpenDialogue(TextAsset inkJson) => OnOpenDialogue?.Invoke(inkJson);
     }
 }

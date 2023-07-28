@@ -1,4 +1,5 @@
-﻿using RPG.Util;
+﻿using RPG.Core;
+using RPG.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,6 +49,7 @@ namespace RPG.Character
             }
 
             print("talking with npc");
+            EventManager.RaiseOpenDialogue(inkJson);
         }
 
         /* // ? Alternative solution to get distance from player

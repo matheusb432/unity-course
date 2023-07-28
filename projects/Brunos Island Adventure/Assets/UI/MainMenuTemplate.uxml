@@ -21,4 +21,14 @@
             <ui:Label tabindex="-1" text="000" display-tooltip-when-elided="true" name="potions-label" class="stat-value" />
         </ui:VisualElement>
     </ui:VisualElement>
+    <ui:VisualElement name="dialogue" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); position: absolute; left: 0; bottom: 0; width: 100%; padding-left: 60px; padding-right: 60px; padding-top: 60px; padding-bottom: 60px; display: none;">
+        <ui:VisualElement class="primary-container" style="flex-grow: 1;">
+            <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="dialogue-text" class="base-text" style="-unity-font-style: normal; font-size: 32px; color: rgb(118, 62, 62); -unity-text-outline-width: 0;" />
+            <ui:Button text="Next" display-tooltip-when-elided="true" name="dialogue-next-button" class="menu-button" style="position: absolute; right: 50px; bottom: -40px; display: none;" />
+            <ui:VisualElement name="choices-group" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); position: absolute; bottom: -40px; right: 50px; flex-direction: row; display: none;">
+                <ui:Button text="No" display-tooltip-when-elided="true" name="no-button" class="menu-button" style="margin-right: 28px;" />
+                <ui:Button text="Yes" display-tooltip-when-elided="true" name="yes-button" class="menu-button" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
 </ui:UXML>
