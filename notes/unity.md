@@ -121,7 +121,7 @@ Unity is a cross-platform game engine that allows you to create games 2D, 3D, VR
 
 - e.g. `HandleInteract()`
 
-5. On the GameControls component inside the Game Manager, find the input event that you want to handle and add the game object that you want to handle it.
+5. On the GameControls component inside the Game Manager, find the input event that you want to handle and add the game object that you want to handle it, it should be the game object on the scene tab, not the prefab on the assets tab.
 6. Select the created method on the input event.
 
 # Empty Parent Objects

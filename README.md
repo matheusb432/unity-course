@@ -2,6 +2,19 @@
 
 'Unity Bootcamp: 3D Game Development' course code and notes
 
+## Setup
+
+Install these tools:
+
+- [Unity Editor v2022.3.4f1](https://unity3d.com/get-unity/download)
+- [Visual Studio Code](https://code.visualstudio.com/download) or [Visual Studio 2022](https://visualstudio.microsoft.com/downloads/)
+
+### External Assets
+
+Add these to your Unity Account and add them in the unity editor to the project:
+
+- [Ink Integration for Unity v1.1.8](https://assetstore.unity.com/packages/tools/integration/ink-integration-for-unity-60055)
+
 ## Notes in Code
 
 - To visualize notes right next to their example implementations that are scattered throughout this repository, I'd recommend using the VS Code extension `Todo Tree`, and then just filter for any comment with a `NOTE` prefix to it.
