@@ -1,4 +1,5 @@
 using RPG.Core;
+using UnityEngine.UI;
 using RPG.Util;
 using System;
 using UnityEngine;
@@ -13,6 +14,9 @@ namespace RPG.Character
         [NonSerialized]
         public float healthPoints = 0;
 
+        [NonSerialized]
+        public Slider sliderCmp;
+
         public float maxHealth = 0;
         private bool isDefeated = false;
 
@@ -23,6 +27,7 @@ namespace RPG.Character
         {
             animatorCmp = GetComponentInChildren<Animator>();
             bubbleEventCmp = GetComponentInChildren<BubbleEvent>();
+            sliderCmp = GetComponentInChildren<Slider>();
         }
 
         private void OnEnable()
@@ -38,6 +43,9 @@ namespace RPG.Character
         public void TakeDamage(float damage)
         {
             SetHealth(Mathf.Max(healthPoints - damage, 0));
+
+            if (sliderCmp != null)
+                sliderCmp.value = healthPoints;
 
             if (healthPoints == 0)
                 Defeated();

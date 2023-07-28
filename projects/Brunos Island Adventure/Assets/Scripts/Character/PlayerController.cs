@@ -27,8 +27,6 @@ namespace RPG.Character
         private void Start()
         {
             healthCmp.healthPoints = healthCmp.maxHealth = stats.health;
-            Debug.LogWarning(healthCmp.healthPoints);
-            Debug.LogWarning(healthCmp.maxHealth);
             combatCmp.damage = stats.damage;
             inventoryCmp.SetPotions(5);
 

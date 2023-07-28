@@ -353,6 +353,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 69948466090590169, guid: 80fe10796094df544881a210c8a34c73, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.759
+      objectReference: {fileID: 0}
     - target: {fileID: 1353355534539082135, guid: 80fe10796094df544881a210c8a34c73, type: 3}
       propertyPath: stats
       value: 
@@ -416,6 +420,14 @@ PrefabInstance:
     - target: {fileID: 8131339998855385683, guid: 80fe10796094df544881a210c8a34c73, type: 3}
       propertyPath: m_Name
       value: Enemy Patrol Guard
+      objectReference: {fileID: 0}
+    - target: {fileID: 8311376161281467312, guid: 80fe10796094df544881a210c8a34c73, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8311376161281467312, guid: 80fe10796094df544881a210c8a34c73, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8772547871456479599, guid: 80fe10796094df544881a210c8a34c73, type: 3}
       propertyPath: m_Controller

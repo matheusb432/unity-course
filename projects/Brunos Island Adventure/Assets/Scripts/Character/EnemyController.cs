@@ -71,6 +71,13 @@ namespace RPG.Character
             // TODO refactor to remove duplication in PlayerController too?
             healthCmp.healthPoints = healthCmp.maxHealth = stats.health;
             combatCmp.damage = stats.damage;
+
+            if (healthCmp.sliderCmp != null)
+            {
+                healthCmp.sliderCmp.maxValue = healthCmp.maxHealth;
+                healthCmp.sliderCmp.value = healthCmp.maxHealth;
+                Debug.LogWarning(healthCmp.sliderCmp.value);
+            }
         }
 
         private void OnEnable()

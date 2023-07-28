@@ -7,7 +7,6 @@ namespace Assets.Scripts.Character
     {
         public override void EnterState(EnemyController enemy)
         {
-            Debug.Log("entering attack state...");
             enemy.movementCmp.StopMovingAgent();
         }
 
