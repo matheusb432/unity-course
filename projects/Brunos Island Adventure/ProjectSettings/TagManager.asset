@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - NpcDialogueIcon
+  - GameManager
   layers:
   - Default
   - TransparentFX

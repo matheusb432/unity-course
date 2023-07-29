@@ -7,6 +7,7 @@
         public const string ENEMY_TAG = "Enemy";
         public const string NPC_DIALOGUE_ICON_TAG = "NpcDialogueIcon";
         public const string CAMERA_TAG = "MainCamera";
+        public const string GAME_MANAGER_TAG = "GameManager";
 
         public const string SPEED_ANIMATOR_PARAM = "speed";
         public const string ATTACK_ANIMATOR_PARAM = "attack";
@@ -19,5 +20,8 @@
         public const string PLAYER_INFO_NAME = "player-info";
         public const string HEALTH_LABEL_NAME = "health-label";
         public const string POTIONS_LABEL_NAME = "potions-label";
+
+        public const string GAMEPLAY_ACTION_MAP = "Gameplay";
+        public const string UI_ACTION_MAP = "UI";
     }
 }

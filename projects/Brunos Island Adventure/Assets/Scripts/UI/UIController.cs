@@ -106,6 +106,8 @@ namespace RPG.UI
         {
             currentState = dialogueState;
             currentState.EnterState();
+            // ? Equivalent to `(currentState as UIDialogueState).SetStory(inkJson);` since they point to the same data
+            dialogueState.SetStory(inkJson);
         }
     }
 }
