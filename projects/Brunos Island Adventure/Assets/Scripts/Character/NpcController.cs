@@ -1,15 +1,6 @@
 ﻿using RPG.Core;
-using RPG.Util;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.AI;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
 namespace RPG.Character
 {

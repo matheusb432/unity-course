@@ -7,6 +7,8 @@ namespace RPG.Quests
 {
     public class TreasureChest : MonoBehaviour
     {
+        [SerializeField]
+        private QuestItemSO questItem;
         public Animator animatorCmp;
 
         [SerializeField]
@@ -28,13 +30,12 @@ namespace RPG.Quests
 
         public void HandleInteract(InputAction.CallbackContext context)
         {
-            if (!isInteractable || isOpened)
+            if (!context.performed || !isInteractable || isOpened)
                 return;
+            EventManager.RaiseTreasureChestOpen(questItem);
 
             animatorCmp.SetBool(Constants.IS_SHAKING_ANIMATOR_PARAM, false);
             isOpened = true;
-
-            EventManager.RaiseTreasureChestOpen();
         }
     }
 }

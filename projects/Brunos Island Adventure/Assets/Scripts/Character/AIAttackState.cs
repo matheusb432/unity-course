@@ -1,5 +1,4 @@
 ﻿using RPG.Character;
-using UnityEngine;
 
 namespace Assets.Scripts.Character
 {
@@ -12,7 +11,7 @@ namespace Assets.Scripts.Character
 
         public override void UpdateState(EnemyController enemy)
         {
-            if (enemy.player == null)
+            if (enemy.player == null || enemy.hasUIOpened)
             {
                 enemy.combatCmp.CancelAttack();
                 return;

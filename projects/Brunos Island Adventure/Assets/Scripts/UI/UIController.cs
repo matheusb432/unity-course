@@ -1,4 +1,5 @@
 using RPG.Core;
+using RPG.Quests;
 using RPG.Util;
 using System.Collections.Generic;
 using UnityEngine;
@@ -115,10 +116,11 @@ namespace RPG.UI
             dialogueState.SetStory(inkJson);
         }
 
-        private void HandleTreasureChestOpen()
+        private void HandleTreasureChestOpen(QuestItemSO item)
         {
             currentState = questItemState;
             currentState.EnterState();
+            questItemState.SetQuestItemLabel(item.itemName);
         }
     }
 }

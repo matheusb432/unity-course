@@ -9,7 +9,7 @@ namespace RPG.Character
     {
         public Health healthCmp;
         public Combat combatCmp;
-        public Inventory inventoryCmp;
+        public PotionInventory inventoryCmp;
         public CharacterStatsSO stats;
 
         private void Awake()
@@ -21,7 +21,7 @@ namespace RPG.Character
 
             healthCmp = GetComponent<Health>();
             combatCmp = GetComponent<Combat>();
-            inventoryCmp = GetComponent<Inventory>();
+            inventoryCmp = GetComponent<PotionInventory>();
         }
 
         private void Start()

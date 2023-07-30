@@ -1,9 +1,9 @@
 using RPG.Core;
-using UnityEngine.UI;
 using RPG.Util;
 using System;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 namespace RPG.Character
 {

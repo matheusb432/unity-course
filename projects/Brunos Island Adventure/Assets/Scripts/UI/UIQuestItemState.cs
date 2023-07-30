@@ -1,7 +1,8 @@
-﻿using UnityEngine;
-using UnityEngine.UIElements;
-using UnityEngine.InputSystem;
+﻿using RPG.Core;
 using RPG.Util;
+using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 namespace RPG.UI
 {
@@ -25,12 +26,24 @@ namespace RPG.UI
             questItemText = questItemContainer.Q<Label>(UIConstants.QUEST_ITEM_LABEL_NAME);
 
             questItemContainer.style.display = DisplayStyle.Flex;
+
+            EventManager.RaiseToggleUI(true);
         }
 
         public override void SelectButton()
         {
             questItemContainer.style.display = DisplayStyle.None;
+
+            // TODO refactor ? extract switch action map logic in toggle UI event handler?
+            // ! If the action map is not switched this will effectively freeze the game
             playerInputCmp.SwitchCurrentActionMap(Constants.GAMEPLAY_ACTION_MAP);
+            EventManager.RaiseToggleUI(false);
+        }
+
+        // TODO refactor - should be necessary to init the state, similar to UIDialogueState's issue
+        public void SetQuestItemLabel(string name)
+        {
+            questItemText.text = name;
         }
     }
 }

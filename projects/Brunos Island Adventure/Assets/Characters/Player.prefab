@@ -743,6 +743,7 @@ GameObject:
   - component: {fileID: 7144885494144863702}
   - component: {fileID: 408723442731372999}
   - component: {fileID: 6685383431999032102}
+  - component: {fileID: 7581376130805259391}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -814,6 +815,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthCmp: {fileID: 0}
   combatCmp: {fileID: 0}
+  inventoryCmp: {fileID: 0}
   stats: {fileID: 11400000, guid: 2e9f76ab97fc26d40b107fa4e97a5a30, type: 2}
 --- !u!114 &4852449128862655833
 MonoBehaviour:
@@ -827,6 +829,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e3ddf3656cd85c44b0bf48b662f5710, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 0
 --- !u!114 &6094389084205540836
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -851,7 +854,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: effca887518ed7c448dfcc2bfdb53938, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  potions: 0
 --- !u!65 &408723442731372999
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -900,3 +902,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &7581376130805259391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9120125942861633482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d369292ddc4b204b8894e23ef3ddd3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  items: []

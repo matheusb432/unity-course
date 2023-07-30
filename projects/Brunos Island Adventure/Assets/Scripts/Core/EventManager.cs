@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using RPG.Quests;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace RPG.Core
@@ -6,9 +7,14 @@ namespace RPG.Core
     public static class EventManager
     {
         public static event UnityAction<float> OnChangePlayerHealth;
+
         public static event UnityAction<int> OnChangePlayerPotions;
+
         public static event UnityAction<TextAsset> OnOpenDialogue;
-        public static event UnityAction OnTreasureChestOpen;
+
+        public static event UnityAction<QuestItemSO> OnTreasureChestOpen;
+
+        public static event UnityAction<bool> OnToggleUI;
 
         // NOTE Raise event == Emit event
         public static void RaiseChangePlayerHealth(float newHealth) =>
@@ -19,6 +25,9 @@ namespace RPG.Core
 
         public static void RaiseOpenDialogue(TextAsset inkJson) => OnOpenDialogue?.Invoke(inkJson);
 
-        public static void RaiseTreasureChestOpen() => OnTreasureChestOpen?.Invoke();
+        public static void RaiseTreasureChestOpen(QuestItemSO item) =>
+            OnTreasureChestOpen?.Invoke(item);
+
+        public static void RaiseToggleUI(bool isOpened) => OnToggleUI?.Invoke(isOpened);
     }
 }

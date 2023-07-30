@@ -2,6 +2,7 @@ using Assets.Scripts.Character;
 using RPG.Util;
 using System;
 using UnityEngine;
+using RPG.Core;
 
 namespace RPG.Character
 {
@@ -24,6 +25,10 @@ namespace RPG.Character
 
         [NonSerialized]
         public Patrol patrolCmp;
+
+        // TODO refactor - encapsulate so it's readonly outside of class
+        // TODO refactor - makes no sense for every enemy to hold this value, store it in a global class field?
+        public bool hasUIOpened = false;
 
         private Health healthCmp;
 
@@ -82,11 +87,13 @@ namespace RPG.Character
         private void OnEnable()
         {
             healthCmp.OnStartDefeated += HandleStartDefeated;
+            EventManager.OnToggleUI += HandleToggleUI;
         }
 
         private void OnDisable()
         {
             healthCmp.OnStartDefeated -= HandleStartDefeated;
+            EventManager.OnToggleUI -= HandleToggleUI;
         }
 
         private void Update()
@@ -131,6 +138,11 @@ namespace RPG.Character
         private void HandleStartDefeated()
         {
             SwitchState(defeatedState);
+        }
+
+        private void HandleToggleUI(bool isOpened)
+        {
+            hasUIOpened = isOpened;
         }
     }
 }
