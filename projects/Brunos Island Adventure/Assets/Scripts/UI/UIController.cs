@@ -12,7 +12,7 @@ namespace RPG.UI
     {
         private UIDocument uiDocumentCmp;
         public VisualElement root;
-        public List<Button> buttons;
+        public List<Button> buttons = new();
         public Label healthLabel;
         public Label potionsLabel;
 
@@ -82,7 +82,7 @@ namespace RPG.UI
             if (!context.performed || buttons.Count == 0)
                 return;
 
-            // TODO refactor
+            // TODO refactor - class strings to consts
             buttons[currentSelection].RemoveFromClassList("active");
 
             var input = context.ReadValue<Vector2>();
