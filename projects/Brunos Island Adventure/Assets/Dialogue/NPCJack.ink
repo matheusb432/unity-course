@@ -1,3 +1,6 @@
+// ? Defining an external function in ink
+EXTERNAL VerifyQuest()
+
 -> start
 
 === start ===
@@ -5,6 +8,7 @@ A long time ago, a couple of orcs stole my candy.
 It would be nice if I could get it back. 
 By chance, have you come across my candy?
     * [Yes]
+        ~ VerifyQuest()
         -> success
     * [No]
         -> noCandy

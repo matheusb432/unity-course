@@ -10,7 +10,7 @@ namespace RPG.Core
 
         public static event UnityAction<int> OnChangePlayerPotions;
 
-        public static event UnityAction<TextAsset> OnOpenDialogue;
+        public static event UnityAction<TextAsset, GameObject> OnOpenDialogue;
 
         public static event UnityAction<QuestItemSO> OnTreasureChestOpen;
 
@@ -23,7 +23,8 @@ namespace RPG.Core
         public static void RaiseChangePlayerPotions(int newPotions) =>
             OnChangePlayerPotions?.Invoke(newPotions);
 
-        public static void RaiseOpenDialogue(TextAsset inkJson) => OnOpenDialogue?.Invoke(inkJson);
+        public static void RaiseOpenDialogue(TextAsset inkJson, GameObject npc) =>
+            OnOpenDialogue?.Invoke(inkJson, npc);
 
         public static void RaiseTreasureChestOpen(QuestItemSO item) =>
             OnTreasureChestOpen?.Invoke(item);

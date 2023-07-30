@@ -1,4 +1,5 @@
 ﻿using Ink.Runtime;
+using RPG.Character;
 using RPG.Util;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,6 +19,7 @@ namespace RPG.UI
         private Story currentStory;
 
         private PlayerInput playerInputCmp;
+        private NpcController npcController;
 
         private bool hasChoices = false;
 
@@ -46,9 +48,13 @@ namespace RPG.UI
         /// <summary>
         /// This must be called <i>after</i> EnterState
         /// </summary>
-        public void SetStory(TextAsset inkJson)
+        public void SetStory(TextAsset inkJson, GameObject npc)
         {
             currentStory = new Story(inkJson.text);
+            currentStory.BindExternalFunction("VerifyQuest", VerifyQuest);
+
+            npcController = npc.GetComponent<NpcController>();
+
             UpdateDialogue();
         }
 
@@ -116,6 +122,12 @@ namespace RPG.UI
         {
             dialogueContainer.style.display = DisplayStyle.None;
             playerInputCmp.SwitchCurrentActionMap(Constants.GAMEPLAY_ACTION_MAP);
+        }
+
+        public void VerifyQuest()
+        {
+            Debug.Log("verifying quest");
+            var foundItem = npcController.CheckPlayerForQuestItem();
         }
     }
 }

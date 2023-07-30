@@ -16,6 +16,7 @@ namespace RPG.UI
         public List<Button> buttons = new();
         public Label healthLabel;
         public Label potionsLabel;
+        public VisualElement questItemIcon;
 
         public UIBaseState currentState;
         public UIMainMenuState mainMenuState;
@@ -37,6 +38,7 @@ namespace RPG.UI
             playerInfoContainer = root.Q<VisualElement>(UIConstants.PLAYER_INFO_NAME);
             healthLabel = playerInfoContainer.Q<Label>(UIConstants.HEALTH_LABEL_NAME);
             potionsLabel = playerInfoContainer.Q<Label>(UIConstants.POTIONS_LABEL_NAME);
+            questItemIcon = playerInfoContainer.Q<VisualElement>(UIConstants.QUEST_ITEM_ICON_NAME);
 
             mainMenuState = new(this);
             dialogueState = new(this);
@@ -108,12 +110,12 @@ namespace RPG.UI
             potionsLabel.text = newPotions.ToString();
         }
 
-        private void HandleOpenDialogue(TextAsset inkJson)
+        private void HandleOpenDialogue(TextAsset inkJson, GameObject npc)
         {
             currentState = dialogueState;
             currentState.EnterState();
             // ? Equivalent to `(currentState as UIDialogueState).SetStory(inkJson);` since they point to the same data
-            dialogueState.SetStory(inkJson);
+            dialogueState.SetStory(inkJson, npc);
         }
 
         private void HandleTreasureChestOpen(QuestItemSO item)
@@ -121,6 +123,8 @@ namespace RPG.UI
             currentState = questItemState;
             currentState.EnterState();
             questItemState.SetQuestItemLabel(item.itemName);
+
+            questItemIcon.style.display = DisplayStyle.Flex;
         }
     }
 }

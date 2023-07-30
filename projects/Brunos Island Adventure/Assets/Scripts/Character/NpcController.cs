@@ -1,4 +1,8 @@
 ﻿using RPG.Core;
+using RPG.Quests;
+using RPG.Util;
+using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,12 +10,22 @@ namespace RPG.Character
 {
     public class NpcController : MonoBehaviour
     {
+        public QuestItemSO desiredQuestItem;
+
         public TextAsset inkJson;
         public Canvas canvasCmp;
+
+        private Inventory playerInventory;
+
+        public bool hasQuestItem = false;
 
         private void Awake()
         {
             canvasCmp = GetComponentInChildren<Canvas>();
+            // ! course solution had the player inventory retrieval on CheckPlayerForQuestItem instead
+            playerInventory = GameObject
+                .FindWithTag(Constants.PLAYER_TAG)
+                .GetComponent<Inventory>();
         }
 
         // NOTE OnTriggerEnter is called when the collider enters the trigger area, which would be the player being near the NPC
@@ -40,7 +54,16 @@ namespace RPG.Character
             }
 
             print("talking with npc");
-            EventManager.RaiseOpenDialogue(inkJson);
+            // NOTE `gameObject` is a MonoBehavior field that contains a reference to this game object
+            EventManager.RaiseOpenDialogue(inkJson, gameObject);
+        }
+
+        public bool CheckPlayerForQuestItem()
+        {
+            if (hasQuestItem)
+                return true;
+
+            return playerInventory.HasItem(desiredQuestItem);
         }
 
         /* // ? Alternative solution to get distance from player

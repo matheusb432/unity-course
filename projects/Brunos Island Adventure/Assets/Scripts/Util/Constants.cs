@@ -30,5 +30,6 @@
 
         public const string QUEST_ITEM_NAME = "quest-item";
         public const string QUEST_ITEM_LABEL_NAME = "quest-item-label";
+        public const string QUEST_ITEM_ICON_NAME = "quest-item-icon";
     }
 }

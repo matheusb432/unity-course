@@ -29,5 +29,12 @@ namespace RPG.Quests
 
             print(items[0].name);
         }
+
+        public bool HasItem(QuestItemSO desiredItem)
+        {
+            return items.Any(x => CompareItem(x, desiredItem));
+        }
+
+        private bool CompareItem(QuestItemSO item1, QuestItemSO item2) => item1.name == item2.name;
     }
 }

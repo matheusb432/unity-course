@@ -20,6 +20,7 @@
             <ui:Label tabindex="-1" text="Potions" display-tooltip-when-elided="true" class="stat-name" />
             <ui:Label tabindex="-1" text="000" display-tooltip-when-elided="true" name="potions-label" class="stat-value" />
         </ui:VisualElement>
+        <ui:VisualElement name="quest-item-icon" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); width: 60px; height: 60px; background-image: url(&apos;project://database/Assets/Game%20Assets/Sprites/Quest%20Item.png?fileID=2800000&amp;guid=82f427d1fad0fe5459bae6dfe603876a&amp;type=3#Quest Item&apos;); margin-left: 20px; display: none;" />
     </ui:VisualElement>
     <ui:VisualElement name="dialogue" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); position: absolute; left: 0; bottom: 0; width: 100%; padding-left: 60px; padding-right: 60px; padding-top: 60px; padding-bottom: 60px; display: none;">
         <ui:VisualElement class="primary-container" style="flex-grow: 1;">
