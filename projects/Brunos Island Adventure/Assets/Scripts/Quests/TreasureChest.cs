@@ -1,8 +1,9 @@
+using RPG.Core;
 using RPG.Util;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace RPG.Quest
+namespace RPG.Quests
 {
     public class TreasureChest : MonoBehaviour
     {
@@ -32,6 +33,8 @@ namespace RPG.Quest
 
             animatorCmp.SetBool(Constants.IS_SHAKING_ANIMATOR_PARAM, false);
             isOpened = true;
+
+            EventManager.RaiseTreasureChestOpen();
         }
     }
 }

@@ -19,6 +19,7 @@ namespace RPG.UI
         public UIBaseState currentState;
         public UIMainMenuState mainMenuState;
         public UIDialogueState dialogueState;
+        public UIQuestItemState questItemState;
 
         public VisualElement mainMenuContainer;
         public VisualElement playerInfoContainer;
@@ -31,12 +32,14 @@ namespace RPG.UI
             root = uiDocumentCmp.rootVisualElement;
 
             // ? Q() queries the first element
-            mainMenuContainer = root.Q<VisualElement>(Constants.MAIN_MENU_NAME);
-            playerInfoContainer = root.Q<VisualElement>(Constants.PLAYER_INFO_NAME);
-            healthLabel = playerInfoContainer.Q<Label>(Constants.HEALTH_LABEL_NAME);
-            potionsLabel = playerInfoContainer.Q<Label>(Constants.POTIONS_LABEL_NAME);
+            mainMenuContainer = root.Q<VisualElement>(UIConstants.MAIN_MENU_NAME);
+            playerInfoContainer = root.Q<VisualElement>(UIConstants.PLAYER_INFO_NAME);
+            healthLabel = playerInfoContainer.Q<Label>(UIConstants.HEALTH_LABEL_NAME);
+            potionsLabel = playerInfoContainer.Q<Label>(UIConstants.POTIONS_LABEL_NAME);
+
             mainMenuState = new(this);
             dialogueState = new(this);
+            questItemState = new(this);
         }
 
         private void OnEnable()
@@ -45,6 +48,7 @@ namespace RPG.UI
             EventManager.OnChangePlayerHealth += HandleChangePlayerHealth;
             EventManager.OnChangePlayerPotions += HandleChangePlayerPotions;
             EventManager.OnOpenDialogue += HandleOpenDialogue;
+            EventManager.OnTreasureChestOpen += HandleTreasureChestOpen;
         }
 
         private void OnDisable()
@@ -52,6 +56,7 @@ namespace RPG.UI
             EventManager.OnChangePlayerHealth -= HandleChangePlayerHealth;
             EventManager.OnChangePlayerPotions -= HandleChangePlayerPotions;
             EventManager.OnOpenDialogue -= HandleOpenDialogue;
+            EventManager.OnTreasureChestOpen -= HandleTreasureChestOpen;
         }
 
         private void Start()
@@ -108,6 +113,12 @@ namespace RPG.UI
             currentState.EnterState();
             // ? Equivalent to `(currentState as UIDialogueState).SetStory(inkJson);` since they point to the same data
             dialogueState.SetStory(inkJson);
+        }
+
+        private void HandleTreasureChestOpen()
+        {
+            currentState = questItemState;
+            currentState.EnterState();
         }
     }
 }

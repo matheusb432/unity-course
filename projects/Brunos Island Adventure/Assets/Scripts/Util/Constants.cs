@@ -16,12 +16,19 @@
         public const int MAIN_MENU_SCENE_IDX = 0;
         public const int ISLAND_SCENE_IDX = 1;
 
+        public const string GAMEPLAY_ACTION_MAP = "Gameplay";
+        public const string UI_ACTION_MAP = "UI";
+    }
+
+    public static class UIConstants
+    {
         public const string MAIN_MENU_NAME = "main-menu";
+
         public const string PLAYER_INFO_NAME = "player-info";
         public const string HEALTH_LABEL_NAME = "health-label";
         public const string POTIONS_LABEL_NAME = "potions-label";
 
-        public const string GAMEPLAY_ACTION_MAP = "Gameplay";
-        public const string UI_ACTION_MAP = "UI";
+        public const string QUEST_ITEM_NAME = "quest-item";
+        public const string QUEST_ITEM_LABEL_NAME = "quest-item-label";
     }
 }
