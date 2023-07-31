@@ -13,7 +13,8 @@ namespace RPG.Character
         public QuestItemSO desiredQuestItem;
 
         public TextAsset inkJson;
-        public Canvas canvasCmp;
+        private Canvas canvasCmp;
+        private Reward rewardCmp;
 
         private Inventory playerInventory;
 
@@ -24,6 +25,7 @@ namespace RPG.Character
         private void Awake()
         {
             canvasCmp = GetComponentInChildren<Canvas>();
+            rewardCmp = GetComponent<Reward>();
             // ! course solution had the player inventory retrieval on CheckPlayerForQuestItem instead
             playerInventory = GameObject
                 .FindWithTag(Constants.PLAYER_TAG)
@@ -66,6 +68,9 @@ namespace RPG.Character
                 return true;
 
             hasQuestItem = playerInventory.HasItem(desiredQuestItem);
+
+            if (rewardCmp != null && hasQuestItem)
+                rewardCmp.SendReward();
 
             return hasQuestItem;
         }

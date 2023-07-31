@@ -15,6 +15,7 @@ namespace RPG.Core
         public static event UnityAction<QuestItemSO> OnTreasureChestOpen;
 
         public static event UnityAction<bool> OnToggleUI;
+        public static event UnityAction<RewardSO> OnReward;
 
         // NOTE Raise event == Emit event
         public static void RaiseChangePlayerHealth(float newHealth) =>
@@ -30,5 +31,7 @@ namespace RPG.Core
             OnTreasureChestOpen?.Invoke(item);
 
         public static void RaiseToggleUI(bool isOpened) => OnToggleUI?.Invoke(isOpened);
+
+        public static void RaiseReward(RewardSO reward) => OnReward?.Invoke(reward);
     }
 }

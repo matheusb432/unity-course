@@ -16,6 +16,8 @@ namespace RPG.Character
             return true;
         }
 
+        public void AddPotions(int potions) => Potions += potions;
+
         public bool UsePotion() => SetPotions(Potions - 1);
     }
 }

@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using RPG.Core;
 using UnityEngine;
 
 namespace RPG.Quests
@@ -8,5 +7,15 @@ namespace RPG.Quests
     {
         [SerializeField]
         private RewardSO reward;
+        private bool rewardTaken = false;
+
+        public void SendReward()
+        {
+            if (rewardTaken)
+                return;
+
+            EventManager.RaiseReward(reward);
+            rewardTaken = true;
+        }
     }
 }

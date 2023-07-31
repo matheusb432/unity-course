@@ -8,6 +8,8 @@
         public const string NPC_DIALOGUE_ICON_TAG = "NpcDialogueIcon";
         public const string CAMERA_TAG = "MainCamera";
         public const string GAME_MANAGER_TAG = "GameManager";
+        public const string SWORD_TAG = "Sword";
+        public const string AXE_TAG = "Axe";
 
         public const string SPEED_ANIMATOR_PARAM = "speed";
         public const string ATTACK_ANIMATOR_PARAM = "attack";
