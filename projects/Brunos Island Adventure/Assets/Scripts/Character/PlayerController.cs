@@ -76,7 +76,6 @@ namespace RPG.Character
             //stats.damage += reward.bonusDamage;
             combatCmp.damage += reward.bonusDamage;
 
-            Debug.LogWarning($"new damage => {stats.damage}");
             if (reward.forceWeaponSwap)
             {
                 weapon = reward.weapon;

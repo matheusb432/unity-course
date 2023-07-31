@@ -18,3 +18,10 @@ Clicking with the RMB on `Scene` > `Overlay Menu` will enable customizing what p
 `T` - Select Rect Tool
 `Y` - Select Pivot Tool
 `CTRL+P` - Play the game
+
+## Recreating Original Prefab
+
+1. Drag from assets into scene
+2. Drag from scene into a Tiles folder
+3. Delete prefab variant in folder
+4. Drag from scene into Tiles folder again

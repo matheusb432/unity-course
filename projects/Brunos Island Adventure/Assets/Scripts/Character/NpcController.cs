@@ -35,13 +35,11 @@ namespace RPG.Character
         // NOTE OnTriggerEnter is called when the collider enters the trigger area, which would be the player being near the NPC
         private void OnTriggerEnter()
         {
-            print("called!");
             canvasCmp.enabled = true;
         }
 
         private void OnTriggerExit(Collider other)
         {
-            print("called2!");
             canvasCmp.enabled = false;
         }
 
@@ -57,7 +55,6 @@ namespace RPG.Character
                 return;
             }
 
-            print("talking with npc");
             // NOTE `gameObject` is a MonoBehavior field that contains a reference to this game object
             EventManager.RaiseOpenDialogue(inkJson, gameObject);
         }

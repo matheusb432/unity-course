@@ -20,7 +20,6 @@ namespace RPG.Quests
         private void OnTriggerEnter()
         {
             isInteractable = true;
-            print("player detected!");
         }
 
         private void OnTriggerExit(Collider other)

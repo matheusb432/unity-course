@@ -65,7 +65,6 @@ namespace RPG.Character
         private void HandleBubbleCompleteAttack()
         {
             isAttacking = false;
-            print("Complete attack");
         }
 
         private void HandleBubbleHit()
@@ -93,7 +92,6 @@ namespace RPG.Character
                     continue;
 
                 healthCmp.TakeDamage(damage);
-                print(target.transform.name);
             }
         }
 

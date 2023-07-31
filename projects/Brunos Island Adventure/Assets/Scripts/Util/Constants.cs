@@ -17,6 +17,7 @@
 
         public const int MAIN_MENU_SCENE_IDX = 0;
         public const int ISLAND_SCENE_IDX = 1;
+        public const int DUNGEON_SCENE_IDX = 2;
 
         public const string GAMEPLAY_ACTION_MAP = "Gameplay";
         public const string UI_ACTION_MAP = "UI";

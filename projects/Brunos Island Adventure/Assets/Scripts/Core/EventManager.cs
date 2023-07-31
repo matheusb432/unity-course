@@ -7,15 +7,12 @@ namespace RPG.Core
     public static class EventManager
     {
         public static event UnityAction<float> OnChangePlayerHealth;
-
         public static event UnityAction<int> OnChangePlayerPotions;
-
         public static event UnityAction<TextAsset, GameObject> OnOpenDialogue;
-
         public static event UnityAction<QuestItemSO> OnTreasureChestOpen;
-
         public static event UnityAction<bool> OnToggleUI;
         public static event UnityAction<RewardSO> OnReward;
+        public static event UnityAction<Collider, int> OnPortalEnter;
 
         // NOTE Raise event == Emit event
         public static void RaiseChangePlayerHealth(float newHealth) =>
@@ -33,5 +30,9 @@ namespace RPG.Core
         public static void RaiseToggleUI(bool isOpened) => OnToggleUI?.Invoke(isOpened);
 
         public static void RaiseReward(RewardSO reward) => OnReward?.Invoke(reward);
+
+        // TODO save player data on portal enter
+        public static void RaisePortalEnter(Collider player, int sceneIndex) =>
+            OnPortalEnter?.Invoke(player, sceneIndex);
     }
 }

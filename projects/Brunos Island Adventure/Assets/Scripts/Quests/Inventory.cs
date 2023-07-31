@@ -26,8 +26,6 @@ namespace RPG.Quests
         private void HandleTreasureChestOpen(QuestItemSO item)
         {
             items.Add(item);
-
-            print(items[0].name);
         }
 
         public bool HasItem(QuestItemSO desiredItem)

@@ -81,7 +81,6 @@ namespace RPG.UI
             if (hasChoices)
             {
                 HandleNewChoices(currentStory.currentChoices);
-                Debug.Log("Has choices");
             }
             else
             {
@@ -111,7 +110,6 @@ namespace RPG.UI
 
         private void CreateNewChoiceButton(Choice choice)
         {
-            Debug.Log(choice.text);
             Button choiceButton = new();
 
             // TODO refactor - class strings to constants
@@ -129,7 +127,6 @@ namespace RPG.UI
 
         public void VerifyQuest()
         {
-            Debug.Log("verifying quest");
             var foundItem = npcController.CheckPlayerForQuestItem();
             currentStory.variablesState["questCompleted"] = foundItem;
         }
