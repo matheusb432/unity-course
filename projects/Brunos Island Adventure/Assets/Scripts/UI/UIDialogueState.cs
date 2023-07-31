@@ -55,6 +55,9 @@ namespace RPG.UI
 
             npcController = npc.GetComponent<NpcController>();
 
+            if (npcController.AlreadyCompletedQuest)
+                currentStory.ChoosePathString("postCompletion");
+
             UpdateDialogue();
         }
 
@@ -128,6 +131,7 @@ namespace RPG.UI
         {
             Debug.Log("verifying quest");
             var foundItem = npcController.CheckPlayerForQuestItem();
+            currentStory.variablesState["questCompleted"] = foundItem;
         }
     }
 }

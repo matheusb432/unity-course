@@ -19,6 +19,8 @@ namespace RPG.Character
 
         public bool hasQuestItem = false;
 
+        public bool AlreadyCompletedQuest => hasQuestItem;
+
         private void Awake()
         {
             canvasCmp = GetComponentInChildren<Canvas>();
@@ -63,7 +65,9 @@ namespace RPG.Character
             if (hasQuestItem)
                 return true;
 
-            return playerInventory.HasItem(desiredQuestItem);
+            hasQuestItem = playerInventory.HasItem(desiredQuestItem);
+
+            return hasQuestItem;
         }
 
         /* // ? Alternative solution to get distance from player
