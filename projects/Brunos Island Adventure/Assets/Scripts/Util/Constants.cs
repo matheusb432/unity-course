@@ -11,6 +11,7 @@
         public const string GAME_MANAGER_TAG = "GameManager";
         public const string SWORD_TAG = "Sword";
         public const string AXE_TAG = "Axe";
+        public const string NPC_WITH_QUEST_TAG = "NpcWithQuest";
 
         public const string SPEED_ANIMATOR_PARAM = "speed";
         public const string ATTACK_ANIMATOR_PARAM = "attack";
@@ -45,5 +46,7 @@
         public const string WEAPON = "Weapon";
         public const string SCENE_INDEX = "SceneIndex";
         public const string ENEMIES_DEFEATED = "EnemiesDefeated";
+        public const string PLAYER_ITEMS = "PlayerItems";
+        public const string NPC_ITEMS = "NpcItems";
     }
 }

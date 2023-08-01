@@ -16,6 +16,9 @@ namespace RPG.Character
         [NonSerialized]
         public Combat combatCmp;
 
+        [NonSerialized]
+        public Movement movementCmp;
+
         public PotionInventory potionInventoryCmp;
         public CharacterStatsSO stats;
         private GameObject axeWeapon;
@@ -32,6 +35,7 @@ namespace RPG.Character
 
             healthCmp = GetComponent<Health>();
             combatCmp = GetComponent<Combat>();
+            movementCmp = GetComponent<Movement>();
             axeWeapon = GameObject.FindGameObjectWithTag(Constants.AXE_TAG);
             swordWeapon = GameObject.FindGameObjectWithTag(Constants.SWORD_TAG);
             potionInventoryCmp = GetComponent<PotionInventory>();
@@ -64,6 +68,8 @@ namespace RPG.Character
                 combatCmp.damage = stats.damage;
                 potionInventoryCmp.SetPotions(5);
             }
+
+            movementCmp.UpdateAgentSpeed(stats.runSpeed, false);
 
             EventManager.RaiseChangePlayerHealth(healthCmp.healthPoints);
             EventManager.RaiseChangePlayerPotions(potionInventoryCmp.Potions);

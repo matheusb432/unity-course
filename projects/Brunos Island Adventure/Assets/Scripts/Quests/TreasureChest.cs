@@ -17,6 +17,16 @@ namespace RPG.Quests
         [SerializeField]
         private bool isOpened = false;
 
+        private void Start()
+        {
+            if (PlayerPrefs.HasKey(SaveConstants.PLAYER_ITEMS))
+            {
+                var playerItems = PlayerPrefsUtil.GetString(SaveConstants.PLAYER_ITEMS);
+
+                playerItems.ForEach(CheckItem);
+            }
+        }
+
         private void OnTriggerEnter()
         {
             isInteractable = true;
@@ -31,10 +41,21 @@ namespace RPG.Quests
         {
             if (!context.performed || !isInteractable || isOpened)
                 return;
-            EventManager.RaiseTreasureChestOpen(questItem);
 
-            animatorCmp.SetBool(Constants.IS_SHAKING_ANIMATOR_PARAM, false);
+            // TODO refactor to method
+            EventManager.RaiseTreasureChestOpen(questItem, true);
             isOpened = true;
+            animatorCmp.SetBool(Constants.IS_SHAKING_ANIMATOR_PARAM, false);
+        }
+
+        private void CheckItem(string itemName)
+        {
+            if (itemName != questItem.itemName)
+                return;
+
+            EventManager.RaiseTreasureChestOpen(questItem, false);
+            isOpened = true;
+            animatorCmp.SetBool(Constants.IS_SHAKING_ANIMATOR_PARAM, false);
         }
     }
 }

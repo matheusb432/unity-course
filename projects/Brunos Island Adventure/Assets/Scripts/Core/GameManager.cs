@@ -3,13 +3,14 @@ using RPG.Util;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using RPG.Quests;
 
 namespace RPG.Core
 {
     public class GameManager : MonoBehaviour
     {
         private readonly List<string> sceneEnemyIds = new();
-        private List<GameObject> enemiesAlive = new();
+        private readonly List<GameObject> enemiesAlive = new();
 
         private void Start()
         {
@@ -58,6 +59,14 @@ namespace RPG.Core
             enemiesAlive.AddRange(GameObject.FindGameObjectsWithTag(Constants.ENEMY_TAG));
 
             sceneEnemyIds.ForEach(SaveDefeatedEnemies);
+
+            var inventoryCmp = player.GetComponent<Inventory>();
+
+            inventoryCmp.items.ForEach(SaveQuestItem);
+
+            var npcs = GameObject.FindGameObjectsWithTag(Constants.NPC_WITH_QUEST_TAG).ToList();
+
+            npcs.ForEach(SaveNpcItem);
         }
 
         private void SaveDefeatedEnemies(string enemyId)
@@ -83,6 +92,29 @@ namespace RPG.Core
             enemiesDefeated.Add(enemyId);
 
             PlayerPrefsUtil.SetString(SaveConstants.ENEMIES_DEFEATED, enemiesDefeated);
+        }
+
+        public void SaveQuestItem(QuestItemSO item)
+        {
+            // TODO refactor to HashSet<T> to guarantee there's no duplicates
+            List<string> playerItems = PlayerPrefsUtil.GetString(SaveConstants.PLAYER_ITEMS);
+            playerItems.Add(item.itemName);
+
+            PlayerPrefsUtil.SetString(SaveConstants.PLAYER_ITEMS, playerItems);
+        }
+
+        private void SaveNpcItem(GameObject npc)
+        {
+            var npcControllerCmp = npc.GetComponent<NpcController>();
+
+            if (!npcControllerCmp.hasQuestItem)
+                return;
+
+            var npcItems = PlayerPrefsUtil.GetString(SaveConstants.NPC_ITEMS);
+
+            npcItems.Add(npcControllerCmp.desiredQuestItem.itemName);
+
+            PlayerPrefsUtil.SetString(SaveConstants.NPC_ITEMS, npcItems);
         }
     }
 }

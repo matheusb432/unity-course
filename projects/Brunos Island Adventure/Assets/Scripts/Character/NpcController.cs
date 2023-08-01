@@ -32,6 +32,15 @@ namespace RPG.Character
                 .GetComponent<Inventory>();
         }
 
+        private void Start()
+        {
+            if (PlayerPrefs.HasKey(SaveConstants.NPC_ITEMS))
+            {
+                var npcItems = PlayerPrefsUtil.GetString(SaveConstants.NPC_ITEMS);
+                npcItems.ForEach(CheckNpcQuestItem);
+            }
+        }
+
         // NOTE OnTriggerEnter is called when the collider enters the trigger area, which would be the player being near the NPC
         private void OnTriggerEnter()
         {
@@ -81,5 +90,11 @@ namespace RPG.Character
             return distance < 1.35f;
         }
         */
+
+        private void CheckNpcQuestItem(string itemName)
+        {
+            if (itemName == desiredQuestItem.itemName)
+                hasQuestItem = true;
+        }
     }
 }

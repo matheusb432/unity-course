@@ -18,8 +18,6 @@ namespace RPG.Util
         {
             string unformattedValue = PlayerPrefs.GetString(key);
 
-            Debug.Log(unformattedValue);
-
             return unformattedValue.Split(',').Where(x => !string.IsNullOrEmpty(x)).ToList();
         }
     }

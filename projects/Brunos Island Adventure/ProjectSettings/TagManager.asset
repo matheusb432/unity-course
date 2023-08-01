@@ -9,6 +9,7 @@ TagManager:
   - GameManager
   - Axe
   - Sword
+  - NpcWithQuest
   layers:
   - Default
   - TransparentFX

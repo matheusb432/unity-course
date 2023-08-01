@@ -23,7 +23,7 @@ namespace RPG.Quests
             EventManager.OnTreasureChestOpen -= HandleTreasureChestOpen;
         }
 
-        private void HandleTreasureChestOpen(QuestItemSO item)
+        private void HandleTreasureChestOpen(QuestItemSO item, bool _showUi)
         {
             items.Add(item);
         }

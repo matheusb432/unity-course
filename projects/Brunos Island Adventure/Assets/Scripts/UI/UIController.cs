@@ -118,13 +118,16 @@ namespace RPG.UI
             dialogueState.SetStory(inkJson, npc);
         }
 
-        private void HandleTreasureChestOpen(QuestItemSO item)
+        private void HandleTreasureChestOpen(QuestItemSO item, bool showUi)
         {
+            questItemIcon.style.display = DisplayStyle.Flex;
+
+            if (!showUi)
+                return;
+
             currentState = questItemState;
             currentState.EnterState();
             questItemState.SetQuestItemLabel(item.itemName);
-
-            questItemIcon.style.display = DisplayStyle.Flex;
         }
     }
 }
