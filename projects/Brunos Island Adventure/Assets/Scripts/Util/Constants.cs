@@ -44,5 +44,6 @@
         public const string DAMAGE = "Damage";
         public const string WEAPON = "Weapon";
         public const string SCENE_INDEX = "SceneIndex";
+        public const string ENEMIES_DEFEATED = "EnemiesDefeated";
     }
 }
