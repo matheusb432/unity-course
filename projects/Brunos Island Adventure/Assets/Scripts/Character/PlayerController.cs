@@ -1,16 +1,21 @@
-﻿using Assets.Scripts.Character;
-using RPG.Core;
+﻿using RPG.Core;
 using RPG.Quests;
 using RPG.Util;
+using System;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.InputSystem;
 
 namespace RPG.Character
 {
     public class PlayerController : MonoBehaviour
     {
+        [NonSerialized]
         public Health healthCmp;
+
+        [NonSerialized]
         public Combat combatCmp;
+
         public PotionInventory potionInventoryCmp;
         public CharacterStatsSO stats;
         private GameObject axeWeapon;
@@ -34,9 +39,31 @@ namespace RPG.Character
 
         private void Start()
         {
-            healthCmp.healthPoints = healthCmp.maxHealth = stats.health;
-            combatCmp.damage = stats.damage;
-            potionInventoryCmp.SetPotions(5);
+            var hasSavedData = PlayerPrefs.HasKey(SaveConstants.HEALTH);
+            if (hasSavedData)
+            {
+                print("saved data found!");
+                healthCmp.maxHealth = stats.health;
+                // TODO test if not exists
+                healthCmp.healthPoints = PlayerPrefs.GetFloat(SaveConstants.HEALTH);
+                combatCmp.damage = PlayerPrefs.GetFloat(SaveConstants.DAMAGE);
+                potionInventoryCmp.SetPotions(PlayerPrefs.GetInt(SaveConstants.POTIONS));
+                weapon = (Weapons)PlayerPrefs.GetInt(SaveConstants.WEAPON);
+
+                var agentCmp = GetComponent<NavMeshAgent>();
+                // NOTE loads first object of specified type, is slower than GetComponent so it shouldn't be used if possible
+                // ? is only used here for demo purposes, ideally a tag should be used to get the portal instead
+                var portalCmp = FindObjectOfType<Portal>();
+
+                agentCmp.Warp(portalCmp.spawnPoint.position);
+                transform.rotation = portalCmp.spawnPoint.rotation;
+            }
+            else
+            {
+                healthCmp.healthPoints = healthCmp.maxHealth = stats.health;
+                combatCmp.damage = stats.damage;
+                potionInventoryCmp.SetPotions(5);
+            }
 
             EventManager.RaiseChangePlayerHealth(healthCmp.healthPoints);
             EventManager.RaiseChangePlayerPotions(potionInventoryCmp.Potions);

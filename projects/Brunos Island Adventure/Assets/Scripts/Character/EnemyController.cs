@@ -36,6 +36,7 @@ namespace RPG.Character
         public Combat combatCmp;
 
         public CharacterStatsSO stats;
+        public string enemyId = string.Empty;
 
         public float chaseRange = 2.5f;
         public float attackRange = 0.75f;
@@ -55,6 +56,11 @@ namespace RPG.Character
             if (stats == null)
             {
                 Debug.LogWarning($"{name} does not have stats.");
+            }
+
+            if (string.IsNullOrEmpty(enemyId))
+            {
+                Debug.LogWarning($"{name} does not have an enemyId.");
             }
 
             currentState = returnState;

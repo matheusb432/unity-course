@@ -9,5 +9,7 @@ namespace RPG.Core
         {
             SceneManager.LoadScene(sceneIndex);
         }
+
+        public static int GetCurrentSceneIndex() => SceneManager.GetActiveScene().buildIndex;
     }
 }

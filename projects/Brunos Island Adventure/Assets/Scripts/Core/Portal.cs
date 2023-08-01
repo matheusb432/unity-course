@@ -10,6 +10,8 @@ namespace RPG.Core
         [SerializeField]
         private int nextSceneIndex;
 
+        public Transform spawnPoint;
+
         private Collider colliderCmp;
 
         private void Awake()

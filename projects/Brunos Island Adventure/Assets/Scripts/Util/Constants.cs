@@ -1,5 +1,6 @@
 ﻿namespace RPG.Util
 {
+    // TODO refactor to `Consts` so it's less verbose
     public static class Constants
     {
         public const string PLAYER_TAG = "Player";
@@ -34,5 +35,14 @@
         public const string QUEST_ITEM_NAME = "quest-item";
         public const string QUEST_ITEM_LABEL_NAME = "quest-item-label";
         public const string QUEST_ITEM_ICON_NAME = "quest-item-icon";
+    }
+
+    public static class SaveConstants
+    {
+        public const string HEALTH = "Health";
+        public const string POTIONS = "Potions";
+        public const string DAMAGE = "Damage";
+        public const string WEAPON = "Weapon";
+        public const string SCENE_INDEX = "SceneIndex";
     }
 }

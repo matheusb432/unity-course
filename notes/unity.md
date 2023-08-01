@@ -172,7 +172,7 @@ Unity is a cross-platform game engine that allows you to create games 2D, 3D, VR
 [Resource](https://blog.unity.com/games/persistent-data-how-to-save-your-game-states-and-settings)
 
 - There are multiple ways to save data, one of them involves serializing the data to a JSON file, Unity provides a `JsonUtility` class that can be used to do that.
-- Unity also provides the `PlayerPrefs` class, which can be used to save data to the registry. It's more limited than the `JsonUtility` class, but it's easier to use.
-  - It can store string, float and integer values into the user’s platform registry.
-  - It should **not** be used to store sensitive data.
-- If any sensitive data needs to be stored, it should be stored in a backend server.
+- Unity also provides the `PlayerPrefs` class, which can be used to save data to the user's platform registry. It's more limited than the `JsonUtility` class, but it's easier to use.
+  - It can store string, float and integer values.
+  - On Windows, it's stored in `HKEY_CURRENT_USER/Software/Unity/UnityEditor/<company name>/<product name>`
+- These save data solutions should **not** be used to store sensitive data. If any sensitive data needs to be stored, it should be stored in a backend server.
