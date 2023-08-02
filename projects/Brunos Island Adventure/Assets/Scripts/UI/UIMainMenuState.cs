@@ -37,7 +37,8 @@ namespace RPG.UI
             {
                 // ? Deletes saved data
                 PlayerPrefs.DeleteAll();
-                SceneTransition.Initiate(Constants.ISLAND_SCENE_IDX);
+                // NOTE The coroutine will finish once the IEnumerator ends
+                controller.StartCoroutine(SceneTransition.Initiate(Constants.ISLAND_SCENE_IDX));
             }
             else
             {

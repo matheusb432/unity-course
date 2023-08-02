@@ -1,6 +1,7 @@
 using RPG.Core;
 using RPG.Quests;
 using RPG.Util;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -18,10 +19,17 @@ namespace RPG.UI
         public Label potionsLabel;
         public VisualElement questItemIcon;
 
+        [NonSerialized]
+        public AudioSource audioSourceCmp;
+        public AudioClip gameOverAudio;
+        public AudioClip victoryAudio;
+
         public UIBaseState currentState;
         public UIMainMenuState mainMenuState;
         public UIDialogueState dialogueState;
         public UIQuestItemState questItemState;
+        public UIVictoryState victoryState;
+        public UIGameOverState gameOverState;
 
         public VisualElement mainMenuContainer;
         public VisualElement playerInfoContainer;
@@ -30,6 +38,7 @@ namespace RPG.UI
 
         private void Awake()
         {
+            audioSourceCmp = GetComponent<AudioSource>();
             uiDocumentCmp = GetComponent<UIDocument>();
             root = uiDocumentCmp.rootVisualElement;
 
@@ -43,6 +52,8 @@ namespace RPG.UI
             mainMenuState = new(this);
             dialogueState = new(this);
             questItemState = new(this);
+            victoryState = new(this);
+            gameOverState = new(this);
         }
 
         private void OnEnable()
@@ -52,6 +63,8 @@ namespace RPG.UI
             EventManager.OnChangePlayerPotions += HandleChangePlayerPotions;
             EventManager.OnOpenDialogue += HandleOpenDialogue;
             EventManager.OnTreasureChestOpen += HandleTreasureChestOpen;
+            EventManager.OnVictory += HandleVictory;
+            EventManager.OnGameOver += HandleGameOver;
         }
 
         private void OnDisable()
@@ -60,6 +73,8 @@ namespace RPG.UI
             EventManager.OnChangePlayerPotions -= HandleChangePlayerPotions;
             EventManager.OnOpenDialogue -= HandleOpenDialogue;
             EventManager.OnTreasureChestOpen -= HandleTreasureChestOpen;
+            EventManager.OnVictory -= HandleVictory;
+            EventManager.OnGameOver -= HandleGameOver;
         }
 
         private void Start()
@@ -128,6 +143,18 @@ namespace RPG.UI
             currentState = questItemState;
             currentState.EnterState();
             questItemState.SetQuestItemLabel(item.itemName);
+        }
+
+        private void HandleVictory()
+        {
+            currentState = victoryState;
+            currentState.EnterState();
+        }
+
+        private void HandleGameOver()
+        {
+            currentState = gameOverState;
+            currentState.EnterState();
         }
     }
 }

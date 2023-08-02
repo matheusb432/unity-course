@@ -16,6 +16,10 @@ namespace RPG.Quests
 
             EventManager.RaiseReward(reward);
             rewardTaken = true;
+
+            var audioSourceCmp = GetComponent<AudioSource>();
+            if (audioSourceCmp.clip != null)
+                audioSourceCmp.Play();
         }
     }
 }

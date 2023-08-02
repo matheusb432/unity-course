@@ -409,6 +409,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7017482752780359210, guid: 80fe10796094df544881a210c8a34c73, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 7e968164f2b8fe542b0edba5490dbb70, type: 3}
+    - target: {fileID: 7303588320775388135, guid: 80fe10796094df544881a210c8a34c73, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: efba4b8215561d64c9f852f00e15db85, type: 3}
     - target: {fileID: 8131339998855385683, guid: 80fe10796094df544881a210c8a34c73, type: 3}
       propertyPath: m_Name
       value: Enemy Stationary Guard

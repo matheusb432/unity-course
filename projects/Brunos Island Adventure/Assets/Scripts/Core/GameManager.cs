@@ -53,7 +53,6 @@ namespace RPG.Core
 
         private void HandlePortalEnter(Collider player, int nextSceneIndex)
         {
-            print("portal entered");
             var playerControllerCmp = player.GetComponent<PlayerController>();
 
             // NOTE Saving player data in PlayerPrefs when entering a portal

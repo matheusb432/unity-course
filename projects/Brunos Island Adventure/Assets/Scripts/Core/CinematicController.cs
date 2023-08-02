@@ -1,13 +1,13 @@
 ﻿using RPG.Util;
-using UnityEngine.Playables;
 using UnityEngine;
+using UnityEngine.Playables;
 
 namespace RPG.Core
 {
     public class CinematicController : MonoBehaviour
     {
-        PlayableDirector playableDirectorCmp;
-        Collider colliderCmp;
+        private PlayableDirector playableDirectorCmp;
+        private Collider colliderCmp;
 
         private void Awake()
         {
@@ -17,6 +17,15 @@ namespace RPG.Core
 
         private void Start()
         {
+            if (playableDirectorCmp.playOnAwake)
+            {
+                // ? collider is not necessary if the cutscene plays on awake
+                colliderCmp.enabled = false;
+                // ? The event must be raised on Start() for GameManager.OnEnable() to handle it
+                // ? This is necessary since playing on awake doesn't raise the PlayableDirector.played event
+                HandlePlayed(playableDirectorCmp);
+                return;
+            }
             colliderCmp.enabled = !PlayerPrefsUtil.GetBool(SaveConstants.PLAYED_CUTSCENE);
         }
 
@@ -43,7 +52,6 @@ namespace RPG.Core
             PlayerPrefsUtil.SetBool(SaveConstants.PLAYED_CUTSCENE, true);
 
             playableDirectorCmp.Play();
-            Debug.Log("player collided!");
         }
 
         private void HandlePlayed(PlayableDirector pd)

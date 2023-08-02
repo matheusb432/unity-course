@@ -81,6 +81,16 @@ namespace RPG.Character
 
         private void HandleBubbleCompleteDefeat()
         {
+            if (CompareTag(Constants.PLAYER_TAG))
+            {
+                EventManager.RaiseGameOver();
+            }
+
+            if (CompareTag(Constants.BOSS_TAG))
+            {
+                EventManager.RaiseVictory();
+            }
+
             // NOTE Destroying the game object that this component is attached to
             Destroy(gameObject);
         }

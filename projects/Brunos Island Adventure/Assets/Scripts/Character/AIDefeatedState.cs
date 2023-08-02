@@ -6,7 +6,12 @@ namespace RPG.Character
     {
         public override void EnterState(EnemyController enemy)
         {
-            Debug.Log("Defeated State Entered");
+            var audioSourceCmp = enemy.GetComponent<AudioSource>();
+
+            if (audioSourceCmp.clip == null)
+                return;
+
+            audioSourceCmp.Play();
         }
 
         public override void UpdateState(EnemyController enemy) { }

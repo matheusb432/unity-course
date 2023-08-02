@@ -57,3 +57,17 @@
 
 - The _Observer Pattern_ is a design pattern that uses _Events_ to notify other game objects when something happens to promote loose coupling.
 - It can be used to communicate between game objects without having to reference them directly via an event bus.
+
+# Event Functions Lifecycle
+
+- Unity calls a number of _Event Functions_ on start, update, and end of certain events.
+
+The order of (some of) the _Event Functions_ is as follows:
+
+1. `Awake()`: Called when the script is first loaded.
+2. `Start()`: Called before the first frame update.
+3. `OnEnable()`: Called if/when the script is enabled.
+4. `Update()`: Called every frame.
+5. `LateUpdate()`: Called after all `Update()` functions have been called.
+6. `OnDisable()`: Called if/when the script is disabled.
+7. `OnDestroy()`: Called when the script is destroyed.

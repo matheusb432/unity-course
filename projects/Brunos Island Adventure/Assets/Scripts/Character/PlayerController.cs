@@ -46,7 +46,6 @@ namespace RPG.Character
             var hasSavedData = PlayerPrefs.HasKey(SaveConstants.HEALTH);
             if (hasSavedData)
             {
-                print("saved data found!");
                 healthCmp.maxHealth = stats.health;
                 // TODO test if not exists
                 healthCmp.healthPoints = PlayerPrefs.GetFloat(SaveConstants.HEALTH);

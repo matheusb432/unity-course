@@ -46,6 +46,10 @@ namespace RPG.Quests
             EventManager.RaiseTreasureChestOpen(questItem, true);
             isOpened = true;
             animatorCmp.SetBool(Constants.IS_SHAKING_ANIMATOR_PARAM, false);
+
+            var audioSourceCmp = GetComponent<AudioSource>();
+            if (audioSourceCmp.clip != null)
+                audioSourceCmp.Play();
         }
 
         private void CheckItem(string itemName)
