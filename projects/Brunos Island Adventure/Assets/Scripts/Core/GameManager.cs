@@ -1,4 +1,5 @@
 using RPG.Character;
+using UnityEngine.InputSystem;
 using RPG.Util;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,13 @@ namespace RPG.Core
     {
         private readonly List<string> sceneEnemyIds = new();
         private readonly List<GameObject> enemiesAlive = new();
+
+        private PlayerInput playerInputCmp;
+
+        private void Awake()
+        {
+            playerInputCmp = GetComponent<PlayerInput>();
+        }
 
         private void Start()
         {
@@ -34,11 +42,13 @@ namespace RPG.Core
         private void OnEnable()
         {
             EventManager.OnPortalEnter += HandlePortalEnter;
+            EventManager.OnCutsceneUpdated += HandleCutsceneUpdated;
         }
 
         private void OnDisable()
         {
             EventManager.OnPortalEnter -= HandlePortalEnter;
+            EventManager.OnCutsceneUpdated -= HandleCutsceneUpdated;
         }
 
         private void HandlePortalEnter(Collider player, int nextSceneIndex)
@@ -115,6 +125,12 @@ namespace RPG.Core
             npcItems.Add(npcControllerCmp.desiredQuestItem.itemName);
 
             PlayerPrefsUtil.SetString(SaveConstants.NPC_ITEMS, npcItems);
+        }
+
+        private void HandleCutsceneUpdated(bool isPlaying)
+        {
+            // ? Could switch action map to a cutscene map, to enable skipping cutscenes
+            playerInputCmp.enabled = !isPlaying;
         }
     }
 }

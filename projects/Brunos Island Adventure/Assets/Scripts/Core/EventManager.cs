@@ -13,6 +13,7 @@ namespace RPG.Core
         public static event UnityAction<bool> OnToggleUI;
         public static event UnityAction<RewardSO> OnReward;
         public static event UnityAction<Collider, int> OnPortalEnter;
+        public static event UnityAction<bool> OnCutsceneUpdated;
 
         // NOTE Raise event == Emit event
         public static void RaiseChangePlayerHealth(float newHealth) =>
@@ -34,5 +35,8 @@ namespace RPG.Core
         // TODO save player data on portal enter
         public static void RaisePortalEnter(Collider player, int sceneIndex) =>
             OnPortalEnter?.Invoke(player, sceneIndex);
+
+        public static void RaiseCutsceneUpdated(bool isPlaying) =>
+            OnCutsceneUpdated?.Invoke(isPlaying);
     }
 }

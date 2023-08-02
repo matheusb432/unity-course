@@ -48,5 +48,6 @@
         public const string ENEMIES_DEFEATED = "EnemiesDefeated";
         public const string PLAYER_ITEMS = "PlayerItems";
         public const string NPC_ITEMS = "NpcItems";
+        public const string PLAYED_CUTSCENE = "PlayedCutscene";
     }
 }

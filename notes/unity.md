@@ -157,6 +157,12 @@ Unity is a cross-platform game engine that allows you to create games 2D, 3D, VR
 
 - A _Trigger_ is a boolean value that can be used to trigger an animation. It works by being automatically set back to false after being set to true.
 
+## Sequences
+
+- A _Sequence_ is a collection of animations that transition into one another.
+- It's used to create smooth transitions between animations.
+- Sequences can be used to create _Cutscenes_.
+
 # UI Toolkit
 
 - Unity provides _UI Toolkit_, a tool that can be used to create GUIs.
@@ -176,3 +182,15 @@ Unity is a cross-platform game engine that allows you to create games 2D, 3D, VR
   - It can store string, float and integer values.
   - On Windows, it's stored in `HKEY_CURRENT_USER/Software/Unity/UnityEditor/<company name>/<product name>`
 - These save data solutions should **not** be used to store sensitive data. If any sensitive data needs to be stored, it should be stored in a backend server.
+
+- A more robust alternative to JSON or PlayerPrefs data saving can be using `SQLite`, a lightweight database that can be used to store data locally.
+
+# Cameras
+
+- _Cameras_ are used to view the game world. They can follow an agent (changing it's xyz _position_), be static, or look at a specific point (changing its xyz _rotation_).
+- The _Main Camera_ is the camera that is used to render the game world.
+
+## Dolly Camera
+
+- A _Dolly Camera_ is a camera that follows a dolly (a path).
+- It's used to create cinematic shots.
