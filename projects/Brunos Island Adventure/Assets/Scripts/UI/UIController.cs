@@ -30,11 +30,14 @@ namespace RPG.UI
         public UIQuestItemState questItemState;
         public UIVictoryState victoryState;
         public UIGameOverState gameOverState;
+        public UIPauseState pauseState;
+        public UIUnpausedState unpausedState;
 
         public VisualElement mainMenuContainer;
         public VisualElement playerInfoContainer;
 
         public int currentSelection = 0;
+        public bool canPause = true;
 
         private void Awake()
         {
@@ -54,6 +57,8 @@ namespace RPG.UI
             questItemState = new(this);
             victoryState = new(this);
             gameOverState = new(this);
+            pauseState = new(this);
+            unpausedState = new(this);
         }
 
         private void OnEnable()
@@ -112,6 +117,15 @@ namespace RPG.UI
             currentSelection = Utils.ToIndex(currentSelection + (int)input.x, buttons.Count);
 
             buttons[currentSelection].AddToClassList("active");
+        }
+
+        public void HandlePause(InputAction.CallbackContext context)
+        {
+            if (!context.performed || !canPause)
+                return;
+
+            currentState = currentState == pauseState ? unpausedState : pauseState;
+            currentState.EnterState();
         }
 
         // NOTE the event handler must have the same method signature as the event itself

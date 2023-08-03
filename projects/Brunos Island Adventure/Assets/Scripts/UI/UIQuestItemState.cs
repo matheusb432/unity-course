@@ -28,6 +28,8 @@ namespace RPG.UI
             questItemContainer.style.display = DisplayStyle.Flex;
 
             EventManager.RaiseToggleUI(true);
+
+            controller.canPause = false;
         }
 
         public override void SelectButton()
@@ -38,6 +40,8 @@ namespace RPG.UI
             // ! If the action map is not switched this will effectively freeze the game
             playerInputCmp.SwitchCurrentActionMap(Constants.GAMEPLAY_ACTION_MAP);
             EventManager.RaiseToggleUI(false);
+
+            controller.canPause = true;
         }
 
         // TODO refactor - should be necessary to init the state, similar to UIDialogueState's issue

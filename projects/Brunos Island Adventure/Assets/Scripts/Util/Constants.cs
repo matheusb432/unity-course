@@ -40,6 +40,7 @@
 
         public const string VICTORY_NAME = "victory";
         public const string GAME_OVER_NAME = "game-over";
+        public const string PAUSE_NAME = "pause";
     }
 
     public static class SaveConstants

@@ -26,6 +26,8 @@ namespace RPG.UI
             // TODO refactor - maybe encapsulate the audio source and instead expose a `PlayAudio` method on the controller?
             controller.audioSourceCmp.clip = controller.victoryAudio;
             controller.audioSourceCmp.Play();
+
+            controller.canPause = false;
         }
 
         public override void SelectButton()

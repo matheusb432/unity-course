@@ -59,4 +59,13 @@
             <ui:Button text="Go to Main Menu" display-tooltip-when-elided="true" class="menu-button" style="bottom: -50px; position: absolute;" />
         </ui:VisualElement>
     </ui:VisualElement>
+    <ui:VisualElement name="pause" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); width: 100%; height: 100%; align-items: center; justify-content: center; display: none;">
+        <ui:VisualElement class="primary-container" style="width: 600px; height: 500px; align-items: center; justify-content: flex-start;">
+            <ui:VisualElement style="background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/Game%20Assets/Sprites/Paper%20BG.png?fileID=2800000&amp;guid=b1aa48f59209ca54f8ad1e5966d3e81d&amp;type=3#Paper BG&apos;); width: 350px; height: 350px; align-items: center; justify-content: flex-start;">
+                <ui:VisualElement style="background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/Game%20Assets/Sprites/Pause.png?fileID=2800000&amp;guid=b36e3c38a6e787648bb7772a0879a6ef&amp;type=3#Pause&apos;); width: 250px; height: 250px;" />
+            </ui:VisualElement>
+            <ui:Label tabindex="-1" text="Game Paused" display-tooltip-when-elided="true" class="base-text" style="font-size: 40px; -unity-text-align: upper-center; margin-left: 0; margin-right: 0; margin-top: 40px; margin-bottom: 0;" />
+            <ui:Button text="Unpause" display-tooltip-when-elided="true" class="menu-button" style="bottom: -50px; position: absolute;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
 </ui:UXML>

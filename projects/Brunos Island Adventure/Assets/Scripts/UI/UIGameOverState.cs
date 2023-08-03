@@ -25,6 +25,7 @@ namespace RPG.UI
 
             // NOTE PlayOneShot() doesn't cancel audio clips that are already playing.
             controller.audioSourceCmp.PlayOneShot(controller.gameOverAudio);
+            controller.canPause = false;
         }
 
         public override void SelectButton()
