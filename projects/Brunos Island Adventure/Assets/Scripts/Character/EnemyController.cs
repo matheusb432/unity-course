@@ -1,5 +1,4 @@
 using Assets.Scripts.Character;
-using RPG.Core;
 using RPG.Util;
 using System;
 using UnityEngine;

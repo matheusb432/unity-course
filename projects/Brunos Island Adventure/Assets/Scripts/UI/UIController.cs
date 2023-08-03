@@ -1,4 +1,3 @@
-using RPG.Character;
 using RPG.Core;
 using RPG.Quests;
 using RPG.Util;
