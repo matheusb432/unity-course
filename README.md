@@ -14,6 +14,7 @@ Install these tools:
 Add these to your Unity Account and add them in the unity editor to the project:
 
 - [Ink Integration for Unity v1.1.8](https://assetstore.unity.com/packages/tools/integration/ink-integration-for-unity-60055)
+- [Customizable skybox v1.0](https://assetstore.unity.com/packages/2d/textures-materials/sky/customizable-skybox-174576)
 
 ## Notes in Code
 

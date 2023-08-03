@@ -18,6 +18,9 @@ namespace RPG.UI
 
             playerInputCmp.SwitchCurrentActionMap(Constants.UI_ACTION_MAP);
             pauseContainer.style.display = DisplayStyle.Flex;
+
+            // NOTE Pausing the game by freezing time
+            Time.timeScale = 0;
         }
 
         public override void SelectButton()

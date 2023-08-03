@@ -1,5 +1,6 @@
-# ? Ignoring ink asset package import, read README on how to add it to your project
+# ? Ignoring asset package imports, read README on how to add it to your project
 /Assets/Ink
+/Assets/Customizable Skybox
 
 # This .gitignore file should be placed at the root of your Unity project directory
 #
