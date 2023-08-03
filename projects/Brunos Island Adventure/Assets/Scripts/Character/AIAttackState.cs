@@ -1,17 +1,18 @@
 ﻿using RPG.Character;
+using RPG.Core;
 
 namespace Assets.Scripts.Character
 {
-    public class AIAttackState : AIBaseState
+    public class AIAttackState : IAIState
     {
-        public override void EnterState(EnemyController enemy)
+        public void EnterState(EnemyController enemy)
         {
             enemy.movementCmp.StopMovingAgent();
         }
 
-        public override void UpdateState(EnemyController enemy)
+        public void UpdateState(EnemyController enemy)
         {
-            if (enemy.player == null || enemy.hasUIOpened)
+            if (enemy.player == null || GameManager.IsUiOpen)
             {
                 enemy.combatCmp.CancelAttack();
                 return;

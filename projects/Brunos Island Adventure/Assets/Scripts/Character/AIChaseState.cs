@@ -2,14 +2,14 @@
 
 namespace RPG.Character
 {
-    public class AIChaseState : AIBaseState
+    public class AIChaseState : IAIState
     {
-        public override void EnterState(EnemyController enemy)
+        public void EnterState(EnemyController enemy)
         {
             enemy.movementCmp.UpdateAgentSpeed(enemy.stats.runSpeed, false);
         }
 
-        public override void UpdateState(EnemyController enemy)
+        public void UpdateState(EnemyController enemy)
         {
             if (enemy.IsPlayerInAttackRange)
             {

@@ -1,6 +1,7 @@
 using RPG.Util;
 using System;
 using UnityEngine;
+
 using UnityEngine.InputSystem;
 
 namespace RPG.Character

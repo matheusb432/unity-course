@@ -10,6 +10,8 @@ namespace RPG.Core
 {
     public class GameManager : MonoBehaviour
     {
+        public static bool IsUiOpen = false;
+
         private readonly List<string> sceneEnemyIds = new();
         private readonly List<GameObject> enemiesAlive = new();
 

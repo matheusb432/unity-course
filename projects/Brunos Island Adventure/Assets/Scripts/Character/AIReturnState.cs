@@ -2,11 +2,11 @@
 
 namespace RPG.Character
 {
-    public class AIReturnState : AIBaseState
+    public class AIReturnState : IAIState
     {
         private Vector3 targetPosition;
 
-        public override void EnterState(EnemyController enemy)
+        public void EnterState(EnemyController enemy)
         {
             enemy.movementCmp.UpdateAgentSpeed(enemy.stats.walkSpeed, true);
 
@@ -18,16 +18,14 @@ namespace RPG.Character
             enemy.movementCmp.MoveAgentByDestination(targetPosition);
         }
 
-        public override void UpdateState(EnemyController enemy)
+        public void UpdateState(EnemyController enemy)
         {
             if (enemy.IsPlayerInChaseRange)
             {
-                // TODO is it good practice to transition states inside states themselves?
                 enemy.SwitchState(enemy.chaseState);
                 return;
             }
 
-            // TODO refactor to reduce nesting
             if (enemy.movementCmp.ReachedDestination())
             {
                 if (enemy.patrolCmp != null)
@@ -35,29 +33,20 @@ namespace RPG.Character
                     enemy.SwitchState(enemy.patrolState);
                     return;
                 }
-                else
-                {
-                    enemy.movementCmp.isMoving = false;
-                    enemy.movementCmp.ResetRotate();
-                }
-            }
-            else
-            {
-                if (enemy.patrolCmp != null)
-                {
-                    Vector3 newForwardVector = targetPosition - enemy.transform.position;
-                    newForwardVector.y = 0;
 
-                    enemy.movementCmp.Rotate(newForwardVector);
-                }
-                else
-                {
-                    Vector3 newForwardVector = enemy.originalPosition - enemy.transform.position;
-                    newForwardVector.y = 0;
-
-                    enemy.movementCmp.Rotate(newForwardVector);
-                }
+                enemy.movementCmp.isMoving = false;
+                enemy.movementCmp.ResetRotate();
+                return;
             }
+
+            Vector3 newForwardVector =
+                enemy.patrolCmp != null
+                    ? targetPosition - enemy.transform.position
+                    : enemy.originalPosition - enemy.transform.position;
+
+            newForwardVector.y = 0;
+
+            enemy.movementCmp.Rotate(newForwardVector);
         }
     }
 }

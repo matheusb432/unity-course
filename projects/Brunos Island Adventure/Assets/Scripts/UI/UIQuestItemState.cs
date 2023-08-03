@@ -25,7 +25,7 @@ namespace RPG.UI
 
             questItemContainer.style.display = DisplayStyle.Flex;
 
-            EventManager.RaiseToggleUI(true);
+            GameManager.IsUiOpen = true;
 
             controller.canPause = false;
         }
@@ -35,7 +35,7 @@ namespace RPG.UI
             questItemContainer.style.display = DisplayStyle.None;
 
             controller.PlayerInputCmp.SwitchCurrentActionMap(Consts.GAMEPLAY_ACTION_MAP);
-            EventManager.RaiseToggleUI(false);
+            GameManager.IsUiOpen = false;
 
             controller.canPause = true;
         }

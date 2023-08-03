@@ -1,13 +1,13 @@
 ﻿namespace RPG.Character
 {
-    public class AIPatrolState : AIBaseState
+    public class AIPatrolState : IAIState
     {
-        public override void EnterState(EnemyController enemy)
+        public void EnterState(EnemyController enemy)
         {
             enemy.patrolCmp.ResetTimers();
         }
 
-        public override void UpdateState(EnemyController enemy)
+        public void UpdateState(EnemyController enemy)
         {
             if (enemy.IsPlayerInChaseRange)
             {

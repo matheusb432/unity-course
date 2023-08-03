@@ -26,8 +26,7 @@ namespace RPG.UI
 
         public void SelectButton()
         {
-            controller.currentState = controller.unpausedState;
-            controller.currentState.EnterState();
+            controller.SwitchState(controller.unpausedState);
         }
     }
 }

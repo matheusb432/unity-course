@@ -9,11 +9,6 @@ namespace RPG.Character
     public class EnemyController : MonoBehaviour
     {
         // NOTE [NonSerialized] will make this variable not visible in the Unity Editor, even though it's public
-        // TODO refactor - from field to property?
-        [NonSerialized]
-        public float distanceFromPlayer;
-
-        // TODO refactor - init only prop?
         [NonSerialized]
         public Vector3 originalPosition;
 
@@ -26,10 +21,6 @@ namespace RPG.Character
         [NonSerialized]
         public Patrol patrolCmp;
 
-        // TODO refactor - encapsulate so it's readonly outside of class
-        // TODO refactor - makes no sense for every enemy to hold this value, store it in a global class field?
-        public bool hasUIOpened = false;
-
         private Health healthCmp;
 
         [NonSerialized]
@@ -41,10 +32,12 @@ namespace RPG.Character
         public float chaseRange = 2.5f;
         public float attackRange = 0.75f;
 
-        public bool IsPlayerInChaseRange => distanceFromPlayer <= chaseRange;
-        public bool IsPlayerInAttackRange => distanceFromPlayer <= attackRange;
+        public bool IsPlayerInChaseRange => DistanceFromPlayer <= chaseRange;
+        public bool IsPlayerInAttackRange => DistanceFromPlayer <= attackRange;
 
-        private AIBaseState currentState;
+        public float DistanceFromPlayer { get; private set; }
+
+        private IAIState currentState;
         public AIReturnState returnState = new();
         public AIChaseState chaseState = new();
         public AIAttackState attackState = new();
@@ -79,7 +72,6 @@ namespace RPG.Character
         {
             currentState.EnterState(this);
 
-            // TODO refactor to remove duplication in PlayerController too?
             healthCmp.healthPoints = healthCmp.maxHealth = stats.health;
             combatCmp.damage = stats.damage;
 
@@ -93,13 +85,11 @@ namespace RPG.Character
         private void OnEnable()
         {
             healthCmp.OnStartDefeated += HandleStartDefeated;
-            EventManager.OnToggleUI += HandleToggleUI;
         }
 
         private void OnDisable()
         {
             healthCmp.OnStartDefeated -= HandleStartDefeated;
-            EventManager.OnToggleUI -= HandleToggleUI;
         }
 
         private void Update()
@@ -109,13 +99,8 @@ namespace RPG.Character
             currentState.UpdateState(this);
         }
 
-        public void SwitchState(AIBaseState newState)
+        public void SwitchState(IAIState newState)
         {
-            // NOTE Equivalent to `ReferenceEquals(newState, currentState)` in this instance, compares the pointers instead of the values themselves
-            // ? This way, no unnecessary state initializations are performed, can be useful if this can happen and they're expensive inits
-            //if (currentState == newState)
-            //    return;
-
             currentState = newState;
             currentState.EnterState(this);
         }
@@ -128,7 +113,7 @@ namespace RPG.Character
             Vector3 enemyPosition = transform.position;
             Vector3 playerPosition = player.transform.position;
 
-            distanceFromPlayer = Vector3.Distance(enemyPosition, playerPosition);
+            DistanceFromPlayer = Vector3.Distance(enemyPosition, playerPosition);
         }
 
         private void OnDrawGizmosSelected()
@@ -144,11 +129,6 @@ namespace RPG.Character
         private void HandleStartDefeated()
         {
             SwitchState(defeatedState);
-        }
-
-        private void HandleToggleUI(bool isOpened)
-        {
-            hasUIOpened = isOpened;
         }
     }
 }

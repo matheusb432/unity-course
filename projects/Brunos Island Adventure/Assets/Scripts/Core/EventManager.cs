@@ -14,8 +14,6 @@ namespace RPG.Core
 
         public static event UnityAction<QuestItemSO, bool> OnTreasureChestOpen;
 
-        public static event UnityAction<bool> OnToggleUI;
-
         public static event UnityAction<RewardSO> OnReward;
 
         public static event UnityAction<Collider, int> OnPortalEnter;
@@ -38,8 +36,6 @@ namespace RPG.Core
 
         public static void RaiseTreasureChestOpen(QuestItemSO item, bool showUi) =>
             OnTreasureChestOpen?.Invoke(item, showUi);
-
-        public static void RaiseToggleUI(bool isOpened) => OnToggleUI?.Invoke(isOpened);
 
         public static void RaiseReward(RewardSO reward) => OnReward?.Invoke(reward);
 

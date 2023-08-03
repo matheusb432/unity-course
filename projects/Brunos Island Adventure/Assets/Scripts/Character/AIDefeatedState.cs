@@ -2,9 +2,9 @@
 
 namespace RPG.Character
 {
-    public class AIDefeatedState : AIBaseState
+    public class AIDefeatedState : IAIState
     {
-        public override void EnterState(EnemyController enemy)
+        public void EnterState(EnemyController enemy)
         {
             var audioSourceCmp = enemy.GetComponent<AudioSource>();
 
@@ -14,6 +14,6 @@ namespace RPG.Character
             audioSourceCmp.Play();
         }
 
-        public override void UpdateState(EnemyController enemy) { }
+        public void UpdateState(EnemyController enemy) { }
     }
 }

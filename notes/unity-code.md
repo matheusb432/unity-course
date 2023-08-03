@@ -1,4 +1,34 @@
-# MonoBehavior
+# Unity Code
+
+Notes about unity C# code.
+
+## Naming Conventions
+
+Sources:
+
+- [Naming and Code Style Tips](https://unity.com/how-to/naming-and-code-style-tips-c-scripting-unity)
+- [State Pattern Guide](https://unity.com/how-to/develop-modular-flexible-codebase-state-programming-pattern)
+
+- Event delegates shouldn't have the `On` prefix. But the methods that raise them should.
+
+```csharp
+public class EventManager 
+{
+  public event Action DoorOpened; 
+  public void OnDoorOpened() => DoorOpened?.Invoke();
+}
+```
+
+- Controller instances shouldn't have the `Controller` suffix.
+
+```csharp
+public class GameManager 
+{
+  private PlayerController player;
+}
+```
+
+## MonoBehavior
 
 - MonoBehaviour is the base class from which every Unity script derives. It contains the basic functionality that is needed for a script to work.
 - When adding a script to a game object, it will only be the snapshot of the script at that time. If the script is changed, the changes will not be reflected in the game object. So it must be reset.
@@ -12,6 +42,8 @@
 
 - Event handlers are methods that are called when an event occurs.
   - e.g. Handling mouse clicks, player death, etc.
+
+- In Unity, the `UnityAction` delegate is used to handle events.
 
 # Design Patterns
 

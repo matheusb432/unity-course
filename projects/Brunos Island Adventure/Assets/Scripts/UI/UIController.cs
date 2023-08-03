@@ -1,3 +1,4 @@
+using RPG.Character;
 using RPG.Core;
 using RPG.Quests;
 using RPG.Util;
@@ -93,13 +94,18 @@ namespace RPG.UI
 
             if (sceneIndex == Consts.MAIN_MENU_SCENE_IDX)
             {
-                currentState = mainMenuState;
-                currentState.EnterState();
+                SwitchState(mainMenuState);
             }
             else
             {
                 playerInfoContainer.style.display = DisplayStyle.Flex;
             }
+        }
+
+        public void SwitchState(IUIState newState)
+        {
+            currentState = newState;
+            currentState.EnterState();
         }
 
         public void SetActiveButton(int newIndex)
@@ -159,8 +165,7 @@ namespace RPG.UI
             if (!context.performed || !canPause)
                 return;
 
-            currentState = currentState == pauseState ? unpausedState : pauseState;
-            currentState.EnterState();
+            SwitchState(currentState == pauseState ? unpausedState : pauseState);
         }
 
         // NOTE the event handler must have the same method signature as the event itself
@@ -176,8 +181,7 @@ namespace RPG.UI
 
         private void HandleOpenDialogue(TextAsset inkJson, GameObject npc)
         {
-            currentState = dialogueState;
-            currentState.EnterState();
+            SwitchState(dialogueState);
             // ? Equivalent to `(currentState as UIDialogueState).SetStory(inkJson);` since they point to the same data
             dialogueState.SetStory(inkJson, npc);
         }
@@ -189,22 +193,13 @@ namespace RPG.UI
             if (!showUi)
                 return;
 
-            currentState = questItemState;
-            currentState.EnterState();
+            SwitchState(questItemState);
             questItemState.SetQuestItemLabel(item.itemName);
         }
 
-        private void HandleVictory()
-        {
-            currentState = victoryState;
-            currentState.EnterState();
-        }
+        private void HandleVictory() => SwitchState(victoryState);
 
-        private void HandleGameOver()
-        {
-            currentState = gameOverState;
-            currentState.EnterState();
-        }
+        private void HandleGameOver() => SwitchState(gameOverState);
     }
 
     public enum UIAudioClip

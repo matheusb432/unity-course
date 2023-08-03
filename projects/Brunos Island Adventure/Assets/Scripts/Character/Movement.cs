@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 namespace RPG.Character
 {
-    // TODO refactor - seal class?
+    // TODO refactor - seal classes?
     // NOTE RequireComponent automatically adds this component to any instance that has this script
     [RequireComponent(typeof(NavMeshAgent))]
     public class Movement : MonoBehaviour
