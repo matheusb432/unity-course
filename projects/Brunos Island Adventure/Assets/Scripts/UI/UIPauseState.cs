@@ -1,29 +1,30 @@
 ﻿using RPG.Util;
-using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace RPG.UI
 {
-    public class UIPauseState : UIBaseState
+    public class UIPauseState : IUIState
     {
-        public UIPauseState(UIController uiController) : base(uiController) { }
+        private readonly UIController controller;
 
-        public override void EnterState()
+        public UIPauseState(UIController ui)
         {
-            PlayerInput playerInputCmp = GameObject
-                .FindGameObjectWithTag(Constants.GAME_MANAGER_TAG)
-                .GetComponent<PlayerInput>();
-            VisualElement pauseContainer = controller.root.Q<VisualElement>(UIConstants.PAUSE_NAME);
+            controller = ui;
+        }
 
-            playerInputCmp.SwitchCurrentActionMap(Constants.UI_ACTION_MAP);
+        public void EnterState()
+        {
+            VisualElement pauseContainer = controller.root.Q<VisualElement>(UIConsts.PAUSE_NAME);
+
+            controller.PlayerInputCmp.SwitchCurrentActionMap(Consts.UI_ACTION_MAP);
             pauseContainer.style.display = DisplayStyle.Flex;
 
             // NOTE Pausing the game by freezing time
             Time.timeScale = 0;
         }
 
-        public override void SelectButton()
+        public void SelectButton()
         {
             controller.currentState = controller.unpausedState;
             controller.currentState.EnterState();

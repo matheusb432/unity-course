@@ -12,19 +12,16 @@ namespace RPG.UI
 {
     public class UIController : MonoBehaviour
     {
-        private UIDocument uiDocumentCmp;
         public VisualElement root;
         public List<Button> buttons = new();
         public Label healthLabel;
         public Label potionsLabel;
         public VisualElement questItemIcon;
 
-        [NonSerialized]
-        public AudioSource audioSourceCmp;
         public AudioClip gameOverAudio;
         public AudioClip victoryAudio;
 
-        public UIBaseState currentState;
+        public IUIState currentState;
         public UIMainMenuState mainMenuState;
         public UIDialogueState dialogueState;
         public UIQuestItemState questItemState;
@@ -36,8 +33,12 @@ namespace RPG.UI
         public VisualElement mainMenuContainer;
         public VisualElement playerInfoContainer;
 
-        public int currentSelection = 0;
         public bool canPause = true;
+        public int ActiveBtnIdx { get; private set; } = 0;
+        public PlayerInput PlayerInputCmp { get; private set; }
+
+        private UIDocument uiDocumentCmp;
+        private AudioSource audioSourceCmp;
 
         private void Awake()
         {
@@ -45,12 +46,16 @@ namespace RPG.UI
             uiDocumentCmp = GetComponent<UIDocument>();
             root = uiDocumentCmp.rootVisualElement;
 
+            PlayerInputCmp = GameObject
+                .FindGameObjectWithTag(Consts.GAME_MANAGER_TAG)
+                .GetComponent<PlayerInput>();
+
             // ? Q() queries the first element
-            mainMenuContainer = root.Q<VisualElement>(UIConstants.MAIN_MENU_NAME);
-            playerInfoContainer = root.Q<VisualElement>(UIConstants.PLAYER_INFO_NAME);
-            healthLabel = playerInfoContainer.Q<Label>(UIConstants.HEALTH_LABEL_NAME);
-            potionsLabel = playerInfoContainer.Q<Label>(UIConstants.POTIONS_LABEL_NAME);
-            questItemIcon = playerInfoContainer.Q<VisualElement>(UIConstants.QUEST_ITEM_ICON_NAME);
+            mainMenuContainer = root.Q<VisualElement>(UIConsts.MAIN_MENU_NAME);
+            playerInfoContainer = root.Q<VisualElement>(UIConsts.PLAYER_INFO_NAME);
+            healthLabel = playerInfoContainer.Q<Label>(UIConsts.HEALTH_LABEL_NAME);
+            potionsLabel = playerInfoContainer.Q<Label>(UIConsts.POTIONS_LABEL_NAME);
+            questItemIcon = playerInfoContainer.Q<VisualElement>(UIConsts.QUEST_ITEM_ICON_NAME);
 
             mainMenuState = new(this);
             dialogueState = new(this);
@@ -63,7 +68,7 @@ namespace RPG.UI
 
         private void OnEnable()
         {
-            // ? Registering an event listener
+            // ? Registering event listeners
             EventManager.OnChangePlayerHealth += HandleChangePlayerHealth;
             EventManager.OnChangePlayerPotions += HandleChangePlayerPotions;
             EventManager.OnOpenDialogue += HandleOpenDialogue;
@@ -86,7 +91,7 @@ namespace RPG.UI
         {
             int sceneIndex = SceneManager.GetActiveScene().buildIndex;
 
-            if (sceneIndex == Constants.MAIN_MENU_SCENE_IDX)
+            if (sceneIndex == Consts.MAIN_MENU_SCENE_IDX)
             {
                 currentState = mainMenuState;
                 currentState.EnterState();
@@ -94,6 +99,40 @@ namespace RPG.UI
             else
             {
                 playerInfoContainer.style.display = DisplayStyle.Flex;
+            }
+        }
+
+        public void SetActiveButton(int newIndex)
+        {
+            if (buttons.Count == 0)
+                return;
+
+            if (newIndex != ActiveBtnIdx)
+                buttons[ActiveBtnIdx]?.RemoveFromClassList(UIConsts.ACTIVE_CLASS);
+
+            ActiveBtnIdx = newIndex;
+
+            buttons[ActiveBtnIdx].AddToClassList(UIConsts.ACTIVE_CLASS);
+        }
+
+        public void PlayAudio(UIAudioClip audio, bool asOneShot = true)
+        {
+            AudioClip clip = audio switch
+            {
+                UIAudioClip.Victory => victoryAudio,
+                UIAudioClip.GameOver => gameOverAudio,
+                _ => throw new ArgumentOutOfRangeException(nameof(audio)),
+            };
+
+            if (asOneShot)
+            {
+                // NOTE PlayOneShot() doesn't cancel audio clips that are already playing.
+                audioSourceCmp.PlayOneShot(clip);
+            }
+            else
+            {
+                audioSourceCmp.clip = clip;
+                audioSourceCmp.Play();
             }
         }
 
@@ -110,13 +149,9 @@ namespace RPG.UI
             if (!context.performed || buttons.Count == 0)
                 return;
 
-            // TODO refactor - class strings to consts
-            buttons[currentSelection].RemoveFromClassList("active");
-
             var input = context.ReadValue<Vector2>();
-            currentSelection = Utils.ToIndex(currentSelection + (int)input.x, buttons.Count);
-
-            buttons[currentSelection].AddToClassList("active");
+            var newIndex = Utils.ToIndex(ActiveBtnIdx + (int)input.x, buttons.Count);
+            SetActiveButton(newIndex);
         }
 
         public void HandlePause(InputAction.CallbackContext context)
@@ -170,5 +205,11 @@ namespace RPG.UI
             currentState = gameOverState;
             currentState.EnterState();
         }
+    }
+
+    public enum UIAudioClip
+    {
+        Victory,
+        GameOver
     }
 }

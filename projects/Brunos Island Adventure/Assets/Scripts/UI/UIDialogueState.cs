@@ -3,30 +3,30 @@ using RPG.Character;
 using RPG.Util;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
 namespace RPG.UI
 {
-    public class UIDialogueState : UIBaseState
+    public class UIDialogueState : IUIState
     {
+        private readonly UIController controller;
         private VisualElement dialogueContainer;
         private Label dialogueText;
         private VisualElement nextButton;
         private VisualElement choicesGroup;
 
-        // ! This should be initialized in the constructor.
         private Story currentStory;
 
-        private PlayerInput playerInputCmp;
         private NpcController npcController;
 
         private bool hasChoices = false;
 
-        public UIDialogueState(UIController ui) : base(ui) { }
+        public UIDialogueState(UIController ui)
+        {
+            controller = ui;
+        }
 
-        // TODO refactor, the method should accept the necessary arguments to initialize this, like currentStory with the TextAsset
-        public override void EnterState()
+        public void EnterState()
         {
             dialogueContainer = controller.root.Q("dialogue");
             dialogueText = controller.root.Q<Label>("dialogue-text");
@@ -34,15 +34,12 @@ namespace RPG.UI
             choicesGroup = controller.root.Q("choices-group");
 
             dialogueContainer.style.display = DisplayStyle.Flex;
-            playerInputCmp = GameObject
-                .FindGameObjectWithTag(Constants.GAME_MANAGER_TAG)
-                .GetComponent<PlayerInput>();
-            playerInputCmp.SwitchCurrentActionMap(Constants.UI_ACTION_MAP);
+            controller.PlayerInputCmp.SwitchCurrentActionMap(Consts.UI_ACTION_MAP);
 
             controller.canPause = false;
         }
 
-        public override void SelectButton()
+        public void SelectButton()
         {
             UpdateDialogue();
         }
@@ -67,7 +64,7 @@ namespace RPG.UI
         {
             if (hasChoices)
             {
-                currentStory.ChooseChoiceIndex(controller.currentSelection);
+                currentStory.ChooseChoiceIndex(controller.ActiveBtnIdx);
             }
 
             if (!currentStory.canContinue)
@@ -102,20 +99,15 @@ namespace RPG.UI
             choices.ForEach(CreateNewChoiceButton);
 
             controller.buttons = choicesGroup.Query<Button>().ToList();
-            // ! instead of index 0 this should just activate via currentSelection, after it has been reset
-            // ! maybe via currentSelection setter logic.
-            controller.buttons[0].AddToClassList("active");
 
-            // TODO refactor - controller.buttons should have a dedicated setter since the currentSelection must always be reset
-            controller.currentSelection = 0;
+            controller.SetActiveButton(0);
         }
 
         private void CreateNewChoiceButton(Choice choice)
         {
             Button choiceButton = new();
 
-            // TODO refactor - class strings to constants
-            choiceButton.AddToClassList("menu-button");
+            choiceButton.AddToClassList(UIConsts.MENU_BUTTON_CLASS);
             choiceButton.text = choice.text;
             choiceButton.style.marginRight = 20;
             choicesGroup.Add(choiceButton);
@@ -124,7 +116,7 @@ namespace RPG.UI
         private void ExitDialogue()
         {
             dialogueContainer.style.display = DisplayStyle.None;
-            playerInputCmp.SwitchCurrentActionMap(Constants.GAMEPLAY_ACTION_MAP);
+            controller.PlayerInputCmp.SwitchCurrentActionMap(Consts.GAMEPLAY_ACTION_MAP);
 
             controller.canPause = true;
         }

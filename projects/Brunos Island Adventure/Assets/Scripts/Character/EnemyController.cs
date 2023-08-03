@@ -1,8 +1,8 @@
 using Assets.Scripts.Character;
+using RPG.Core;
 using RPG.Util;
 using System;
 using UnityEngine;
-using RPG.Core;
 
 namespace RPG.Character
 {
@@ -65,7 +65,7 @@ namespace RPG.Character
 
             currentState = returnState;
             // NOTE FindWithTag() can be slow and should be used carefully
-            player = GameObject.FindWithTag(Constants.PLAYER_TAG);
+            player = GameObject.FindWithTag(Consts.PLAYER_TAG);
             movementCmp = GetComponent<Movement>();
             patrolCmp = GetComponent<Patrol>();
             healthCmp = GetComponent<Health>();

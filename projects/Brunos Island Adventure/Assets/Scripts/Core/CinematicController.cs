@@ -26,7 +26,7 @@ namespace RPG.Core
                 HandlePlayed(playableDirectorCmp);
                 return;
             }
-            colliderCmp.enabled = !PlayerPrefsUtil.GetBool(SaveConstants.PLAYED_CUTSCENE);
+            colliderCmp.enabled = !PlayerPrefsUtil.GetBool(SaveConsts.PLAYED_CUTSCENE);
         }
 
         private void OnEnable()
@@ -43,13 +43,13 @@ namespace RPG.Core
 
         private void OnTriggerEnter(Collider other)
         {
-            if (!other.CompareTag(Constants.PLAYER_TAG))
+            if (!other.CompareTag(Consts.PLAYER_TAG))
                 return;
 
             // NOTE Disabling the Collider component will prevent future triggers
             colliderCmp.enabled = false;
 
-            PlayerPrefsUtil.SetBool(SaveConstants.PLAYED_CUTSCENE, true);
+            PlayerPrefsUtil.SetBool(SaveConsts.PLAYED_CUTSCENE, true);
 
             playableDirectorCmp.Play();
         }

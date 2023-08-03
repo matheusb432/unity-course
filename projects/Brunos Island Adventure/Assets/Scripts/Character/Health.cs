@@ -60,7 +60,7 @@ namespace RPG.Character
         {
             healthPoints = health;
             // TODO research if CompareTag is slow (seems slow to pointlessly check tag for every point of damage that every enemy takes)
-            if (CompareTag(Constants.PLAYER_TAG))
+            if (CompareTag(Consts.PLAYER_TAG))
                 EventManager.RaiseChangePlayerHealth(healthPoints);
         }
 
@@ -69,24 +69,24 @@ namespace RPG.Character
             if (isDefeated)
                 return;
 
-            if (CompareTag(Constants.ENEMY_TAG))
+            if (CompareTag(Consts.ENEMY_TAG))
             {
                 // NOTE Emitting a custom event
                 OnStartDefeated.Invoke();
             }
 
             isDefeated = true;
-            animatorCmp.SetTrigger(Constants.DEFEATED_ANIMATOR_PARAM);
+            animatorCmp.SetTrigger(Consts.DEFEATED_ANIMATOR_PARAM);
         }
 
         private void HandleBubbleCompleteDefeat()
         {
-            if (CompareTag(Constants.PLAYER_TAG))
+            if (CompareTag(Consts.PLAYER_TAG))
             {
                 EventManager.RaiseGameOver();
             }
 
-            if (CompareTag(Constants.BOSS_TAG))
+            if (CompareTag(Consts.BOSS_TAG))
             {
                 EventManager.RaiseVictory();
             }

@@ -1,29 +1,27 @@
 ﻿using RPG.Core;
 using RPG.Util;
-using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
 namespace RPG.UI
 {
-    public class UIQuestItemState : UIBaseState
+    public class UIQuestItemState : IUIState
     {
         private VisualElement questItemContainer;
         private Label questItemText;
-        private PlayerInput playerInputCmp;
 
-        public UIQuestItemState(UIController ui) : base(ui) { }
+        private readonly UIController controller;
 
-        public override void EnterState()
+        public UIQuestItemState(UIController ui)
         {
-            playerInputCmp = GameObject
-                .FindGameObjectWithTag(Constants.GAME_MANAGER_TAG)
-                .GetComponent<PlayerInput>();
+            controller = ui;
+        }
 
-            playerInputCmp.SwitchCurrentActionMap(Constants.UI_ACTION_MAP);
+        public void EnterState()
+        {
+            controller.PlayerInputCmp.SwitchCurrentActionMap(Consts.UI_ACTION_MAP);
 
-            questItemContainer = controller.root.Q<VisualElement>(UIConstants.QUEST_ITEM_NAME);
-            questItemText = questItemContainer.Q<Label>(UIConstants.QUEST_ITEM_LABEL_NAME);
+            questItemContainer = controller.root.Q<VisualElement>(UIConsts.QUEST_ITEM_NAME);
+            questItemText = questItemContainer.Q<Label>(UIConsts.QUEST_ITEM_LABEL_NAME);
 
             questItemContainer.style.display = DisplayStyle.Flex;
 
@@ -32,13 +30,11 @@ namespace RPG.UI
             controller.canPause = false;
         }
 
-        public override void SelectButton()
+        public void SelectButton()
         {
             questItemContainer.style.display = DisplayStyle.None;
 
-            // TODO refactor ? extract switch action map logic in toggle UI event handler?
-            // ! If the action map is not switched this will effectively freeze the game
-            playerInputCmp.SwitchCurrentActionMap(Constants.GAMEPLAY_ACTION_MAP);
+            controller.PlayerInputCmp.SwitchCurrentActionMap(Consts.GAMEPLAY_ACTION_MAP);
             EventManager.RaiseToggleUI(false);
 
             controller.canPause = true;

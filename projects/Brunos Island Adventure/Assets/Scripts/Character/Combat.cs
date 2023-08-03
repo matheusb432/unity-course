@@ -52,8 +52,8 @@ namespace RPG.Character
             if (isAttacking)
                 return;
 
-            animatorCmp.SetFloat(Constants.SPEED_ANIMATOR_PARAM, 0);
-            animatorCmp.SetTrigger(Constants.ATTACK_ANIMATOR_PARAM);
+            animatorCmp.SetFloat(Consts.SPEED_ANIMATOR_PARAM, 0);
+            animatorCmp.SetTrigger(Consts.ATTACK_ANIMATOR_PARAM);
         }
 
         // NOTE Handling child object events
@@ -97,7 +97,7 @@ namespace RPG.Character
 
         public void CancelAttack()
         {
-            animatorCmp.ResetTrigger(Constants.ATTACK_ANIMATOR_PARAM);
+            animatorCmp.ResetTrigger(Consts.ATTACK_ANIMATOR_PARAM);
         }
     }
 }

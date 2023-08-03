@@ -9,6 +9,7 @@ namespace RPG.Quests
     {
         [SerializeField]
         private QuestItemSO questItem;
+
         public Animator animatorCmp;
 
         [SerializeField]
@@ -19,9 +20,9 @@ namespace RPG.Quests
 
         private void Start()
         {
-            if (PlayerPrefs.HasKey(SaveConstants.PLAYER_ITEMS))
+            if (PlayerPrefs.HasKey(SaveConsts.PLAYER_ITEMS))
             {
-                var playerItems = PlayerPrefsUtil.GetString(SaveConstants.PLAYER_ITEMS);
+                var playerItems = PlayerPrefsUtil.GetString(SaveConsts.PLAYER_ITEMS);
 
                 playerItems.ForEach(CheckItem);
             }
@@ -45,7 +46,7 @@ namespace RPG.Quests
             // TODO refactor to method
             EventManager.RaiseTreasureChestOpen(questItem, true);
             isOpened = true;
-            animatorCmp.SetBool(Constants.IS_SHAKING_ANIMATOR_PARAM, false);
+            animatorCmp.SetBool(Consts.IS_SHAKING_ANIMATOR_PARAM, false);
 
             var audioSourceCmp = GetComponent<AudioSource>();
             if (audioSourceCmp.clip != null)
@@ -59,7 +60,7 @@ namespace RPG.Quests
 
             EventManager.RaiseTreasureChestOpen(questItem, false);
             isOpened = true;
-            animatorCmp.SetBool(Constants.IS_SHAKING_ANIMATOR_PARAM, false);
+            animatorCmp.SetBool(Consts.IS_SHAKING_ANIMATOR_PARAM, false);
         }
     }
 }

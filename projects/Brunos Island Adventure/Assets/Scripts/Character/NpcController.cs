@@ -1,8 +1,6 @@
 ﻿using RPG.Core;
 using RPG.Quests;
 using RPG.Util;
-using System;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -27,16 +25,14 @@ namespace RPG.Character
             canvasCmp = GetComponentInChildren<Canvas>();
             rewardCmp = GetComponent<Reward>();
             // ! course solution had the player inventory retrieval on CheckPlayerForQuestItem instead
-            playerInventory = GameObject
-                .FindWithTag(Constants.PLAYER_TAG)
-                .GetComponent<Inventory>();
+            playerInventory = GameObject.FindWithTag(Consts.PLAYER_TAG).GetComponent<Inventory>();
         }
 
         private void Start()
         {
-            if (PlayerPrefs.HasKey(SaveConstants.NPC_ITEMS))
+            if (PlayerPrefs.HasKey(SaveConsts.NPC_ITEMS))
             {
-                var npcItems = PlayerPrefsUtil.GetString(SaveConstants.NPC_ITEMS);
+                var npcItems = PlayerPrefsUtil.GetString(SaveConsts.NPC_ITEMS);
                 npcItems.ForEach(CheckNpcQuestItem);
             }
         }

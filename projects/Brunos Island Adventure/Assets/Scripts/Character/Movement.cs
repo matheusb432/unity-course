@@ -46,7 +46,7 @@ namespace RPG.Character
 
             MovementAnimator();
 
-            if (CompareTag(Constants.PLAYER_TAG))
+            if (CompareTag(Consts.PLAYER_TAG))
                 Rotate(movementVector);
         }
 
@@ -136,7 +136,7 @@ namespace RPG.Character
         private void MovementAnimator()
         {
             // TODO refactor - is `animatorCmp.speed` equivalent?
-            float speed = animatorCmp.GetFloat(Constants.SPEED_ANIMATOR_PARAM);
+            float speed = animatorCmp.GetFloat(Consts.SPEED_ANIMATOR_PARAM);
             float smoothening = Time.deltaTime * agent.acceleration;
 
             if (isMoving)
@@ -152,13 +152,13 @@ namespace RPG.Character
             speed = Mathf.Clamp01(speed);
 
             // ? If CompareTag(Constants.ENEMY_TAG) is true, then the game object is an Enemy
-            if (CompareTag(Constants.ENEMY_TAG) && clampAnimatorSpeedAgain)
+            if (CompareTag(Consts.ENEMY_TAG) && clampAnimatorSpeedAgain)
             {
                 // ? Clamping the speed to 0.5, which is the walking speed
                 speed = Mathf.Clamp(speed, 0, 0.5f);
             }
 
-            animatorCmp.SetFloat(Constants.SPEED_ANIMATOR_PARAM, speed);
+            animatorCmp.SetFloat(Consts.SPEED_ANIMATOR_PARAM, speed);
         }
     }
 }

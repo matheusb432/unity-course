@@ -5,17 +5,22 @@ using UnityEngine.UIElements;
 
 namespace RPG.UI
 {
-    public class UIMainMenuState : UIBaseState
+    public class UIMainMenuState : IUIState
     {
         private int sceneIndex;
 
-        public UIMainMenuState(UIController controller) : base(controller) { }
+        private readonly UIController controller;
 
-        public override void EnterState()
+        public UIMainMenuState(UIController ui)
         {
-            if (PlayerPrefs.HasKey(SaveConstants.SCENE_INDEX))
+            controller = ui;
+        }
+
+        public void EnterState()
+        {
+            if (PlayerPrefs.HasKey(SaveConsts.SCENE_INDEX))
             {
-                sceneIndex = PlayerPrefs.GetInt(SaveConstants.SCENE_INDEX);
+                sceneIndex = PlayerPrefs.GetInt(SaveConsts.SCENE_INDEX);
                 AddContinueButton();
             }
 
@@ -23,22 +28,21 @@ namespace RPG.UI
 
             // NOTE Querying UI elements with `.menu-button` class
             controller.buttons = controller.mainMenuContainer
-                .Query<Button>(null, "menu-button")
+                .Query<Button>(null, UIConsts.MENU_BUTTON_CLASS)
                 .ToList();
-
-            controller.buttons[0].AddToClassList("active");
+            controller.SetActiveButton(0);
         }
 
-        public override void SelectButton()
+        public void SelectButton()
         {
-            var btn = controller.buttons[controller.currentSelection];
+            var btn = controller.buttons[controller.ActiveBtnIdx];
 
             if (btn.name == "start-btn")
             {
                 // ? Deletes saved data
                 PlayerPrefs.DeleteAll();
                 // NOTE The coroutine will finish once the IEnumerator ends
-                controller.StartCoroutine(SceneTransition.Initiate(Constants.ISLAND_SCENE_IDX));
+                controller.StartCoroutine(SceneTransition.Initiate(Consts.ISLAND_SCENE_IDX));
             }
             else
             {
@@ -49,7 +53,7 @@ namespace RPG.UI
         private void AddContinueButton()
         {
             Button continueBtn = new();
-            continueBtn.AddToClassList("menu-button");
+            continueBtn.AddToClassList(UIConsts.MENU_BUTTON_CLASS);
             continueBtn.text = "Continue";
 
             var mainMenuButtons = controller.mainMenuContainer.Q<VisualElement>("buttons");

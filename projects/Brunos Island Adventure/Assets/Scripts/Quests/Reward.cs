@@ -7,6 +7,7 @@ namespace RPG.Quests
     {
         [SerializeField]
         private RewardSO reward;
+
         private bool rewardTaken = false;
 
         public void SendReward()

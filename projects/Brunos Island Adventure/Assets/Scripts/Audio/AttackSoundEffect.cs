@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace RPG.Audio
 {
     public class AttackSoundEffect : MonoBehaviour
     {
-        AudioSource audioSourceCmp;
+        private AudioSource audioSourceCmp;
 
         private void Awake()
         {

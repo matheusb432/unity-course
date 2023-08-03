@@ -1,39 +1,37 @@
-﻿using UnityEngine;
-using UnityEngine.UIElements;
-using UnityEngine.InputSystem;
+﻿using RPG.Core;
 using RPG.Util;
-using RPG.Core;
-using UnityEngine.InputSystem.XR;
+using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace RPG.UI
 {
-    public class UIVictoryState : UIBaseState
+    public class UIVictoryState : IUIState
     {
-        public UIVictoryState(UIController uiController) : base(uiController) { }
+        private readonly UIController controller;
 
-        public override void EnterState()
+        public UIVictoryState(UIController ui)
         {
-            PlayerInput playerInputCmp = GameObject
-                .FindGameObjectWithTag(Constants.GAME_MANAGER_TAG)
-                .GetComponent<PlayerInput>();
+            controller = ui;
+        }
+
+        public void EnterState()
+        {
             VisualElement victoryContainer = controller.root.Q<VisualElement>(
-                UIConstants.VICTORY_NAME
+                UIConsts.VICTORY_NAME
             );
 
-            playerInputCmp.SwitchCurrentActionMap(Constants.UI_ACTION_MAP);
+            controller.PlayerInputCmp.SwitchCurrentActionMap(Consts.UI_ACTION_MAP);
             victoryContainer.style.display = DisplayStyle.Flex;
 
-            // TODO refactor - maybe encapsulate the audio source and instead expose a `PlayAudio` method on the controller?
-            controller.audioSourceCmp.clip = controller.victoryAudio;
-            controller.audioSourceCmp.Play();
+            controller.PlayAudio(UIAudioClip.Victory, asOneShot: false);
 
             controller.canPause = false;
         }
 
-        public override void SelectButton()
+        public void SelectButton()
         {
             PlayerPrefs.DeleteAll();
-            controller.StartCoroutine(SceneTransition.Initiate(Constants.MAIN_MENU_SCENE_IDX));
+            controller.StartCoroutine(SceneTransition.Initiate(Consts.MAIN_MENU_SCENE_IDX));
         }
     }
 }

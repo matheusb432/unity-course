@@ -1,10 +1,10 @@
 using RPG.Character;
-using UnityEngine.InputSystem;
+using RPG.Quests;
 using RPG.Util;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using RPG.Quests;
+using UnityEngine.InputSystem;
 
 namespace RPG.Core
 {
@@ -22,9 +22,9 @@ namespace RPG.Core
 
         private void Start()
         {
-            var sceneEnemies = GameObject.FindGameObjectsWithTag(Constants.ENEMY_TAG);
+            var sceneEnemies = GameObject.FindGameObjectsWithTag(Consts.ENEMY_TAG);
 
-            var defeatedEnemyIds = PlayerPrefsUtil.GetString(SaveConstants.ENEMIES_DEFEATED);
+            var defeatedEnemyIds = PlayerPrefsUtil.GetString(SaveConsts.ENEMIES_DEFEATED);
 
             // ? The course solution checked if the enemy was defeated in the EnemyController
             foreach (var enemy in sceneEnemies)
@@ -56,16 +56,13 @@ namespace RPG.Core
             var playerControllerCmp = player.GetComponent<PlayerController>();
 
             // NOTE Saving player data in PlayerPrefs when entering a portal
-            PlayerPrefs.SetFloat(SaveConstants.HEALTH, playerControllerCmp.healthCmp.healthPoints);
-            PlayerPrefs.SetInt(
-                SaveConstants.POTIONS,
-                playerControllerCmp.potionInventoryCmp.Potions
-            );
-            PlayerPrefs.SetFloat(SaveConstants.DAMAGE, playerControllerCmp.combatCmp.damage);
-            PlayerPrefs.SetInt(SaveConstants.WEAPON, (int)playerControllerCmp.weapon);
-            PlayerPrefs.SetInt(SaveConstants.SCENE_INDEX, nextSceneIndex);
+            PlayerPrefs.SetFloat(SaveConsts.HEALTH, playerControllerCmp.healthCmp.healthPoints);
+            PlayerPrefs.SetInt(SaveConsts.POTIONS, playerControllerCmp.potionInventoryCmp.Potions);
+            PlayerPrefs.SetFloat(SaveConsts.DAMAGE, playerControllerCmp.combatCmp.damage);
+            PlayerPrefs.SetInt(SaveConsts.WEAPON, (int)playerControllerCmp.weapon);
+            PlayerPrefs.SetInt(SaveConsts.SCENE_INDEX, nextSceneIndex);
 
-            enemiesAlive.AddRange(GameObject.FindGameObjectsWithTag(Constants.ENEMY_TAG));
+            enemiesAlive.AddRange(GameObject.FindGameObjectsWithTag(Consts.ENEMY_TAG));
 
             sceneEnemyIds.ForEach(SaveDefeatedEnemies);
 
@@ -73,7 +70,7 @@ namespace RPG.Core
 
             inventoryCmp.items.ForEach(SaveQuestItem);
 
-            var npcs = GameObject.FindGameObjectsWithTag(Constants.NPC_WITH_QUEST_TAG).ToList();
+            var npcs = GameObject.FindGameObjectsWithTag(Consts.NPC_WITH_QUEST_TAG).ToList();
 
             npcs.ForEach(SaveNpcItem);
         }
@@ -95,21 +92,19 @@ namespace RPG.Core
                 return;
 
             // TODO - benchmark and try to optimize, getting and saving player prefs on each iteration seems _really_ slow
-            List<string> enemiesDefeated = PlayerPrefsUtil.GetString(
-                SaveConstants.ENEMIES_DEFEATED
-            );
+            List<string> enemiesDefeated = PlayerPrefsUtil.GetString(SaveConsts.ENEMIES_DEFEATED);
             enemiesDefeated.Add(enemyId);
 
-            PlayerPrefsUtil.SetString(SaveConstants.ENEMIES_DEFEATED, enemiesDefeated);
+            PlayerPrefsUtil.SetString(SaveConsts.ENEMIES_DEFEATED, enemiesDefeated);
         }
 
         public void SaveQuestItem(QuestItemSO item)
         {
             // TODO refactor to HashSet<T> to guarantee there's no duplicates
-            List<string> playerItems = PlayerPrefsUtil.GetString(SaveConstants.PLAYER_ITEMS);
+            List<string> playerItems = PlayerPrefsUtil.GetString(SaveConsts.PLAYER_ITEMS);
             playerItems.Add(item.itemName);
 
-            PlayerPrefsUtil.SetString(SaveConstants.PLAYER_ITEMS, playerItems);
+            PlayerPrefsUtil.SetString(SaveConsts.PLAYER_ITEMS, playerItems);
         }
 
         private void SaveNpcItem(GameObject npc)
@@ -119,11 +114,11 @@ namespace RPG.Core
             if (!npcControllerCmp.hasQuestItem)
                 return;
 
-            var npcItems = PlayerPrefsUtil.GetString(SaveConstants.NPC_ITEMS);
+            var npcItems = PlayerPrefsUtil.GetString(SaveConsts.NPC_ITEMS);
 
             npcItems.Add(npcControllerCmp.desiredQuestItem.itemName);
 
-            PlayerPrefsUtil.SetString(SaveConstants.NPC_ITEMS, npcItems);
+            PlayerPrefsUtil.SetString(SaveConsts.NPC_ITEMS, npcItems);
         }
 
         private void HandleCutsceneUpdated(bool isPlaying)

@@ -36,22 +36,22 @@ namespace RPG.Character
             healthCmp = GetComponent<Health>();
             combatCmp = GetComponent<Combat>();
             movementCmp = GetComponent<Movement>();
-            axeWeapon = GameObject.FindGameObjectWithTag(Constants.AXE_TAG);
-            swordWeapon = GameObject.FindGameObjectWithTag(Constants.SWORD_TAG);
+            axeWeapon = GameObject.FindGameObjectWithTag(Consts.AXE_TAG);
+            swordWeapon = GameObject.FindGameObjectWithTag(Consts.SWORD_TAG);
             potionInventoryCmp = GetComponent<PotionInventory>();
         }
 
         private void Start()
         {
-            var hasSavedData = PlayerPrefs.HasKey(SaveConstants.HEALTH);
+            var hasSavedData = PlayerPrefs.HasKey(SaveConsts.HEALTH);
             if (hasSavedData)
             {
                 healthCmp.maxHealth = stats.health;
                 // TODO test if not exists
-                healthCmp.healthPoints = PlayerPrefs.GetFloat(SaveConstants.HEALTH);
-                combatCmp.damage = PlayerPrefs.GetFloat(SaveConstants.DAMAGE);
-                potionInventoryCmp.SetPotions(PlayerPrefs.GetInt(SaveConstants.POTIONS));
-                weapon = (Weapons)PlayerPrefs.GetInt(SaveConstants.WEAPON);
+                healthCmp.healthPoints = PlayerPrefs.GetFloat(SaveConsts.HEALTH);
+                combatCmp.damage = PlayerPrefs.GetFloat(SaveConsts.DAMAGE);
+                potionInventoryCmp.SetPotions(PlayerPrefs.GetInt(SaveConsts.POTIONS));
+                weapon = (Weapons)PlayerPrefs.GetInt(SaveConsts.WEAPON);
 
                 var agentCmp = GetComponent<NavMeshAgent>();
                 // NOTE loads first object of specified type, is slower than GetComponent so it shouldn't be used if possible

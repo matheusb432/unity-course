@@ -19,7 +19,7 @@ namespace RPG.Core
 
         private void OnTriggerEnter(Collider other)
         {
-            if (!other.CompareTag(Constants.PLAYER_TAG))
+            if (!other.CompareTag(Consts.PLAYER_TAG))
                 return;
 
             colliderCmp.enabled = false;

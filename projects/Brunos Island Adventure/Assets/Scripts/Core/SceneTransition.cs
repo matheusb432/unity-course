@@ -10,7 +10,7 @@ namespace RPG.Core
         public static IEnumerator Initiate(int sceneIndex)
         {
             var audioSourceCmp = GameObject
-                .FindGameObjectWithTag(Constants.GAME_MANAGER_TAG)
+                .FindGameObjectWithTag(Consts.GAME_MANAGER_TAG)
                 .GetComponent<AudioSource>();
 
             // ? The audio will fade in `volume * audioFadeDurationMultiplier` seconds

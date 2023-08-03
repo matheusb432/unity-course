@@ -9,7 +9,7 @@ namespace RPG.Util
 
         private void Awake()
         {
-            cam = GameObject.FindGameObjectWithTag(Constants.CAMERA_TAG);
+            cam = GameObject.FindGameObjectWithTag(Consts.CAMERA_TAG);
         }
 
         // NOTE LateUpdate() runs after Update(), this guarantees that this runs after the camera updates and prevents race conditions
