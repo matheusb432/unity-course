@@ -20,7 +20,7 @@ namespace RPG.UI
             controller.PlayerInputCmp.SwitchCurrentActionMap(Consts.UI_ACTION_MAP);
             pauseContainer.style.display = DisplayStyle.Flex;
 
-            // NOTE Pausing the game by freezing time
+            // NOTE Pausing the game can be done by freezing time, but there are other ways to do it
             Time.timeScale = 0;
         }
 

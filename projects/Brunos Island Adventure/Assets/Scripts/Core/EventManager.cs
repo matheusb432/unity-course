@@ -24,7 +24,7 @@ namespace RPG.Core
 
         public static event UnityAction OnGameOver;
 
-        // NOTE Raise event == Emit event
+        // NOTE "Raise event" is just another way of saying "Emit event"
         public static void RaiseChangePlayerHealth(float newHealth) =>
             OnChangePlayerHealth?.Invoke(newHealth);
 

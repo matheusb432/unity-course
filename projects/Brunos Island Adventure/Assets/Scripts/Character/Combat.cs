@@ -25,7 +25,7 @@ namespace RPG.Character
 
         private void OnEnable()
         {
-            // NOTE Adding an event handler to the bubbled event delegate, enables multiple different handlers in different
+            // NOTE Adding an event handler to the bubbled event delegate, enables multiple different handlers to listen to the same event
             bubbleEventCmp.OnBubbleStartAttack += HandleBubbleStartAttack;
             bubbleEventCmp.OnBubbleCompleteAttack += HandleBubbleCompleteAttack;
             bubbleEventCmp.OnBubbleHit += HandleBubbleHit;
@@ -34,7 +34,7 @@ namespace RPG.Character
         // NOTE Cleaning up event listeners when the component is disabled (destroyed)
         private void OnDisable()
         {
-            // ? Removing the event listener by subtracting the handler method
+            // ? Removing the event listener by subtracting the handler method from the bubbled event delegate
             bubbleEventCmp.OnBubbleStartAttack -= HandleBubbleStartAttack;
             bubbleEventCmp.OnBubbleCompleteAttack -= HandleBubbleCompleteAttack;
             bubbleEventCmp.OnBubbleHit -= HandleBubbleHit;

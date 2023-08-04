@@ -8,7 +8,7 @@ namespace Benchmarks
 {
     public sealed class ScenePerformanceTest
     {
-        // NOTE Benchmark the frame time and initial load time of each scene
+        // NOTE Benchmarking the frame time and initial load time of each scene
         [UnityTest, Performance]
         public IEnumerator MainMenuScene_Load()
         {

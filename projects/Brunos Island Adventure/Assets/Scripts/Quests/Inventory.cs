@@ -7,7 +7,8 @@ namespace RPG.Quests
 {
     public sealed class Inventory : MonoBehaviour
     {
-        // NOTE The inventory is a list of items, maybe in a real game it'd be better for it to be a hashmap?
+        // NOTE The inventory is a list of items, maybe in a real game it'd be better for it to be a hash map? 
+        // * or Dictionary<K, V> for C#, this unfortunately isn't Rust
         public List<QuestItemSO> items = new();
 
         private void OnEnable()

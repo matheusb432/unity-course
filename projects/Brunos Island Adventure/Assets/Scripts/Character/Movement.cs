@@ -33,6 +33,7 @@ namespace RPG.Character
             // NOTE GetComponentInChildren searches for a component from within child objects of the current game object
             animatorCmp = GetComponentInChildren<Animator>();
             // NOTE transform.forward gets the vector representing the blue axis of the game object, which is where it's facing
+            // * In other words, transform.forward gets the _forward vector_ of the game object
             originalForwardVector = transform.forward;
         }
 
