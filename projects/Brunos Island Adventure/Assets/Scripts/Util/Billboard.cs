@@ -3,7 +3,7 @@
 namespace RPG.Util
 {
     // ? A billboard is a game object that always faces the camera
-    public class Billboard : MonoBehaviour
+    public sealed class Billboard : MonoBehaviour
     {
         private GameObject cam;
 

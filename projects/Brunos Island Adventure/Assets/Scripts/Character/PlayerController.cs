@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 
 namespace RPG.Character
 {
-    public class PlayerController : MonoBehaviour
+    public sealed class PlayerController : MonoBehaviour
     {
         [NonSerialized]
         public Health healthCmp;
@@ -47,7 +47,6 @@ namespace RPG.Character
             if (hasSavedData)
             {
                 healthCmp.maxHealth = stats.health;
-                // TODO test if not exists
                 healthCmp.healthPoints = PlayerPrefs.GetFloat(SaveConsts.HEALTH);
                 combatCmp.damage = PlayerPrefs.GetFloat(SaveConsts.DAMAGE);
                 potionInventoryCmp.SetPotions(PlayerPrefs.GetInt(SaveConsts.POTIONS));
@@ -101,7 +100,6 @@ namespace RPG.Character
 
         private void HandleReward(RewardSO reward)
         {
-            // TODO change
             healthCmp.Heal(reward.bonusHealth);
             potionInventoryCmp.AddPotions(reward.bonusPotions);
             // NOTE updating scriptable objects values will persist after the game has been closed
@@ -114,7 +112,6 @@ namespace RPG.Character
                 SetWeapon();
             }
 
-            // TODO refactor to method to avoid duplication
             EventManager.RaiseChangePlayerPotions(potionInventoryCmp.Potions);
         }
 

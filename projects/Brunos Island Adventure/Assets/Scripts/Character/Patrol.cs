@@ -4,7 +4,7 @@ using UnityEngine.Splines;
 
 namespace RPG.Character
 {
-    public class Patrol : MonoBehaviour
+    public sealed class Patrol : MonoBehaviour
     {
         // NOTE [SerializeField] will make this accessible from the unity editor
         [SerializeField]

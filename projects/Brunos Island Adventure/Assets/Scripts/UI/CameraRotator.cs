@@ -2,7 +2,7 @@
 
 namespace RPG.UI
 {
-    public class CameraRotator : MonoBehaviour
+    public sealed class CameraRotator : MonoBehaviour
     {
         [SerializeField]
         private float speed;

@@ -8,7 +8,7 @@ using UnityEngine.TestTools;
 
 namespace Benchmarks
 {
-    public class PlayerPerformanceTest
+    public sealed class PlayerPerformanceTest
     {
         [UnityTest, Performance]
         public IEnumerator PlayerFind1k()

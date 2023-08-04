@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace RPG.Character
 {
-    public class EnemyController : MonoBehaviour
+    public sealed class EnemyController : MonoBehaviour
     {
         // NOTE [NonSerialized] will make this variable not visible in the Unity Editor, even though it's public
         [NonSerialized]

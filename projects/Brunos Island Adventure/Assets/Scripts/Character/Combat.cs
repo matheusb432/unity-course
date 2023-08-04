@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 namespace RPG.Character
 {
-    public class Combat : MonoBehaviour
+    public sealed class Combat : MonoBehaviour
     {
         [NonSerialized]
         public float damage = 0;
@@ -79,7 +79,6 @@ namespace RPG.Character
                 1
             );
 
-            // TODO - refactor?
             foreach (var target in targets)
             {
                 // ? Agent must not hit itself

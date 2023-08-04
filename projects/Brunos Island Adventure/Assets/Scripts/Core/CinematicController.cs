@@ -4,7 +4,7 @@ using UnityEngine.Playables;
 
 namespace RPG.Core
 {
-    public class CinematicController : MonoBehaviour
+    public sealed class CinematicController : MonoBehaviour
     {
         private PlayableDirector playableDirectorCmp;
         private Collider colliderCmp;

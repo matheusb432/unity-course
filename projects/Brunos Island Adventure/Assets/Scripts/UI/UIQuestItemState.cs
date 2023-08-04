@@ -4,7 +4,7 @@ using UnityEngine.UIElements;
 
 namespace RPG.UI
 {
-    public class UIQuestItemState : IUIState
+    public sealed class UIQuestItemState : IUIState
     {
         private VisualElement questItemContainer;
         private Label questItemText;
@@ -40,7 +40,6 @@ namespace RPG.UI
             controller.canPause = true;
         }
 
-        // TODO refactor - should be necessary to init the state, similar to UIDialogueState's issue
         public void SetQuestItemLabel(string name)
         {
             questItemText.text = name;

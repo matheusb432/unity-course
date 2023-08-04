@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 namespace RPG.UI
 {
-    public class UIVictoryState : IUIState
+    public sealed class UIVictoryState : IUIState
     {
         private readonly UIController controller;
 

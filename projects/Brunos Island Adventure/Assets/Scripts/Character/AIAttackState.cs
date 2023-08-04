@@ -3,7 +3,7 @@ using RPG.Core;
 
 namespace Assets.Scripts.Character
 {
-    public class AIAttackState : IAIState
+    public sealed class AIAttackState : IAIState
     {
         public void EnterState(EnemyController enemy)
         {

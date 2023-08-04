@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 namespace RPG.Quests
 {
-    public class TreasureChest : MonoBehaviour
+    public sealed class TreasureChest : MonoBehaviour
     {
         [SerializeField]
         private QuestItemSO questItem;
@@ -22,7 +22,7 @@ namespace RPG.Quests
         {
             if (PlayerPrefs.HasKey(SaveConsts.PLAYER_ITEMS))
             {
-                var playerItems = PlayerPrefsUtil.GetString(SaveConsts.PLAYER_ITEMS);
+                var playerItems = PlayerPrefsUtil.GetStrings(SaveConsts.PLAYER_ITEMS);
 
                 playerItems.ForEach(CheckItem);
             }
@@ -43,7 +43,6 @@ namespace RPG.Quests
             if (!context.performed || !isInteractable || isOpened)
                 return;
 
-            // TODO refactor to method
             EventManager.RaiseTreasureChestOpen(questItem, true);
             isOpened = true;
             animatorCmp.SetBool(Consts.IS_SHAKING_ANIMATOR_PARAM, false);

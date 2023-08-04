@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 namespace RPG.Util
 {
-    public class BubbleEvent : MonoBehaviour
+    public sealed class BubbleEvent : MonoBehaviour
     {
         // NOTE The `event` keyword  prevents this delegate from being overwritten, events can only be added to it with the `+=` operator
         // ? Creating custom events to bubble the events

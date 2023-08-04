@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 namespace RPG.Character
 {
-    public class NpcController : MonoBehaviour
+    public sealed class NpcController : MonoBehaviour
     {
         public QuestItemSO desiredQuestItem;
 
@@ -32,7 +32,7 @@ namespace RPG.Character
         {
             if (PlayerPrefs.HasKey(SaveConsts.NPC_ITEMS))
             {
-                var npcItems = PlayerPrefsUtil.GetString(SaveConsts.NPC_ITEMS);
+                var npcItems = PlayerPrefsUtil.GetStrings(SaveConsts.NPC_ITEMS);
                 npcItems.ForEach(CheckNpcQuestItem);
             }
         }

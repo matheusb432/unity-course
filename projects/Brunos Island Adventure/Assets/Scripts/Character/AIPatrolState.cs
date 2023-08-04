@@ -1,6 +1,6 @@
 ﻿namespace RPG.Character
 {
-    public class AIPatrolState : IAIState
+    public sealed class AIPatrolState : IAIState
     {
         public void EnterState(EnemyController enemy)
         {

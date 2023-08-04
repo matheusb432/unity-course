@@ -3,7 +3,7 @@
 namespace RPG.Character
 {
     // ? This is different than the course solution for handling potions
-    public class PotionInventory : MonoBehaviour
+    public sealed class PotionInventory : MonoBehaviour
     {
         public int Potions { get; private set; }
 

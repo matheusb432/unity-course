@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 
 namespace RPG.UI
 {
-    public class UIDialogueState : IUIState
+    public sealed class UIDialogueState : IUIState
     {
         private readonly UIController controller;
         private VisualElement dialogueContainer;

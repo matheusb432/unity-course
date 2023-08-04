@@ -4,7 +4,7 @@ using UnityEngine.UIElements;
 
 namespace RPG.UI
 {
-    public class UIUnpausedState : IUIState
+    public sealed class UIUnpausedState : IUIState
     {
         private readonly UIController controller;
 

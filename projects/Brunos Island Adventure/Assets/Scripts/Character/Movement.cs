@@ -6,19 +6,22 @@ using UnityEngine.InputSystem;
 
 namespace RPG.Character
 {
-    // TODO refactor - seal classes?
     // NOTE RequireComponent automatically adds this component to any instance that has this script
     [RequireComponent(typeof(NavMeshAgent))]
-    public class Movement : MonoBehaviour
+    public sealed class Movement : MonoBehaviour
     {
         [NonSerialized]
         public Vector3 originalForwardVector;
 
         [NonSerialized]
         public bool isMoving = false;
+        private bool sprintActive = false;
 
         private NavMeshAgent agent;
         private Animator animatorCmp;
+
+        [SerializeField]
+        private float sprintMult = 2f;
 
         private Vector3 movementVector;
         private bool clampAnimatorSpeedAgain = true;
@@ -59,7 +62,6 @@ namespace RPG.Character
             agent.Move(offset);
         }
 
-        // TODO is this the right place for this method? Only applies to player but is on generic component
         public void HandleMove(InputAction.CallbackContext context)
         {
             if (context.performed)
@@ -70,6 +72,21 @@ namespace RPG.Character
             Vector2 input = context.ReadValue<Vector2>();
 
             movementVector = new Vector3(input.x, 0, input.y);
+        }
+
+        public void HandleSprint(InputAction.CallbackContext context)
+        {
+            if (!context.performed || context.canceled)
+            {
+                if (sprintActive)
+                    UpdateAgentSpeed(agent.speed / sprintMult, false);
+                sprintActive = false;
+
+                return;
+            }
+
+            UpdateAgentSpeed(agent.speed * sprintMult, false);
+            sprintActive = true;
         }
 
         public void Rotate(Vector3 newForwardVector)
@@ -135,18 +152,10 @@ namespace RPG.Character
 
         private void MovementAnimator()
         {
-            // TODO refactor - is `animatorCmp.speed` equivalent?
             float speed = animatorCmp.GetFloat(Consts.SPEED_ANIMATOR_PARAM);
             float smoothening = Time.deltaTime * agent.acceleration;
 
-            if (isMoving)
-            {
-                speed += smoothening;
-            }
-            else
-            {
-                speed -= smoothening;
-            }
+            speed += isMoving ? smoothening : -smoothening;
 
             // NOTE Mathf.Clamp01() simply clamps the value with min = 0 and max = 1
             speed = Mathf.Clamp01(speed);

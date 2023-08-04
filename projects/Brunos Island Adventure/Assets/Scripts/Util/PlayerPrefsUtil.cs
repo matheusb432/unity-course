@@ -6,15 +6,14 @@ namespace RPG.Util
 {
     public static class PlayerPrefsUtil
     {
-        // TODO - refactor to extension method?
-        public static void SetString(string key, List<string> value)
+        public static void SetStrings(string key, List<string> value)
         {
             var formattedValue = string.Join(",", value);
 
             PlayerPrefs.SetString(key, formattedValue);
         }
 
-        public static List<string> GetString(string key)
+        public static List<string> GetStrings(string key)
         {
             string unformattedValue = PlayerPrefs.GetString(key);
 

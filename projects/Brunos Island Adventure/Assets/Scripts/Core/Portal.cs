@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace RPG.Core
 {
-    public class Portal : MonoBehaviour
+    public sealed class Portal : MonoBehaviour
     {
         [SerializeField]
         private int nextSceneIndex;

@@ -2,7 +2,7 @@
 
 namespace RPG.Audio
 {
-    public class AttackSoundEffect : MonoBehaviour
+    public sealed class AttackSoundEffect : MonoBehaviour
     {
         private AudioSource audioSourceCmp;
 

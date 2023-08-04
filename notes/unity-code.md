@@ -12,7 +12,7 @@ Sources:
 - Event delegates shouldn't have the `On` prefix. But the methods that raise them should.
 
 ```csharp
-public class EventManager 
+public sealed class EventManager 
 {
   public event Action DoorOpened; 
   public void OnDoorOpened() => DoorOpened?.Invoke();
@@ -22,7 +22,7 @@ public class EventManager
 - Controller instances shouldn't have the `Controller` suffix.
 
 ```csharp
-public class GameManager 
+public sealed class GameManager 
 {
   private PlayerController player;
 }

@@ -10,7 +10,7 @@ using UnityEngine.UIElements;
 
 namespace RPG.UI
 {
-    public class UIController : MonoBehaviour
+    public sealed class UIController : MonoBehaviour
     {
         public VisualElement root;
         public List<Button> buttons = new();
@@ -156,6 +156,7 @@ namespace RPG.UI
 
             var input = context.ReadValue<Vector2>();
             var newIndex = Utils.ToIndex(ActiveBtnIdx + (int)input.x, buttons.Count);
+            Debug.LogWarning(newIndex);
             SetActiveButton(newIndex);
         }
 

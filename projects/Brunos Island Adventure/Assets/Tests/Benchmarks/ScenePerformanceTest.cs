@@ -6,7 +6,7 @@ using UnityEngine.TestTools;
 
 namespace Benchmarks
 {
-    public class ScenePerformanceTest
+    public sealed class ScenePerformanceTest
     {
         // NOTE Benchmark the frame time and initial load time of each scene
         [UnityTest, Performance]

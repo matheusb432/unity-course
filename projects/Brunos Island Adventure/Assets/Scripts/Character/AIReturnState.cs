@@ -2,7 +2,7 @@
 
 namespace RPG.Character
 {
-    public class AIReturnState : IAIState
+    public sealed class AIReturnState : IAIState
     {
         private Vector3 targetPosition;
 

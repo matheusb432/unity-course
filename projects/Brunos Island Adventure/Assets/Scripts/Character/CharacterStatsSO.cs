@@ -3,7 +3,7 @@
 namespace RPG.Character
 {
     [CreateAssetMenu(fileName = "Character Stats", menuName = "RPG/Character Stats SO", order = 0)]
-    public class CharacterStatsSO : ScriptableObject
+    public sealed class CharacterStatsSO : ScriptableObject
     {
         public float health = 100;
         public float damage = 10;

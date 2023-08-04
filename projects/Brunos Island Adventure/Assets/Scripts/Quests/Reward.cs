@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace RPG.Quests
 {
-    public class Reward : MonoBehaviour
+    public sealed class Reward : MonoBehaviour
     {
         [SerializeField]
         private RewardSO reward;

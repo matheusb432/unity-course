@@ -16,7 +16,6 @@ namespace RPG.Core
             // ? The audio will fade in `volume * audioFadeDurationMultiplier` seconds
             // ? e.g. 0.4 volume and 2 duration => fades in 0.8 seconds
             var audioFadeDurationMultiplier = 1.5f;
-
             // ? Will smoothly fade out the music by progressively lowering it's volume.
             while (audioSourceCmp.volume > 0)
             {

@@ -4,7 +4,7 @@ using Unity.PerformanceTesting;
 
 namespace UnitTests
 {
-    public class UtilTests
+    public sealed class UtilTests
     {
         [Test, Performance]
         public void PerfToIndex()

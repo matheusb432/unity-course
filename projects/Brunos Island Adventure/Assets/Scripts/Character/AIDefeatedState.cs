@@ -2,7 +2,7 @@
 
 namespace RPG.Character
 {
-    public class AIDefeatedState : IAIState
+    public sealed class AIDefeatedState : IAIState
     {
         public void EnterState(EnemyController enemy)
         {

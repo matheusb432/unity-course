@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 namespace RPG.Character
 {
-    public class Health : MonoBehaviour
+    public sealed class Health : MonoBehaviour
     {
         public event UnityAction OnStartDefeated = () => { };
 
@@ -59,7 +59,6 @@ namespace RPG.Character
         private void SetHealth(float health)
         {
             healthPoints = health;
-            // TODO research if CompareTag is slow (seems slow to pointlessly check tag for every point of damage that every enemy takes)
             if (CompareTag(Consts.PLAYER_TAG))
                 EventManager.RaiseChangePlayerHealth(healthPoints);
         }

@@ -39,7 +39,6 @@ namespace RPG.Core
 
         public static void RaiseReward(RewardSO reward) => OnReward?.Invoke(reward);
 
-        // TODO save player data on portal enter
         public static void RaisePortalEnter(Collider player, int sceneIndex) =>
             OnPortalEnter?.Invoke(player, sceneIndex);
 

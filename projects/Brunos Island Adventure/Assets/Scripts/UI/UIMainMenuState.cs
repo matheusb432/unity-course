@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 namespace RPG.UI
 {
-    public class UIMainMenuState : IUIState
+    public sealed class UIMainMenuState : IUIState
     {
         private int sceneIndex;
 
@@ -46,7 +46,7 @@ namespace RPG.UI
             }
             else
             {
-                SceneTransition.Initiate(sceneIndex);
+                controller.StartCoroutine(SceneTransition.Initiate(sceneIndex));
             }
         }
 
