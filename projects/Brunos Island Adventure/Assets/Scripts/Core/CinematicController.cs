@@ -1,5 +1,6 @@
 ﻿using RPG.Util;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Playables;
 
 namespace RPG.Core
@@ -52,6 +53,28 @@ namespace RPG.Core
             PlayerPrefsUtil.SetBool(SaveConsts.PLAYED_CUTSCENE, true);
 
             playableDirectorCmp.Play();
+        }
+
+        public void HandleSkip(InputAction.CallbackContext context)
+        {
+            if (!context.performed)
+                return;
+
+            playableDirectorCmp.Stop();
+        }
+
+        public void HandlePause(InputAction.CallbackContext context)
+        {
+            if (!context.performed)
+                return;
+
+            EventManager.RaiseTogglePause();
+
+            // ? Pausing alternate via the playable director
+            //if (playableDirectorCmp.state == PlayState.Paused)
+            //    playableDirectorCmp.Play();
+            //else
+            //    playableDirectorCmp.Pause();
         }
 
         private void HandlePlayed(PlayableDirector pd)

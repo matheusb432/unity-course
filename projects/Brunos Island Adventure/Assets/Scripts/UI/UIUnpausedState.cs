@@ -1,4 +1,5 @@
-﻿using RPG.Util;
+﻿using RPG.Core;
+using RPG.Util;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -20,7 +21,7 @@ namespace RPG.UI
             controller.PlayerInputCmp.SwitchCurrentActionMap(Consts.GAMEPLAY_ACTION_MAP);
             pauseContainer.style.display = DisplayStyle.None;
 
-            Time.timeScale = 1;
+            EventManager.RaiseTogglePause(PauseAction.Unpause);
         }
 
         public void SelectButton() { }

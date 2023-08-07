@@ -24,6 +24,8 @@ namespace RPG.Core
 
         public static event UnityAction OnGameOver;
 
+        public static event UnityAction<PauseAction> OnTogglePause;
+
         // NOTE "Raise event" is just another way of saying "Emit event"
         public static void RaiseChangePlayerHealth(float newHealth) =>
             OnChangePlayerHealth?.Invoke(newHealth);
@@ -48,5 +50,15 @@ namespace RPG.Core
         public static void RaiseVictory() => OnVictory?.Invoke();
 
         public static void RaiseGameOver() => OnGameOver?.Invoke();
+
+        public static void RaiseTogglePause(PauseAction action = PauseAction.Toggle) =>
+            OnTogglePause?.Invoke(action);
+    }
+
+    public enum PauseAction
+    {
+        Toggle,
+        Pause,
+        Unpause,
     }
 }

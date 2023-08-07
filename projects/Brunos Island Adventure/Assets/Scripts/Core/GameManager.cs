@@ -45,19 +45,24 @@ namespace RPG.Core
         {
             EventManager.OnPortalEnter += HandlePortalEnter;
             EventManager.OnCutsceneUpdated += HandleCutsceneUpdated;
+            EventManager.OnTogglePause += HandleTogglePause;
         }
 
         private void OnDisable()
         {
             EventManager.OnPortalEnter -= HandlePortalEnter;
             EventManager.OnCutsceneUpdated -= HandleCutsceneUpdated;
+            EventManager.OnTogglePause -= HandleTogglePause;
         }
 
-        private void HandlePortalEnter(Collider player, int nextSceneIndex)
+        private void HandlePortalEnter(Collider player, int nextSceneIndex) =>
+            SaveGame(player, nextSceneIndex);
+
+        // NOTE Saving player data in PlayerPrefs when entering a portal
+        private void SaveGame(Collider player, int nextSceneIndex)
         {
             var playerControllerCmp = player.GetComponent<PlayerController>();
 
-            // NOTE Saving player data in PlayerPrefs when entering a portal
             PlayerPrefs.SetFloat(SaveConsts.HEALTH, playerControllerCmp.healthCmp.healthPoints);
             PlayerPrefs.SetInt(SaveConsts.POTIONS, playerControllerCmp.potionInventoryCmp.Potions);
             PlayerPrefs.SetFloat(SaveConsts.DAMAGE, playerControllerCmp.combatCmp.damage);
@@ -117,8 +122,26 @@ namespace RPG.Core
 
         private void HandleCutsceneUpdated(bool isPlaying)
         {
-            // ? Could switch action map to a cutscene map, to enable skipping cutscenes
-            playerInputCmp.enabled = !isPlaying;
+            if (isPlaying)
+            {
+                playerInputCmp.SwitchCurrentActionMap(Consts.CUTSCENE_ACTION_MAP);
+            }
+            else
+            {
+                HandleTogglePause(PauseAction.Unpause);
+                playerInputCmp.SwitchCurrentActionMap(Consts.GAMEPLAY_ACTION_MAP);
+            }
+        }
+
+        private void HandleTogglePause(PauseAction pause)
+        {
+            // NOTE Pausing the game can be done by freezing time, but there are other ways to do it
+            Time.timeScale = pause switch
+            {
+                PauseAction.Pause => 0,
+                PauseAction.Unpause => 1,
+                _ => Time.timeScale == 0 ? 1 : 0,
+            };
         }
     }
 }

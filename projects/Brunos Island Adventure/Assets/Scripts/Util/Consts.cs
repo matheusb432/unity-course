@@ -23,6 +23,7 @@
 
         public const string GAMEPLAY_ACTION_MAP = "Gameplay";
         public const string UI_ACTION_MAP = "UI";
+        public const string CUTSCENE_ACTION_MAP = "Cutscene";
     }
 
     public static class UIConsts
